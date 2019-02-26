@@ -19,7 +19,7 @@ public class IntBoard {
 	}
 	
 	public Set<BoardCell> getAdjList(BoardCell cell) {
-		return adjMtx.get(cell);
+		return null;
 	}
 	
 	public void calcTargets(BoardCell startCell, int pathLength) {
@@ -27,6 +27,10 @@ public class IntBoard {
 	}
 	
 	public Set<BoardCell> getTargets() {
-		return targets;
+		return null;
+	}
+
+	public BoardCell getCell(int i, int j) {
+		return null;
 	}
 }
