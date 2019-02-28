@@ -1,3 +1,3 @@
-CSCI306 Assignment C12A-1
+CSCI306 Clue Project
 Miika Jarvela
 Daniel Brouillet

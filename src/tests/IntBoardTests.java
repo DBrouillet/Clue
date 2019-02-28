@@ -193,7 +193,7 @@ import experiment.IntBoard;
 	public void testTargets1_1_6()
 	{
 		BoardCell cell = board.getCell(1, 1);
-		board.calcTargets(cell, 1);
+		board.calcTargets(cell, 6);
 		Set targets = board.getTargets();
 		assertEquals(7, targets.size());
 		assertTrue(targets.contains(board.getCell(1, 3)));
