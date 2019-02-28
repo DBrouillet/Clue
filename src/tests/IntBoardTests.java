@@ -15,7 +15,7 @@ import experiment.IntBoard;
 
 	@Before
 	public void beforeAll() {
-        board = new IntBoard();  // constructor should call calcAdjacencies() so you can test them
+        board = new IntBoard(4, 4);  // constructor should call calcAdjacencies() so you can test them
     }
 	
 	/*
