@@ -41,15 +41,19 @@ public class IntBoard {
 		calcAdjacencies();
 	}
 	
-	/* 
+	/** 
 	 * calcAdjacencies iterates through all cells in the grid
 	 * for each cell, it adds each not-out-of-bounds neighbor to its set of neighbors in the adjMtx
 	 */
 	public void calcAdjacencies() {
+		// Iterate through each cell
 		for (BoardCell[] row : grid) {
 			for (BoardCell cell : row) {
 				int x = cell.getRow();
 				int y = cell.getColumn();
+				
+				// Check to see if a neighboring cell is in bounds
+				// If it is, then we add it to the adjMtx
 				if (x - 1 >= 0) {
 					adjMtx.get(cell).add(getCell(x-1, y));
 				}
@@ -70,7 +74,10 @@ public class IntBoard {
 		return adjMtx.get(cell);
 	}
 	
-	/* Initializes empty sets of visited and targets, 
+	/**
+	 * @param startCell = starting cell
+	 * @param pathLength = length of desired path
+	 * Initializes empty sets of visited and targets, 
 	 * then adds the start cell to the visited list and calls the recursive findAllTargets function
 	 */
 	public void calcTargets(BoardCell startCell, int pathLength) {
@@ -80,7 +87,9 @@ public class IntBoard {
 		findAllTargets(startCell, pathLength);
 	}
 	
-	/*
+	/**
+	 * @param startCell = starting cell
+	 * @param pathLength = length of desired path
 	 * Given a cell and a pathLength, adds the cells neighbors to targets if it is at the end of the path,
 	 * otherwise recursively calls the same function on its neighbors to find the targets on those paths
 	 */
