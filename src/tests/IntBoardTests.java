@@ -10,7 +10,7 @@ import org.junit.Test;
 import experiment.BoardCell;
 import experiment.IntBoard;
 
-class IntBoardTests {
+ public class IntBoardTests {
 	private IntBoard board;
 
 	@Before
@@ -126,30 +126,83 @@ class IntBoardTests {
 		board.calcTargets(cell, 2);
 		Set targets = board.getTargets();
 		assertEquals(6, targets.size());
-		assertTrue(targets.contains(board.getCell(3, 0)));
-		assertTrue(targets.contains(board.getCell(2, 1)));
-		assertTrue(targets.contains(board.getCell(0, 1)));
-		assertTrue(targets.contains(board.getCell(1, 2)));
-		assertTrue(targets.contains(board.getCell(0, 3)));
-		assertTrue(targets.contains(board.getCell(1, 0)));
+		assertTrue(targets.contains(board.getCell(2, 0)));
+		assertTrue(targets.contains(board.getCell(0, 0)));
+		assertTrue(targets.contains(board.getCell(0, 2)));
+		assertTrue(targets.contains(board.getCell(1, 3)));
+		assertTrue(targets.contains(board.getCell(2, 2)));
+		assertTrue(targets.contains(board.getCell(3, 1)));
 	}
 	
 	/*
-	 * Tests target list of things 6 away from 3,3
+	 * Tests target list of things 4 away from 3,3
 	 */
 	@Test
 	public void testTargets3_3()
 	{
 		BoardCell cell = board.getCell(3, 3);
-		board.calcTargets(cell, 6);
+		board.calcTargets(cell, 4);
 		Set targets = board.getTargets();
 		assertEquals(6, targets.size());
-		assertTrue(targets.contains(board.getCell(3, 0)));
-		assertTrue(targets.contains(board.getCell(2, 1)));
+		assertTrue(targets.contains(board.getCell(0, 2)));
+		assertTrue(targets.contains(board.getCell(2, 0)));
+		assertTrue(targets.contains(board.getCell(2, 2)));
+		assertTrue(targets.contains(board.getCell(1, 3)));
+		assertTrue(targets.contains(board.getCell(3, 1)));
+		assertTrue(targets.contains(board.getCell(1, 1)));
+	}
+	
+	/*
+	 * Tests target list of things 5 away from 3,3
+	 */
+	@Test
+	public void testTargets3_3_5()
+	{
+		BoardCell cell = board.getCell(3, 3);
+		board.calcTargets(cell, 5);
+		Set targets = board.getTargets();
+		assertEquals(8, targets.size());
 		assertTrue(targets.contains(board.getCell(0, 1)));
-		assertTrue(targets.contains(board.getCell(1, 2)));
-		assertTrue(targets.contains(board.getCell(0, 3)));
 		assertTrue(targets.contains(board.getCell(1, 0)));
+		assertTrue(targets.contains(board.getCell(0, 3)));
+		assertTrue(targets.contains(board.getCell(3, 0)));
+		assertTrue(targets.contains(board.getCell(1, 2)));
+		assertTrue(targets.contains(board.getCell(2, 1)));
+		assertTrue(targets.contains(board.getCell(3, 2)));
+		assertTrue(targets.contains(board.getCell(2, 3)));
+	}
+	/*
+	 * Tests target list of things 1 away from 1,1
+	 */
+	@Test
+	public void testTargets1_1_1()
+	{
+		BoardCell cell = board.getCell(1, 1);
+		board.calcTargets(cell, 1);
+		Set targets = board.getTargets();
+		assertEquals(4, targets.size());
+		assertTrue(targets.contains(board.getCell(0, 1)));
+		assertTrue(targets.contains(board.getCell(1, 0)));
+		assertTrue(targets.contains(board.getCell(1, 2)));
+		assertTrue(targets.contains(board.getCell(2, 1)));
+	}
+	/*
+	 * Tests target list of things 6 away from 1,1
+	 */
+	@Test
+	public void testTargets1_1_6()
+	{
+		BoardCell cell = board.getCell(1, 1);
+		board.calcTargets(cell, 1);
+		Set targets = board.getTargets();
+		assertEquals(7, targets.size());
+		assertTrue(targets.contains(board.getCell(1, 3)));
+		assertTrue(targets.contains(board.getCell(3, 1)));
+		assertTrue(targets.contains(board.getCell(3, 3)));
+		assertTrue(targets.contains(board.getCell(2, 0)));
+		assertTrue(targets.contains(board.getCell(0, 2)));
+		assertTrue(targets.contains(board.getCell(2, 2)));
+		assertTrue(targets.contains(board.getCell(0, 0)));
 	}
 	
 }
