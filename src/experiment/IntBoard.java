@@ -5,12 +5,25 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * @author Miika Jarvela and Daniel Brouillet
+ * Class used to create a simple board of integers
+ * and calculate their targets and all of their adjacencies.
+ *
+ */
 public class IntBoard {
 	private BoardCell[][] grid;
 	private Map<BoardCell, Set<BoardCell>> adjMtx;
 	private Set<BoardCell> visited;
 	private Set<BoardCell> targets;
 	
+	/**
+	 * @param x = size of board in the x direction
+	 * @param y = size of board in the y direction
+	 * Initialize all BoardCells and place them in the grid.
+	 * Also, initialize all of the elements of adjMtx.
+	 * Then, call calcAdajacencies to populate adjMtx.
+	 */
 	public IntBoard(int x, int y) {
 		super();
 		grid = new BoardCell[x][y];

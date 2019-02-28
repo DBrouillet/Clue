@@ -9,7 +9,12 @@ import org.junit.Test;
 
 import experiment.BoardCell;
 import experiment.IntBoard;
-
+/**
+ * @author Miika Jarvela and Daniel Brouillet
+ * Class used to test functionality of board
+ * and calculation of adjacencies and targets.
+ *
+ */
  public class IntBoardTests {
 	private IntBoard board;
 

@@ -1,5 +1,10 @@
 package experiment;
-
+/**
+ * @author Miika Jarvela and Daniel Brouillet
+ * Class used to create a simple BoardCell consisting of integers
+ * (i.e. only a row and a column).
+ *
+ */
 public class BoardCell {
 	public int getRow() {
 		return row;
