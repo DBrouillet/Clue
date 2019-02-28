@@ -25,19 +25,26 @@ public class IntBoard {
 	 * Then, call calcAdajacencies to populate adjMtx.
 	 */
 	public IntBoard(int x, int y) {
-		super();
-		grid = new BoardCell[x][y];
-		adjMtx = new HashMap<BoardCell, Set<BoardCell>> ();
+		grid = new BoardCell[x][y]; // Initialize the grid
+		adjMtx = new HashMap<BoardCell, Set<BoardCell>> (); // Initialize the adjacency matrix
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
+				/* 
+				 * Iterate through all possible cells in the x by y grid, adding each cell to the grid
+				 * and then adding that cell to the adjMtx with an empty set of neighbors
+				 */
 				grid[i][j] = new BoardCell(i, j);
 				adjMtx.put(grid[i][j], new HashSet<BoardCell> ());
 			}
 		}
-		
+		// Finish initializing the board by calling calcAdjacencies to populate the adjMtx
 		calcAdjacencies();
 	}
-
+	
+	/* 
+	 * calcAdjacencies iterates through all cells in the grid
+	 * for each cell, it adds each not-out-of-bounds neighbor to its set of neighbors in the adjMtx
+	 */
 	public void calcAdjacencies() {
 		for (BoardCell[] row : grid) {
 			for (BoardCell cell : row) {
@@ -63,14 +70,20 @@ public class IntBoard {
 		return adjMtx.get(cell);
 	}
 	
+	/* Initializes empty sets of visited and targets, 
+	 * then adds the start cell to the visited list and calls the recursive findAllTargets function
+	 */
 	public void calcTargets(BoardCell startCell, int pathLength) {
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
 		visited.add(startCell);
-		
 		findAllTargets(startCell, pathLength);
 	}
 	
+	/*
+	 * Given a cell and a pathLength, adds the cells neighbors to targets if it is at the end of the path,
+	 * otherwise recursively calls the same function on its neighbors to find the targets on those paths
+	 */
 	private void findAllTargets(BoardCell startCell, int pathLength) {
 		for (BoardCell cell : adjMtx.get(startCell)) {
 			if (visited.contains(cell)) {
