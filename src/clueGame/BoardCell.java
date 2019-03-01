@@ -14,12 +14,26 @@ public class BoardCell {
 		return column;
 	}
 
+	public char getInitial() {
+		return initial;
+	}
+
 	private int row;
 	private int column;
+	private char initial;
+	private DoorDirection doorDirection;
 	
+	public DoorDirection getDoorDirection() {
+		return doorDirection;
+	}
+
 	public BoardCell(int row, int column) {
 		super();
 		this.row = row;
 		this.column = column;
+	}
+
+	public boolean isDoorway() {
+		return false;
 	}
 }
