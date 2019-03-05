@@ -63,7 +63,7 @@ public class Board {
 			String line = in.nextLine();
 			String[] splitLine = line.split(", ");
 			legend.put(splitLine[0].charAt(0), splitLine[1]);
-			if (splitLine[2] != "Card" && splitLine[2] != "Other") {
+			if (!splitLine[2].equals("Card") && !splitLine[2].equals("Other")) {
 				throw new BadConfigFormatException("Legend config file has room type that is not card or other.");
 			}
 		}
@@ -111,6 +111,9 @@ public class Board {
 						direction = DoorDirection.RIGHT;
 						break;
 					}
+				}
+				if (!legend.containsKey(collectedRows.get(i)[j].charAt(0))) {
+					throw new BadConfigFormatException("Room does not exist in legend."); 
 				}
 				board[i][j] = new BoardCell(i, j, collectedRows.get(i)[j].charAt(0), direction);
 			}
