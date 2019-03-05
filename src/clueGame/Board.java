@@ -53,8 +53,9 @@ public class Board {
 	/**
 	 * Load the room information from proper file
 	 * @throws FileNotFoundException 
+	 * @throws BadConfigFormatException 
 	 */
-	public void loadRoomConfig() throws FileNotFoundException {
+	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
 		legend = new HashMap<Character, String> ();
 		FileReader reader = new FileReader(roomConfigFile);
 		Scanner in = new Scanner(reader);
@@ -62,6 +63,9 @@ public class Board {
 			String line = in.nextLine();
 			String[] splitLine = line.split(", ");
 			legend.put(splitLine[0].charAt(0), splitLine[1]);
+			if (splitLine[2] != "Card" && splitLine[2] != "Other") {
+				throw new BadConfigFormatException("Legend config file has room type that is not card or other.");
+			}
 		}
 	}
 	
@@ -74,6 +78,7 @@ public class Board {
 		FileReader reader = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(reader);
 		ArrayList<String[]> collectedRows = new ArrayList<String[]>(); 
+		numRows = 0;
 		while (in.hasNextLine()) {
 			String line = in.nextLine();
 			String[] splitLine = line.split(",");
