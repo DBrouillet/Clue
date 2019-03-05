@@ -233,7 +233,7 @@ public class Board {
 	}
 
 	public Set<BoardCell> getTargets() {
-		return targets;
+		return new HashSet<BoardCell>();
 	}
 	
 	/**
