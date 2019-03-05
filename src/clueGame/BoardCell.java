@@ -10,6 +10,14 @@ public class BoardCell {
 		return row;
 	}
 
+	public BoardCell(int row, int column, char initial, DoorDirection doorDirection) {
+		super();
+		this.row = row;
+		this.column = column;
+		this.initial = initial;
+		this.doorDirection = doorDirection;
+	}
+
 	public int getColumn() {
 		return column;
 	}
@@ -27,13 +35,7 @@ public class BoardCell {
 		return doorDirection;
 	}
 
-	public BoardCell(int row, int column) {
-		super();
-		this.row = row;
-		this.column = column;
-	}
-
 	public boolean isDoorway() {
-		return false;
+		return doorDirection != DoorDirection.NONE;
 	}
 }

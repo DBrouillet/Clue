@@ -2,6 +2,7 @@ package clueGame;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -63,9 +64,44 @@ public class Board {
 	
 	/**
 	 * Load board information from proper file
+	 * @throws FileNotFoundException 
 	 */
-	public void loadBoardConfig() {
+	public void loadBoardConfig() throws FileNotFoundException {
+		FileReader reader = new FileReader(boardConfigFile);
+		Scanner in = new Scanner(reader);
+		ArrayList<String[]> collectedRows = new ArrayList<String[]>(); 
+		while (in.hasNextLine()) {
+			String line = in.nextLine();
+			String[] splitLine = line.split(",");
+			numColumns = splitLine.length;
+			collectedRows.add(splitLine);
+			numRows++;
+		}
 		
+		board = new BoardCell[numRows][numColumns];
+		
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numColumns; j++) {
+				DoorDirection direction = DoorDirection.NONE;
+				if (collectedRows.get(i)[j].length() == 2) {
+					switch(collectedRows.get(i)[j].charAt(1)) {
+					case 'U':
+						direction = DoorDirection.UP;
+						break;
+					case 'D':
+						direction = DoorDirection.DOWN;
+						break;
+					case 'L':
+						direction = DoorDirection.LEFT;
+						break;
+					case 'R':
+						direction = DoorDirection.RIGHT;
+						break;
+					}
+				}
+				board[i][j] = new BoardCell(i, j, collectedRows.get(i)[j].charAt(0), direction);
+			}
+		}
 	}
 	
 	/**
