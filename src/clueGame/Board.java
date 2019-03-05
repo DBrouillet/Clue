@@ -38,13 +38,15 @@ public class Board {
 	 * Initialize the board to its beginning state
 	 */
 	public void initialize() {
-		legend = new HashMap<Character, String> ();
+		
 		try {
 			loadRoomConfig();
 			loadBoardConfig();
 		}
 		catch (FileNotFoundException e) {
 			System.out.println("Input file not found.");
+		} catch (BadConfigFormatException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -53,6 +55,7 @@ public class Board {
 	 * @throws FileNotFoundException 
 	 */
 	public void loadRoomConfig() throws FileNotFoundException {
+		legend = new HashMap<Character, String> ();
 		FileReader reader = new FileReader(roomConfigFile);
 		Scanner in = new Scanner(reader);
 		while (in.hasNextLine()) {
@@ -65,8 +68,9 @@ public class Board {
 	/**
 	 * Load board information from proper file
 	 * @throws FileNotFoundException 
+	 * @throws BadConfigFormatException 
 	 */
-	public void loadBoardConfig() throws FileNotFoundException {
+	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(reader);
 		ArrayList<String[]> collectedRows = new ArrayList<String[]>(); 
@@ -79,7 +83,11 @@ public class Board {
 		}
 		
 		board = new BoardCell[numRows][numColumns];
-		
+		for (int i = 0; i < numRows; i++) {
+			if (collectedRows.get(i).length != numColumns) {
+				throw new BadConfigFormatException("Number of columns is not constant across all rows."); 
+			}
+		}
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numColumns; j++) {
 				DoorDirection direction = DoorDirection.NONE;
