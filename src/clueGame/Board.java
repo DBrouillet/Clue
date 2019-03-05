@@ -181,6 +181,22 @@ public class Board {
 		return adjMatrix.get(cell);
 	}
 	
+	public Set<BoardCell> getAdjList(int i, int j) {
+		return adjMatrix.get(getCellAt(i,j));
+	}
+	
+	/**
+	 * @param startCell = initial cell
+	 * @param pathLength = length of path
+	 * Calculate all of the targets pathLength away from cell
+	 */
+	public void calcTargets(int i, int j, int pathLength) {
+//		visited = new HashSet<BoardCell>();
+//		targets = new HashSet<BoardCell>();
+//		visited.add(startCell);
+//		findAllTargets(startCell, pathLength);
+	}
+	
 	/**
 	 * @param startCell = initial cell
 	 * @param pathLength = length of path
