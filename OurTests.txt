@@ -1,6 +1,6 @@
 Test selection:
 
-Tested that the legend was being read properly (correct number of rows, several of the rows were parsed properly)
+Tested that the legend was being read properly (correct number of rows, several of the rows were parsed properly, each room corresponds to the appropriate letter)
 
 Tested that each direction of door correctly identified which direction it was pointing - door at 4, 8 is pointing right, door at 15, 18 is pointing down, etc.
 
