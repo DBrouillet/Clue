@@ -12,6 +12,15 @@ import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.DoorDirection;
 
+/**
+ * @author Miika Jarvela and Daniel Brouillet
+ * Class used to test functionalities of the board.
+ * Specifically, we test to see if we are loading the configuration
+ * files correctly and that all of the door and room information
+ * has been read in properly.
+ *
+ */
+
 public class ConfigTests {
 	// Constants that I will use to test whether the file was loaded correctly
 	public static final int LEGEND_SIZE = 11;
