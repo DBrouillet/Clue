@@ -1,7 +1,10 @@
 package clueGame;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 /**
  * @author Miika Jarvela and Daniel Brouillet
@@ -34,14 +37,27 @@ public class Board {
 	 * Initialize the board to its beginning state
 	 */
 	public void initialize() {
-		
+		try {
+			loadRoomConfig();
+			loadBoardConfig();
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("Input file not found.");
+		}
 	}
 	
 	/**
 	 * Load the room information from proper file
+	 * @throws FileNotFoundException 
 	 */
-	public void loadRoomConfig() {
-		
+	public void loadRoomConfig() throws FileNotFoundException {
+		FileReader reader = new FileReader(roomConfigFile);
+		Scanner in = new Scanner(reader);
+		while (in.hasNextLine()) {
+			String line = in.nextLine();
+			String[] splitLine = line.split(", ");
+			legend.put(splitLine[0].charAt(0), splitLine[1]);
+		}
 	}
 	
 	/**
@@ -73,7 +89,8 @@ public class Board {
 	 * @param legend = name of config file corresponding to the legend (i.e. each room)
 	 */
 	public void setConfigFiles(String layout, String legend) {
-		
+		boardConfigFile = layout;
+		roomConfigFile = legend;
 	}
 	
 	public Map<Character, String> getLegend() {
