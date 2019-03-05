@@ -1,0 +1,9 @@
+Test selection:
+
+Tested that the legend was being read properly (correct number of rows, several of the rows were parsed properly)
+
+Tested that each direction of door correctly identified which direction it was pointing - door at 4, 8 is pointing right, door at 15, 18 is pointing down, etc.
+
+Tested that there are the correct number of total doors (25)
+
+Tested that several cells including walkways are correctly identifying which rooms they belong to.
