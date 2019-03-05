@@ -39,6 +39,8 @@ public class Board {
 	 */
 	public void initialize() {
 		
+		// Load the configuration files
+		// Catch any exceptions in this method
 		try {
 			loadRoomConfig();
 			loadBoardConfig();
@@ -57,11 +59,14 @@ public class Board {
 	 */
 	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
 		legend = new HashMap<Character, String> ();
+		
+		// Read in from roomConfig file
 		FileReader reader = new FileReader(roomConfigFile);
 		Scanner in = new Scanner(reader);
 		while (in.hasNextLine()) {
 			String line = in.nextLine();
 			String[] splitLine = line.split(", ");
+			// Place elements into the Map (legend) and check to ensure they are valid
 			legend.put(splitLine[0].charAt(0), splitLine[1]);
 			if (!splitLine[2].equals("Card") && !splitLine[2].equals("Other")) {
 				throw new BadConfigFormatException("Legend config file has room type that is not card or other.");
@@ -75,27 +80,41 @@ public class Board {
 	 * @throws BadConfigFormatException 
 	 */
 	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
+		// Read in from boardConfig file
 		FileReader reader = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(reader);
+		
+		// Store each row into this ArrayList
 		ArrayList<String[]> collectedRows = new ArrayList<String[]>(); 
 		numRows = 0;
 		while (in.hasNextLine()) {
 			String line = in.nextLine();
 			String[] splitLine = line.split(",");
+			// Store the number of columns as the length of the array
 			numColumns = splitLine.length;
+			
+			// Store the row
 			collectedRows.add(splitLine);
-			numRows++;
+			numRows++; // Each time we read a line, that is the same as a row
 		}
 		
 		board = new BoardCell[numRows][numColumns];
+		
+		// Check to make sure that the number of columns is consistent
 		for (int i = 0; i < numRows; i++) {
 			if (collectedRows.get(i).length != numColumns) {
 				throw new BadConfigFormatException("Number of columns is not constant across all rows."); 
 			}
 		}
+		
+		// Populate board with BoardCells
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numColumns; j++) {
+				// Specify the DoorDirection of the cell
 				DoorDirection direction = DoorDirection.NONE;
+				// If there is a second character in the cell,
+				// then we specify the direction accordingly
+				// (otherwise it is NONE)
 				if (collectedRows.get(i)[j].length() == 2) {
 					switch(collectedRows.get(i)[j].charAt(1)) {
 					case 'U':
@@ -112,9 +131,13 @@ public class Board {
 						break;
 					}
 				}
+				
+				// Check to ensure each room is in the legend
 				if (!legend.containsKey(collectedRows.get(i)[j].charAt(0))) {
 					throw new BadConfigFormatException("Room does not exist in legend."); 
 				}
+				
+				// Place the BoardCell into the board
 				board[i][j] = new BoardCell(i, j, collectedRows.get(i)[j].charAt(0), direction);
 			}
 		}

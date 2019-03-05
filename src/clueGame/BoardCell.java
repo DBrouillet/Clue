@@ -2,7 +2,7 @@ package clueGame;
 /**
  * @author Miika Jarvela and Daniel Brouillet
  * Class used to create a simple BoardCell consisting of integers
- * (i.e. only a row and a column).
+ * (i.e. only a row and a column), an initial, and a DoorDirection.
  *
  */
 public class BoardCell {

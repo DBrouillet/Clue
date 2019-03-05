@@ -13,8 +13,8 @@ public class BadConfigFormatException extends Exception {
 		super("Unable to read configuration file.");
 	}
 
-	public BadConfigFormatException(String arg0) {
-		super(arg0);
+	public BadConfigFormatException(String message) {
+		super(message);
 	}
 	
 }
