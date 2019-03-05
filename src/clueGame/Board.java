@@ -37,6 +37,7 @@ public class Board {
 	 * Initialize the board to its beginning state
 	 */
 	public void initialize() {
+		legend = new HashMap<Character, String> ();
 		try {
 			loadRoomConfig();
 			loadBoardConfig();
@@ -94,7 +95,7 @@ public class Board {
 	}
 	
 	public Map<Character, String> getLegend() {
-		return new HashMap<Character, String> ();
+		return legend;
 	}
 
 	public int getNumRows() {
@@ -106,7 +107,7 @@ public class Board {
 	}
 
 	public BoardCell getCellAt(int i, int j) {
-		return new BoardCell(i, j);
+		return board[i][j];
 	}
 	
 	
