@@ -4,9 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
 /**
  * @author Miika Jarvela and Daniel Brouillet
  * Class used to create and manipulate the board
@@ -19,6 +21,7 @@ public class Board {
 	private BoardCell[][] board;
 	private Map<Character, String> legend;
 	private Map<BoardCell, Set<BoardCell>> adjMatrix;
+	private Set<BoardCell> visited;
 	private Set<BoardCell> targets;
 	private String boardConfigFile;
 	private String roomConfigFile;
@@ -38,7 +41,7 @@ public class Board {
 	 * Initialize the board to its beginning state
 	 */
 	public void initialize() {
-		
+		adjMatrix = new HashMap<BoardCell, Set<BoardCell>> ();
 		// Load the configuration files
 		// Catch any exceptions in this method
 		try {
@@ -50,6 +53,8 @@ public class Board {
 		} catch (BadConfigFormatException e) {
 			System.out.println(e.getMessage());
 		}
+		
+		calcAdjacencies();
 	}
 	
 	/**
@@ -139,6 +144,7 @@ public class Board {
 				
 				// Place the BoardCell into the board
 				board[i][j] = new BoardCell(i, j, collectedRows.get(i)[j].charAt(0), direction);
+				adjMatrix.put(board[i][j], new HashSet<BoardCell>());
 			}
 		}
 	}
@@ -147,18 +153,72 @@ public class Board {
 	 * Create the adjacency matrix
 	 */
 	public void calcAdjacencies() {
-		
+		// Iterate through each cell
+		for (BoardCell[] row : board) {
+			for (BoardCell cell : row) {
+				int x = cell.getRow();
+				int y = cell.getColumn();
+
+				// Check to see if a neighboring cell is in bounds
+				// If it is, then we add it to the adjMtx
+				if (x - 1 >= 0) {
+					adjMatrix.get(cell).add(getCellAt(x-1, y));
+				}
+				if (y - 1 >= 0) {
+					adjMatrix.get(cell).add(getCellAt(x, y-1));
+				}
+				if (x + 1 < board.length) {
+					adjMatrix.get(cell).add(getCellAt(x+1, y));
+				}
+				if (y + 1 < row.length) {
+					adjMatrix.get(cell).add(getCellAt(x, y+1));
+				}
+			}
+		}
+	}
+	
+	public Set<BoardCell> getAdjList(BoardCell cell) {
+		return adjMatrix.get(cell);
 	}
 	
 	/**
-	 * @param cell = initial cell
+	 * @param startCell = initial cell
 	 * @param pathLength = length of path
 	 * Calculate all of the targets pathLength away from cell
 	 */
-	public void calcTargets(BoardCell cell, int pathLength) {
+	public void calcTargets(BoardCell startCell, int pathLength) {
+		visited = new HashSet<BoardCell>();
+		targets = new HashSet<BoardCell>();
+		visited.add(startCell);
+		findAllTargets(startCell, pathLength);
+	}
+
+	/**
+	 * @param startCell = starting cell
+	 * @param pathLength = length of desired path
+	 * Given a cell and a pathLength, adds the cells neighbors to targets if it is at the end of the path,
+	 * otherwise recursively calls the same function on its neighbors to find the targets on those paths
+	 */
+	private void findAllTargets(BoardCell startCell, int pathLength) {
+		for (BoardCell cell : adjMatrix.get(startCell)) {
+			if (visited.contains(cell)) {
+				continue;
+			}
+			
+			visited.add(cell);
+			if (pathLength == 1) {
+				targets.add(cell);
+			} else {
+				findAllTargets(cell, pathLength - 1);
+			}
+			visited.remove(cell);
+		}
 		
 	}
 
+	public Set<BoardCell> getTargets() {
+		return targets;
+	}
 	
 	/**
 	 * @param layout = name of config file corresponding to the layout of the board
