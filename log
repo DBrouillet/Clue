@@ -1,0 +1,138 @@
+commit 025547512bb70c6d91aacebb16c2a955f31b8806
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Fri Mar 1 15:52:41 2019 -0700
+
+    Edited ConfigTests
+
+commit 83cfcc6c663da0f8bb57f3dd1111671afb59d9e8
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Fri Mar 1 15:37:13 2019 -0700
+
+    Skeleton classes
+
+commit a7e4a89740aa170798ca1ab7e6b53dd46d5cec57
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Fri Mar 1 15:35:38 2019 -0700
+
+    Finished skeleton for all classes (no errors in tests)
+
+commit 8ed15862dbc696ea88c4b37b1898de2c3c90f837
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Fri Mar 1 15:19:40 2019 -0700
+
+    Included downloads from C13A-1
+
+commit 642351bf1e27cc5a88ba81e902df671ea912ab57
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 12:13:07 2019 -0700
+
+    Added more element comments
+
+commit a7eccbf3c3bc6db5f9dbb6e4ec7111e3cc9ae5eb
+Merge: 3563cb7 52ab502
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 12:10:00 2019 -0700
+
+    Merge branch 'master' of https://github.com/DBrouillet/Clue
+
+commit 3563cb70bc8ab79a8ee2abc95ce4db37c28fd66b
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 12:09:40 2019 -0700
+
+    Added element comments
+
+commit 52ab502a3f73f760f27453f33f2f067cfe4d3396
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Thu Feb 28 12:09:06 2019 -0700
+
+    Added comments to IntBoard
+
+commit b7810c9b72ae52838ce827f5bcb753cc08a97111
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Thu Feb 28 11:58:40 2019 -0700
+
+    Fixed bugs
+
+commit 29237ffe79e456dd50bbbb3a4f062d7d2c93cf8b
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 11:49:37 2019 -0700
+
+    Finished all methods in IntBoard
+
+commit bd72a2075684122f9aff3908dc98068d809d214b
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Thu Feb 28 11:25:32 2019 -0700
+
+    Final test code
+
+commit 7bef0f01b989d548dca867c1fd3acd71da7baa26
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Thu Feb 28 11:13:13 2019 -0700
+
+    Some updates to the testTargets tests
+
+commit 7fdaa29a90b4090353fa15d5f7baf8af19e723b9
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 11:04:25 2019 -0700
+
+    Change to junit.Test
+
+commit b114e548058cbe93c6ae5ce0626ce8dbfce17be4
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 11:02:49 2019 -0700
+
+    JUnit5
+
+commit 0f34f93277347b9d80c5b910d2b6a580f5e05044
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 10:58:59 2019 -0700
+
+    JUnit4
+
+commit 75866a11bbb53fe3eb41eb42ae245cb47e318972
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Tue Feb 26 12:16:10 2019 -0700
+
+    Added some failing tests in IntBoardTests
+
+commit e04031d64cbe21530cbcbaa13462907126690c29
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Feb 26 11:56:48 2019 -0700
+
+    Created stubs for BoardCell and IntBoard classes
+
+commit c070b424c48dd13ba31743dfb3564e71b331fc47
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Tue Feb 26 11:47:33 2019 -0700
+
+    Adding classes to Clue experiment and test packages
+
+commit 6b5b685915e80b56dc2f55f2963e194ecd80ff46
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Feb 26 11:43:32 2019 -0700
+
+    Text files and .zip file for C12A-1
+
+commit e59aea1600d393496c09994a35edc3a29ce1a847
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Feb 26 11:39:47 2019 -0700
+
+    Added legend Rooms.txt, color coded BoardLayout
+
+commit 22cf088dbc83ca767d463320aa334c3748433c41
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Tue Feb 26 11:25:25 2019 -0700
+
+    Edit of BoardLayout
+
+commit 301cc76152cde13ff32ded45bbe11181a21c6075
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Tue Feb 26 11:21:22 2019 -0700
+
+    Adding BoardLayout to git
+
+commit 3acfe966eef0423951a5252703127032dfafab7e
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Tue Feb 26 11:19:47 2019 -0700
+
+    first commit
