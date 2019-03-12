@@ -10,6 +10,12 @@ import org.junit.Test;
 import clueGame.Board;
 import clueGame.BoardCell;
 
+/**
+ * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson 
+ * Tests for our board layout
+ *
+ */
+
 public class BoardAdjTargetTests {
 
 	// We make the Board static because we can load it one time and 
