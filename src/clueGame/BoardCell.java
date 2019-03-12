@@ -18,6 +18,10 @@ public class BoardCell {
 		this.doorDirection = doorDirection;
 	}
 
+	public BoardCell() {
+		
+	}
+
 	public int getColumn() {
 		return column;
 	}
@@ -32,10 +36,12 @@ public class BoardCell {
 	private DoorDirection doorDirection;
 	
 	public DoorDirection getDoorDirection() {
-		return doorDirection;
+		return null;
+		//return doorDirection;
 	}
 
 	public boolean isDoorway() {
-		return doorDirection != DoorDirection.NONE;
+		return false;
+		//return doorDirection != DoorDirection.NONE;
 	}
 }

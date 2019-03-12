@@ -182,7 +182,10 @@ public class Board {
 	}
 	
 	public Set<BoardCell> getAdjList(int i, int j) {
-		return adjMatrix.get(getCellAt(i,j));
+		Set<BoardCell> failingTest = new HashSet<BoardCell>();
+		failingTest.add(new BoardCell());
+		return failingTest;
+		//return adjMatrix.get(getCellAt(i,j));
 	}
 	
 	/**
@@ -205,8 +208,8 @@ public class Board {
 	public void calcTargets(BoardCell startCell, int pathLength) {
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
-		visited.add(startCell);
-		findAllTargets(startCell, pathLength);
+		//visited.add(startCell);
+		//findAllTargets(startCell, pathLength);
 	}
 
 	/**
