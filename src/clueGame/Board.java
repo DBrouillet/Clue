@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
- * @author Miika Jarvela and Daniel Brouillet
+ * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson
  * Class used to create and manipulate the board
  *
  */
@@ -182,10 +182,7 @@ public class Board {
 	}
 	
 	public Set<BoardCell> getAdjList(int i, int j) {
-		Set<BoardCell> failingTest = new HashSet<BoardCell>();
-		failingTest.add(new BoardCell());
-		return failingTest;
-		//return adjMatrix.get(getCellAt(i,j));
+		return adjMatrix.get(getCellAt(i,j));
 	}
 	
 	/**
@@ -194,10 +191,11 @@ public class Board {
 	 * Calculate all of the targets pathLength away from cell
 	 */
 	public void calcTargets(int i, int j, int pathLength) {
-//		visited = new HashSet<BoardCell>();
-//		targets = new HashSet<BoardCell>();
-//		visited.add(startCell);
-//		findAllTargets(startCell, pathLength);
+		visited = new HashSet<BoardCell>();
+		targets = new HashSet<BoardCell>();
+		BoardCell startCell = getCellAt(i, j);
+		visited.add(startCell);
+		findAllTargets(startCell, pathLength);
 	}
 	
 	/**
@@ -208,8 +206,8 @@ public class Board {
 	public void calcTargets(BoardCell startCell, int pathLength) {
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
-		//visited.add(startCell);
-		//findAllTargets(startCell, pathLength);
+		visited.add(startCell);
+		findAllTargets(startCell, pathLength);
 	}
 
 	/**

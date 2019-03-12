@@ -1,7 +1,7 @@
 package clueGame;
 
 /**
- * @author Miika Jarvela and Daniel Brouillet
+ * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson 
  * Class used to generate an Exception
  * whenever the Config file has an incorrect format.
  *

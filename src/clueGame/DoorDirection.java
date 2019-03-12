@@ -1,7 +1,7 @@
 package clueGame;
 
 /**
- * @author Miika Jarvela and Daniel Brouillet
+ * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson 
  * Enum representing door direction of each BoardCell
  *
  */
