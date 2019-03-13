@@ -39,7 +39,7 @@ public class BoardAdjTargetTests {
 			Set<BoardCell> testList = board.getAdjList(0, 0);
 			assertEquals(0, testList.size());
 			// Test one that has walkway underneath
-			testList = board.getAdjList(4, 0);
+			testList = board.getAdjList(3, 0);
 			assertEquals(0, testList.size());
 			// Test one that has walkway above
 			testList = board.getAdjList(17, 11);
@@ -147,7 +147,7 @@ public class BoardAdjTargetTests {
 			assertTrue(testList.contains(board.getCellAt(13, 8)));
 			assertTrue(testList.contains(board.getCellAt(13, 6)));
 			assertTrue(testList.contains(board.getCellAt(14, 7)));
-			assertTrue(testList.contains(board.getCellAt(15, 7)));
+			assertTrue(testList.contains(board.getCellAt(12, 7)));
 			assertEquals(4, testList.size());
 			
 			// Test on bottom edge of board, next to 1 room piece
@@ -230,6 +230,7 @@ public class BoardAdjTargetTests {
 			board.calcTargets(5, 7, 4);
 			Set<BoardCell> targets= board.getTargets();
 			assertEquals(19, targets.size());
+			// Only 18 assertTrue inclusions, what is the 19th?
 			assertTrue(targets.contains(board.getCellAt(4, 4)));
 			assertTrue(targets.contains(board.getCellAt(2, 6)));
 			assertTrue(targets.contains(board.getCellAt(1, 7)));
@@ -237,11 +238,11 @@ public class BoardAdjTargetTests {
 			assertTrue(targets.contains(board.getCellAt(4, 6)));
 			assertTrue(targets.contains(board.getCellAt(4, 10)));
 			assertTrue(targets.contains(board.getCellAt(5, 9)));
-			assertTrue(targets.contains(board.getCellAt(5, 8)));
 			assertTrue(targets.contains(board.getCellAt(6, 8)));
 			assertTrue(targets.contains(board.getCellAt(7, 7)));
 			assertTrue(targets.contains(board.getCellAt(9, 7)));
 			assertTrue(targets.contains(board.getCellAt(8, 8)));
+			assertTrue(targets.contains(board.getCellAt(4, 8)));
 			
 			// into the rooms
 			assertTrue(targets.contains(board.getCellAt(2, 8)));

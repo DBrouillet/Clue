@@ -161,6 +161,9 @@ public class Board {
 	 * to current if it is a walkway
 	 */
 	private boolean validAdjacency(BoardCell current, BoardCell neighbor) {
+		if (current.getInitial() != 'W' && current.isDoorway() == false) {
+			return false;
+		}
 		if (neighbor.isDoorway()) {
 			switch(neighbor.getDoorDirection()) {
 			case RIGHT:
@@ -168,9 +171,9 @@ public class Board {
 			case LEFT:
 				return (current.getRow() == neighbor.getRow() && current.getColumn() == neighbor.getColumn() - 1);
 			case UP:
-				return (current.getRow() == neighbor.getRow() + 1 && current.getColumn() == neighbor.getColumn());
-			case DOWN:
 				return (current.getRow() == neighbor.getRow() - 1 && current.getColumn() == neighbor.getColumn());
+			case DOWN:
+				return (current.getRow() == neighbor.getRow() + 1 && current.getColumn() == neighbor.getColumn());
 			case NONE:
 				break;
 			default:
@@ -287,10 +290,17 @@ public class Board {
 			}
 			
 			visited.add(cell);
+			
 			if (pathLength == 1) {
 				targets.add(cell);
 			} else {
 				findAllTargets(cell, pathLength - 1);
+			}
+			if (cell.isDoorway()) {
+				if (validAdjacency(cell, startCell)) {
+					targets.add(cell);
+					continue;
+				}
 			}
 			visited.remove(cell);
 		}
