@@ -150,6 +150,37 @@ public class Board {
 	}
 	
 	/**
+	 * @param current = cell to evaluate adjacencies of
+	 * @param neighbor = neighboring cell
+	 * @return = true, if neighbor is adjacent to current and false otherwise
+	 * 
+	 * We see that if neighbor is a door, then it will only
+	 * be adjacent to current if current is in the correct direction
+	 * 
+	 * If neighbor is not a door, then it will only be adjacent
+	 * to current if it is a walkway
+	 */
+	private boolean validAdjacency(BoardCell current, BoardCell neighbor) {
+		if (neighbor.isDoorway()) {
+			switch(neighbor.getDoorDirection()) {
+			case RIGHT:
+				return (current.getRow() == neighbor.getRow() && current.getColumn() == neighbor.getColumn() + 1);
+			case LEFT:
+				return (current.getRow() == neighbor.getRow() && current.getColumn() == neighbor.getColumn() - 1);
+			case UP:
+				return (current.getRow() == neighbor.getRow() + 1 && current.getColumn() == neighbor.getColumn());
+			case DOWN:
+				return (current.getRow() == neighbor.getRow() - 1 && current.getColumn() == neighbor.getColumn());
+			case NONE:
+				break;
+			default:
+				break;
+			}
+		}
+		return (neighbor.getInitial() == 'W');
+	}
+	
+	/**
 	 * Create the adjacency matrix
 	 */
 	public void calcAdjacencies() {
@@ -158,20 +189,53 @@ public class Board {
 			for (BoardCell cell : row) {
 				int x = cell.getRow();
 				int y = cell.getColumn();
+				
+				// If the cell is a doorway, it can only
+				// be adjacent to the room in the direction such that it can enter
+				if (cell.isDoorway()) {
+					switch(cell.getDoorDirection()) {
+					case DOWN:
+						adjMatrix.get(cell).add(getCellAt(x + 1, y));
+						break;
+					case LEFT:
+						adjMatrix.get(cell).add(getCellAt(x, y - 1));
+						break;
+					case RIGHT:
+						adjMatrix.get(cell).add(getCellAt(x, y + 1));
+						break;
+					case UP:
+						adjMatrix.get(cell).add(getCellAt(x - 1, y));
+						break;
+					case NONE:
+						break;
+					default:
+						break;
+					}
+					continue;
+				}
 
 				// Check to see if a neighboring cell is in bounds
 				// If it is, then we add it to the adjMtx
+				// We also check to see if it is a valid adjacency first
 				if (x - 1 >= 0) {
-					adjMatrix.get(cell).add(getCellAt(x-1, y));
+					if (validAdjacency(cell, getCellAt(x-1, y))) {
+						adjMatrix.get(cell).add(getCellAt(x-1, y));
+					}
 				}
 				if (y - 1 >= 0) {
-					adjMatrix.get(cell).add(getCellAt(x, y-1));
+					if (validAdjacency(cell, getCellAt(x, y-1))) {
+						adjMatrix.get(cell).add(getCellAt(x, y-1));
+					}
 				}
 				if (x + 1 < board.length) {
-					adjMatrix.get(cell).add(getCellAt(x+1, y));
+					if (validAdjacency(cell, getCellAt(x+1, y))) {
+						adjMatrix.get(cell).add(getCellAt(x+1, y));
+					}
 				}
 				if (y + 1 < row.length) {
-					adjMatrix.get(cell).add(getCellAt(x, y+1));
+					if (validAdjacency(cell, getCellAt(x, y+1))) {
+						adjMatrix.get(cell).add(getCellAt(x, y+1));
+					}
 				}
 			}
 		}
@@ -234,7 +298,7 @@ public class Board {
 	}
 
 	public Set<BoardCell> getTargets() {
-		return new HashSet<BoardCell>();
+		return targets;
 	}
 	
 	/**
