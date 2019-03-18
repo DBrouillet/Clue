@@ -49,7 +49,7 @@ public class Board {
 			loadBoardConfig();
 		}
 		catch (FileNotFoundException e) {
-			System.out.println("Input file not found.");
+			System.out.println(e.getMessage());
 		} catch (BadConfigFormatException e) {
 			System.out.println(e.getMessage());
 		}
