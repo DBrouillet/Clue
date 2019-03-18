@@ -161,7 +161,7 @@ public class Board {
 	 * to current if it is a walkway
 	 */
 	private boolean validAdjacency(BoardCell current, BoardCell neighbor) {
-		if (current.getInitial() != 'W' && current.isDoorway() == false) {
+		if (!current.isWalkway() && current.isDoorway() == false) {
 			return false;
 		}
 		if (neighbor.isDoorway()) {
@@ -180,7 +180,7 @@ public class Board {
 				break;
 			}
 		}
-		return (neighbor.getInitial() == 'W');
+		return (neighbor.isWalkway());
 	}
 	
 	/**
