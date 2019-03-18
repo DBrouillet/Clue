@@ -34,6 +34,7 @@ public class BoardCell {
 	private int column;
 	private char initial;
 	private DoorDirection doorDirection;
+	public static final char walkway = 'W';
 	
 	public DoorDirection getDoorDirection() {
 		return doorDirection;
@@ -41,5 +42,9 @@ public class BoardCell {
 
 	public boolean isDoorway() {
 		return doorDirection != DoorDirection.NONE;
+	}
+	
+	public boolean isWalkway() {
+		return Character.toUpperCase(initial) == walkway;
 	}
 }
