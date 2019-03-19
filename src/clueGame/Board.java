@@ -90,13 +90,30 @@ public class Board {
 	 */
 	public void loadPlayers() throws FileNotFoundException, BadConfigFormatException {
 		players = new ArrayList<Player>();
-		// Read in from roomConfig file
+		
+		// Read in from playerConfig file
 		FileReader reader = new FileReader(playerConfigFile);
 		Scanner in = new Scanner(reader);
 		while (in.hasNextLine()) {
 			String line = in.nextLine();
 			String[] splitLine = line.split(", ");
-			// Place elements into the Map (legend) and check to ensure they are valid
+			
+			String name = splitLine[0];
+			String color = splitLine[1];
+			String type = splitLine[2];
+			int row = Integer.parseInt(splitLine[3]);
+			int column = Integer.parseInt(splitLine[4]);
+			
+			Player player;
+			if (type.equals("Human")) {
+				player = new HumanPlayer(name, color, row, column);
+			} else if (type.equals("Comp")) {
+				player = new ComputerPlayer(name, color, row, column);
+			} else {
+				throw new BadConfigFormatException("Player type " + type + " not recognized (must be Human or Comp).");
+			}
+			
+			players.add(player);
 		}
 	}
 	
