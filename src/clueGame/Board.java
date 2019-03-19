@@ -25,6 +25,7 @@ public class Board {
 	private Set<BoardCell> targets;
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private Solution theAnswer;
 	
 	private static Board theInstance = new Board();
 	
@@ -303,6 +304,18 @@ public class Board {
 			}
 			visited.remove(cell);
 		}
+		
+	}
+	
+	public void selectAnswer() {
+		
+	}
+	
+	public Card handleSuggestion() {
+		return new Card();
+	}
+	
+	public boolean checkAccusation(Solution accusation) {
 		
 	}
 
