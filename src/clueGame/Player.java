@@ -14,4 +14,22 @@ public class Player {
 	public Card disproveSuggesstion(Solution suggestion) {
 		return new Card();
 	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getColumn() {
+		return column;
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+	
+	
 }

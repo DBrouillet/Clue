@@ -25,7 +25,9 @@ public class Board {
 	private Set<BoardCell> targets;
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private String playerConfigFile;
 	private Solution theAnswer;
+	private ArrayList<Player> players;
 	
 	private static Board theInstance = new Board();
 	
@@ -48,6 +50,7 @@ public class Board {
 		try {
 			loadRoomConfig();
 			loadBoardConfig();
+			loadPlayers();
 		}
 		catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
@@ -77,6 +80,23 @@ public class Board {
 				throw new BadConfigFormatException("Legend config file has room type that is not card or other.");
 			}
 			legend.put(splitLine[0].charAt(0), splitLine[1]);
+		}
+	}
+	
+	/**
+	 * Load the player information from proper file
+	 * @throws FileNotFoundException 
+	 * @throws BadConfigFormatException 
+	 */
+	public void loadPlayers() throws FileNotFoundException, BadConfigFormatException {
+		players = new ArrayList<Player>();
+		// Read in from roomConfig file
+		FileReader reader = new FileReader(playerConfigFile);
+		Scanner in = new Scanner(reader);
+		while (in.hasNextLine()) {
+			String line = in.nextLine();
+			String[] splitLine = line.split(", ");
+			// Place elements into the Map (legend) and check to ensure they are valid
 		}
 	}
 	
@@ -326,7 +346,14 @@ public class Board {
 	/**
 	 * @param layout = name of config file corresponding to the layout of the board
 	 * @param legend = name of config file corresponding to the legend (i.e. each room)
+	 * @param playerFile = name of config file corresponding to the player information
 	 */
+	public void setConfigFiles(String layout, String legend, String playerFile) {
+		boardConfigFile = layout;
+		roomConfigFile = legend;
+		playerConfigFile = playerFile;
+	}
+	
 	public void setConfigFiles(String layout, String legend) {
 		boardConfigFile = layout;
 		roomConfigFile = legend;
@@ -348,6 +375,7 @@ public class Board {
 		return board[i][j];
 	}
 	
-	
-
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
 }
