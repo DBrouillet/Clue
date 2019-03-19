@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
- * @author Miika Jarvela and Daniel Brouillet
+ * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson
  * Class used to create and manipulate the board
  *
  */
@@ -25,6 +25,7 @@ public class Board {
 	private Set<BoardCell> targets;
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private Solution theAnswer;
 	
 	private static Board theInstance = new Board();
 	
@@ -49,7 +50,7 @@ public class Board {
 			loadBoardConfig();
 		}
 		catch (FileNotFoundException e) {
-			System.out.println("Input file not found.");
+			System.out.println(e.getMessage());
 		} catch (BadConfigFormatException e) {
 			System.out.println(e.getMessage());
 		}
@@ -72,10 +73,10 @@ public class Board {
 			String line = in.nextLine();
 			String[] splitLine = line.split(", ");
 			// Place elements into the Map (legend) and check to ensure they are valid
-			legend.put(splitLine[0].charAt(0), splitLine[1]);
 			if (!splitLine[2].equals("Card") && !splitLine[2].equals("Other")) {
 				throw new BadConfigFormatException("Legend config file has room type that is not card or other.");
 			}
+			legend.put(splitLine[0].charAt(0), splitLine[1]);
 		}
 	}
 	
@@ -150,6 +151,40 @@ public class Board {
 	}
 	
 	/**
+	 * @param current = cell to evaluate adjacencies of
+	 * @param neighbor = neighboring cell
+	 * @return = true, if neighbor is adjacent to current and false otherwise
+	 * 
+	 * If neighbor is a door, then it will only
+	 * be adjacent to current if current is in the correct direction
+	 * 
+	 * If neighbor is not a door, then it will only be adjacent
+	 * to current if it is a walkway
+	 */
+	private boolean validAdjacency(BoardCell current, BoardCell neighbor) {
+		if (!current.isWalkway() && current.isDoorway() == false) {
+			return false;
+		}
+		if (neighbor.isDoorway()) {
+			switch(neighbor.getDoorDirection()) {
+			case RIGHT:
+				return (current.getRow() == neighbor.getRow() && current.getColumn() == neighbor.getColumn() + 1);
+			case LEFT:
+				return (current.getRow() == neighbor.getRow() && current.getColumn() == neighbor.getColumn() - 1);
+			case UP:
+				return (current.getRow() == neighbor.getRow() - 1 && current.getColumn() == neighbor.getColumn());
+			case DOWN:
+				return (current.getRow() == neighbor.getRow() + 1 && current.getColumn() == neighbor.getColumn());
+			case NONE:
+				break;
+			default:
+				break;
+			}
+		}
+		return (neighbor.isWalkway());
+	}
+	
+	/**
 	 * Create the adjacency matrix
 	 */
 	public void calcAdjacencies() {
@@ -158,20 +193,52 @@ public class Board {
 			for (BoardCell cell : row) {
 				int x = cell.getRow();
 				int y = cell.getColumn();
+				
+				// If the cell is a doorway, it can only be adjacent to the cell that it is pointing to.
+				if (cell.isDoorway()) {
+					switch(cell.getDoorDirection()) {
+					case DOWN:
+						adjMatrix.get(cell).add(getCellAt(x + 1, y));
+						break;
+					case LEFT:
+						adjMatrix.get(cell).add(getCellAt(x, y - 1));
+						break;
+					case RIGHT:
+						adjMatrix.get(cell).add(getCellAt(x, y + 1));
+						break;
+					case UP:
+						adjMatrix.get(cell).add(getCellAt(x - 1, y));
+						break;
+					case NONE:
+						break;
+					default:
+						break;
+					}
+					continue;
+				}
 
 				// Check to see if a neighboring cell is in bounds
 				// If it is, then we add it to the adjMtx
+				// We also check to see if it is a valid adjacency first
 				if (x - 1 >= 0) {
-					adjMatrix.get(cell).add(getCellAt(x-1, y));
+					if (validAdjacency(cell, getCellAt(x-1, y))) {
+						adjMatrix.get(cell).add(getCellAt(x-1, y));
+					}
 				}
 				if (y - 1 >= 0) {
-					adjMatrix.get(cell).add(getCellAt(x, y-1));
+					if (validAdjacency(cell, getCellAt(x, y-1))) {
+						adjMatrix.get(cell).add(getCellAt(x, y-1));
+					}
 				}
 				if (x + 1 < board.length) {
-					adjMatrix.get(cell).add(getCellAt(x+1, y));
+					if (validAdjacency(cell, getCellAt(x+1, y))) {
+						adjMatrix.get(cell).add(getCellAt(x+1, y));
+					}
 				}
 				if (y + 1 < row.length) {
-					adjMatrix.get(cell).add(getCellAt(x, y+1));
+					if (validAdjacency(cell, getCellAt(x, y+1))) {
+						adjMatrix.get(cell).add(getCellAt(x, y+1));
+					}
 				}
 			}
 		}
@@ -182,10 +249,7 @@ public class Board {
 	}
 	
 	public Set<BoardCell> getAdjList(int i, int j) {
-		Set<BoardCell> failingTest = new HashSet<BoardCell>();
-		failingTest.add(new BoardCell());
-		return failingTest;
-		//return adjMatrix.get(getCellAt(i,j));
+		return adjMatrix.get(getCellAt(i,j));
 	}
 	
 	/**
@@ -194,10 +258,11 @@ public class Board {
 	 * Calculate all of the targets pathLength away from cell
 	 */
 	public void calcTargets(int i, int j, int pathLength) {
-//		visited = new HashSet<BoardCell>();
-//		targets = new HashSet<BoardCell>();
-//		visited.add(startCell);
-//		findAllTargets(startCell, pathLength);
+		visited = new HashSet<BoardCell>();
+		targets = new HashSet<BoardCell>();
+		BoardCell startCell = getCellAt(i, j);
+		visited.add(startCell);
+		findAllTargets(startCell, pathLength);
 	}
 	
 	/**
@@ -208,8 +273,8 @@ public class Board {
 	public void calcTargets(BoardCell startCell, int pathLength) {
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
-		//visited.add(startCell);
-		//findAllTargets(startCell, pathLength);
+		visited.add(startCell);
+		findAllTargets(startCell, pathLength);
 	}
 
 	/**
@@ -225,18 +290,37 @@ public class Board {
 			}
 			
 			visited.add(cell);
+			
 			if (pathLength == 1) {
 				targets.add(cell);
 			} else {
 				findAllTargets(cell, pathLength - 1);
 			}
+			if (cell.isDoorway()) {
+				if (validAdjacency(cell, startCell)) {
+					targets.add(cell);
+					continue;
+				}
+			}
 			visited.remove(cell);
 		}
 		
 	}
+	
+	public void selectAnswer() {
+		
+	}
+	
+	public Card handleSuggestion() {
+		return new Card();
+	}
+	
+	public boolean checkAccusation(Solution accusation) {
+		return false;
+	}
 
 	public Set<BoardCell> getTargets() {
-		return new HashSet<BoardCell>();
+		return targets;
 	}
 	
 	/**

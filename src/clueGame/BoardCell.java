@@ -34,14 +34,17 @@ public class BoardCell {
 	private int column;
 	private char initial;
 	private DoorDirection doorDirection;
+	public static final char walkway = 'W';
 	
 	public DoorDirection getDoorDirection() {
-		return null;
-		//return doorDirection;
+		return doorDirection;
 	}
 
 	public boolean isDoorway() {
-		return false;
-		//return doorDirection != DoorDirection.NONE;
+		return doorDirection != DoorDirection.NONE;
+	}
+	
+	public boolean isWalkway() {
+		return Character.toUpperCase(initial) == walkway;
 	}
 }
