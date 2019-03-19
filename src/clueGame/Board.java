@@ -154,7 +154,7 @@ public class Board {
 	 * @param neighbor = neighboring cell
 	 * @return = true, if neighbor is adjacent to current and false otherwise
 	 * 
-	 * We see that if neighbor is a door, then it will only
+	 * If neighbor is a door, then it will only
 	 * be adjacent to current if current is in the correct direction
 	 * 
 	 * If neighbor is not a door, then it will only be adjacent
@@ -193,8 +193,7 @@ public class Board {
 				int x = cell.getRow();
 				int y = cell.getColumn();
 				
-				// If the cell is a doorway, it can only
-				// be adjacent to the room in the direction such that it can enter
+				// If the cell is a doorway, it can only be adjacent to the cell that it is pointing to.
 				if (cell.isDoorway()) {
 					switch(cell.getDoorDirection()) {
 					case DOWN:
