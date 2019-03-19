@@ -72,10 +72,10 @@ public class Board {
 			String line = in.nextLine();
 			String[] splitLine = line.split(", ");
 			// Place elements into the Map (legend) and check to ensure they are valid
-			legend.put(splitLine[0].charAt(0), splitLine[1]);
 			if (!splitLine[2].equals("Card") && !splitLine[2].equals("Other")) {
 				throw new BadConfigFormatException("Legend config file has room type that is not card or other.");
 			}
+			legend.put(splitLine[0].charAt(0), splitLine[1]);
 		}
 	}
 	
