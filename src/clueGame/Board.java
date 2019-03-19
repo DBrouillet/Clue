@@ -316,7 +316,7 @@ public class Board {
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
-		
+		return false;
 	}
 
 	public Set<BoardCell> getTargets() {
