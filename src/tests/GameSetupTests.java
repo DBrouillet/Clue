@@ -72,7 +72,7 @@ public class GameSetupTests {
 		ArrayList<Card> testList = board.getDeck();
 		
 		// Make sure there are 6 + 6 + 9 cards
-		assertEquals(testList.size(), 6 + 6 + 9);
+		assertEquals(6 + 6 + 9, testList.size());
 		
 		int numRooms = 0;
 		int numWeapons = 0;

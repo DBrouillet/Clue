@@ -30,6 +30,8 @@ public class Board {
 	private Solution theAnswer;
 	private ArrayList<Player> players;
 	private ArrayList<Card> deck;
+	private ArrayList<String> weapons;
+	private Map<String, String> roomTypes;
 	
 	private static Board theInstance = new Board();
 	
@@ -67,6 +69,22 @@ public class Board {
 	
 	private void createDeck() {
 		deck = new ArrayList<Card>();
+		Card newCard;
+		for (String name : weapons) {
+			newCard = new Card(name, CardType.WEAPON);
+			deck.add(newCard);
+		}
+		for (Player p : players) {
+			newCard = new Card(p.getPlayerName(), CardType.PERSON);
+			deck.add(newCard);
+		}
+		for (String r: legend.values()) {
+			if (roomTypes.get(r).equals("Card")) { 
+				newCard = new Card(r, CardType.ROOM);
+				deck.add(newCard);
+			}
+		}
+		
 	}
 
 	/**
@@ -76,7 +94,7 @@ public class Board {
 	 */
 	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
 		legend = new HashMap<Character, String> ();
-		
+		roomTypes = new HashMap<String, String> ();
 		// Read in from roomConfig file
 		FileReader reader = new FileReader(roomConfigFile);
 		Scanner in = new Scanner(reader);
@@ -88,6 +106,7 @@ public class Board {
 				throw new BadConfigFormatException("Legend config file has room type that is not card or other.");
 			}
 			legend.put(splitLine[0].charAt(0), splitLine[1]);
+			roomTypes.put(splitLine[1], splitLine[2]);
 		}
 	}
 	
@@ -131,13 +150,13 @@ public class Board {
 	 * @throws BadConfigFormatException 
 	 */
 	public void loadWeapons() throws FileNotFoundException, BadConfigFormatException {
-		
+		weapons = new ArrayList<String> ();
 		// Read in from playerConfig file
 		FileReader reader = new FileReader(weaponConfigFile);
 		Scanner in = new Scanner(reader);
 		while (in.hasNextLine()) {
 			String line = in.nextLine();
-			String[] splitLine = line.split(", ");
+			weapons.add(line);
 		}
 	}
 	
@@ -372,6 +391,7 @@ public class Board {
 		
 	}
 	
+	// Needs fixing
 	public Card handleSuggestion() {
 		return new Card();
 	}
