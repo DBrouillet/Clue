@@ -122,5 +122,12 @@ public class GameSetupTests {
 		assert(hasKnife == true);
 		assert(hasKitchen == true);
 	}
+	
+	@Test 
+	public void testEachPlayerHand() {
+		for (Player player : board.getPlayers()) {
+			
+		}
+	}
 
 }
