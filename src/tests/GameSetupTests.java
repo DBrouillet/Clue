@@ -9,6 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
+import clueGame.Card;
+import clueGame.CardType;
 import clueGame.ComputerPlayer;
 import clueGame.HumanPlayer;
 import clueGame.Player;
@@ -19,7 +21,7 @@ public class GameSetupTests {
 	public static void setUp() {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
-		board.setConfigFiles("BoardLayout.csv", "Rooms.txt", "Players.txt");		
+		board.setConfigFiles("BoardLayout.csv", "Rooms.txt", "Players.txt", "Weapons.txt");		
 		// Initialize will load BOTH config files 
 		board.initialize();
 	}
@@ -60,6 +62,65 @@ public class GameSetupTests {
 		assertEquals(Color.GREEN, testList.get(0).getColor());
 		assertEquals(Color.RED, testList.get(2).getColor());
 		assertEquals(Color.ORANGE, testList.get(5).getColor());
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void testDeckLoading() {
+		ArrayList<Card> testList = board.getDeck();
+		
+		// Make sure there are 6 + 6 + 9 cards
+		assertEquals(testList.size(), 6 + 6 + 9);
+		
+		int numRooms = 0;
+		int numWeapons = 0;
+		int numPeople = 0;
+		
+		// Determine the number of each card in the deck
+		for (Card card : testList) {
+			if (card.getCardType() == CardType.PERSON) {
+				numPeople++;
+			}
+			
+			if (card.getCardType() == CardType.WEAPON) {
+				numWeapons++;
+			}
+			
+			if (card.getCardType() == CardType.ROOM) {
+				numRooms++;
+			}
+		}
+		
+		// Ensure there are 6 people
+		assertEquals(numPeople, 6);
+		// Ensure there are 6 weapons
+		assertEquals(numWeapons, 6);
+		// Ensure there are 9 rooms
+		assertEquals(numRooms, 9);
+		
+		// Check to make sure Fred, Knife, and Kitchen are in the deck
+		boolean hasFred = false;
+		boolean hasKnife = false;
+		boolean hasKitchen = false;
+		for (Card card : testList) {
+			if (card.getCardName().equals("Fred")) {
+				hasFred = true;
+			}
+			
+			if (card.getCardName().equals("Knife")) {
+				hasKnife = true;
+			}
+			
+			if (card.getCardName().equals("Kitchen")) {
+				hasKitchen = true;
+			}
+		}
+		
+		assert(hasFred == true);
+		assert(hasKnife == true);
+		assert(hasKitchen == true);
 	}
 
 }

@@ -26,8 +26,10 @@ public class Board {
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String playerConfigFile;
+	private String weaponConfigFile;
 	private Solution theAnswer;
 	private ArrayList<Player> players;
+	private ArrayList<Card> deck;
 	
 	private static Board theInstance = new Board();
 	
@@ -51,6 +53,8 @@ public class Board {
 			loadRoomConfig();
 			loadBoardConfig();
 			loadPlayers();
+			loadWeapons();
+			createDeck();
 		}
 		catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
@@ -61,6 +65,10 @@ public class Board {
 		calcAdjacencies();
 	}
 	
+	private void createDeck() {
+		deck = new ArrayList<Card>();
+	}
+
 	/**
 	 * Load the room information from proper file
 	 * @throws FileNotFoundException 
@@ -114,6 +122,22 @@ public class Board {
 			}
 			
 			players.add(player);
+		}
+	}
+	
+	/**
+	 * Load the weapons information from proper file
+	 * @throws FileNotFoundException 
+	 * @throws BadConfigFormatException 
+	 */
+	public void loadWeapons() throws FileNotFoundException, BadConfigFormatException {
+		
+		// Read in from playerConfig file
+		FileReader reader = new FileReader(weaponConfigFile);
+		Scanner in = new Scanner(reader);
+		while (in.hasNextLine()) {
+			String line = in.nextLine();
+			String[] splitLine = line.split(", ");
 		}
 	}
 	
@@ -364,11 +388,13 @@ public class Board {
 	 * @param layout = name of config file corresponding to the layout of the board
 	 * @param legend = name of config file corresponding to the legend (i.e. each room)
 	 * @param playerFile = name of config file corresponding to the player information
+	 * @param weaponsFile = name of config file corresponding to the weapon information
 	 */
-	public void setConfigFiles(String layout, String legend, String playerFile) {
+	public void setConfigFiles(String layout, String legend, String playerFile, String weaponsFile) {
 		boardConfigFile = layout;
 		roomConfigFile = legend;
 		playerConfigFile = playerFile;
+		weaponConfigFile = weaponsFile;
 	}
 	
 	public void setConfigFiles(String layout, String legend) {
@@ -394,5 +420,9 @@ public class Board {
 	
 	public ArrayList<Player> getPlayers() {
 		return players;
+	}
+	
+	public ArrayList<Card> getDeck() {
+		return deck;
 	}
 }
