@@ -422,6 +422,25 @@ public class Board {
 		roomConfigFile = legend;
 	}
 	
+	/**
+	 * @param cardName = the name of the card to be evaluated
+	 * @return true if and only if cardName is a part of the answer
+	 */
+	public boolean inAnswer(String cardName) {
+		if (cardName == theAnswer.person) return true;
+		if (cardName == theAnswer.weapon) return true;
+		if (cardName == theAnswer.room) return true;
+		return false;
+	}
+	
+	/**
+	 * @param card = the card to be evaluated
+	 * @return true if and only if card is a part of the answer
+	 */
+	public boolean inAnswer(Card card) {
+		return inAnswer(card.getCardName());
+	}
+	
 	public Map<Character, String> getLegend() {
 		return legend;
 	}

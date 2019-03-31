@@ -9,8 +9,8 @@ public class Player {
 	private int row;
 	private int column;
 	private Color color;
-	private ArrayList<Card> myCards;
-	private ArrayList<Card> seenCards;
+	private ArrayList<Card> myCards = new ArrayList<Card>();
+	private ArrayList<Card> seenCards = new ArrayList<Card>();
 
 	public Player(String playerName, Color color, int row, int column) {
 		super();
@@ -59,6 +59,10 @@ public class Player {
 
 	public String getPlayerName() {
 		return playerName;
+	}
+
+	public ArrayList<Card> getMyCards() {
+		return myCards;
 	}
 
 

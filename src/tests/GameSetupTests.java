@@ -22,7 +22,7 @@ public class GameSetupTests {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		board.setConfigFiles("BoardLayout.csv", "Rooms.txt", "Players.txt", "Weapons.txt");		
-		// Initialize will load BOTH config files 
+		// Initialize will load all config files 
 		board.initialize();
 	}
 	/**
@@ -65,7 +65,11 @@ public class GameSetupTests {
 	}
 	
 	/**
-	 * 
+	 * Test to see if the deck is loaded correctly. 
+	 * We make sure that there are the correct number of total cards
+	 * and also the correct number of rooms, weapon, and people.
+	 * Check one of each type of cards to see that
+	 * the information (card names) are loaded properly.
 	 */
 	@Test
 	public void testDeckLoading() {
@@ -123,11 +127,41 @@ public class GameSetupTests {
 		assert(hasKitchen == true);
 	}
 	
+	/**
+	 * Test to make sure the cards were dealt correctly.
+	 * This is done by making sure each player was dealt
+	 * roughly the same amount of cards, each card was dealt
+	 * to exactly one player, and each card was dealt exactly
+	 * once (or is a part of the solution).
+	 */
 	@Test 
 	public void testEachPlayerHand() {
+		// ArrayList containing each card that has been seen
+		ArrayList<Card> seenCards = new ArrayList<Card>(); 
+		
+		// The expected number of cards each player should have
+		int numCardsExpected = board.getDeck().size() / board.getPlayers().size();
 		for (Player player : board.getPlayers()) {
+			// Check to see if the dealt hand is roughly what we expect, +/- 1
+			assertEquals(numCardsExpected, player.getMyCards().size(), 1);
 			
+			for (Card card : player.getMyCards()) {
+				// Check to see that the card has not already been dealt (to another player)
+				assert(seenCards.contains(card) == false);
+				
+				// Add the card to the list of seen cards
+				seenCards.add(card);
+			}
 		}
+
+		// Make sure that each card has been dealt OR is part of the solution
+		for (Card card : board.getDeck()) {
+			assert(seenCards.contains(card) ||
+					board.inAnswer(card));
+		}
+		
+		// Make sure the correct number of cards was dealt
+		assertEquals(board.getDeck().size(), seenCards.size() - 3);
 	}
 
 }
