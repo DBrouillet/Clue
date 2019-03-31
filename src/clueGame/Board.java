@@ -25,7 +25,7 @@ public class Board {
 	private Set<BoardCell> targets;
 	private String boardConfigFile;
 	private String roomConfigFile;
-	private String playerConfigFile;
+	private String playerConfigFile = new String();
 	private String weaponConfigFile;
 	private Solution theAnswer;
 	private ArrayList<Player> players;
