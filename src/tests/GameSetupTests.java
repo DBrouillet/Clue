@@ -15,6 +15,13 @@ import clueGame.ComputerPlayer;
 import clueGame.HumanPlayer;
 import clueGame.Player;
 
+/**
+ * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson
+ * Class used to test the setup of the board,
+ * including loading the players, loading the deck,
+ * and dealing the cards.
+ *
+ */
 public class GameSetupTests {
 	private static Board board;
 	@BeforeClass

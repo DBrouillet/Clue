@@ -57,6 +57,8 @@ public class Board {
 			loadPlayers();
 			loadWeapons();
 			createDeck();
+			shuffleDeck();
+			dealDeck();
 		}
 		catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
@@ -67,17 +69,23 @@ public class Board {
 		calcAdjacencies();
 	}
 	
+	/**
+	 * Creates the deck by adding in weapons, players, and rooms
+	 */
 	private void createDeck() {
 		deck = new ArrayList<Card>();
 		Card newCard;
+		
 		for (String name : weapons) {
 			newCard = new Card(name, CardType.WEAPON);
 			deck.add(newCard);
 		}
+		
 		for (Player p : players) {
 			newCard = new Card(p.getPlayerName(), CardType.PERSON);
 			deck.add(newCard);
 		}
+		
 		for (String r: legend.values()) {
 			if (roomTypes.get(r).equals("Card")) { 
 				newCard = new Card(r, CardType.ROOM);
@@ -85,6 +93,24 @@ public class Board {
 			}
 		}
 		
+	}
+	
+	/**
+	 * Shuffles deck by shuffling weapons, players, and rooms separately.
+	 * Then, the answer is selected, and each of the cards are shuffled together
+	 */
+	private void shuffleDeck() {
+		// TO-DO: SHUFFLE WEAPONS, PLAYERS, ROOMS SEPARATELY
+		selectAnswer();
+		// TO-DO: SHUFFLE ALL CARDS TOGETHER
+	}
+	
+	/**
+	 * Deals the deck, after it has been created and shuffled (and the answer
+	 * has been selected and removed from the deck).
+	 */
+	private void dealDeck() {
+		// TO-DO: DEAL THE DECK TO EACH PLAYER
 	}
 
 	/**
@@ -387,8 +413,17 @@ public class Board {
 		
 	}
 	
-	public void selectAnswer() {
-		
+	/**
+	 * Selects the answer from the deck. Note that
+	 * createDeck and shuffleDeck must be called first.
+	 * Removes the answer from the deck once it is picked
+	 */
+	private void selectAnswer() {
+		// TO-DO: MAKE THIS FUNCTION SELECT THE ANSWER
+		// I.E. ONE OF EACH TYPE OF CARD.
+		// THEY ARE ALREADY SHUFFLED (ONCCE SHUFFLEDECK IS IMPLEMENTED),
+		// SO THEY CAN BE CHOSEN ARBITRARILY.
+		// ALSO REMOVES THE ANSWER FROM THE DECK
 	}
 	
 	// Needs fixing
