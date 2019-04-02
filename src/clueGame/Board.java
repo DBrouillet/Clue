@@ -37,18 +37,18 @@ public class Board {
 	private ArrayList<Card> placesDeck;
 	private ArrayList<String> weapons;
 	private Map<String, String> roomTypes;
-	
+
 	private static Board theInstance = new Board();
-	
+
 	private Board() {}
-	
+
 	/**
 	 * @return because this class is a Singleton, we only create one instance of the Board
 	 */
 	public static Board getInstance() {
 		return theInstance;
 	}
-	
+
 	/**
 	 * Initialize the board to its beginning state
 	 */
@@ -70,10 +70,10 @@ public class Board {
 		} catch (BadConfigFormatException e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 		calcAdjacencies();
 	}
-	
+
 	/**
 	 * Creates the the three sub-decks to be used in setting up the game. Decks are combined later in the shuffleDeck method.
 	 */
@@ -84,17 +84,17 @@ public class Board {
 		deck = new ArrayList<Card>();
 		dealingDeck = new ArrayList<Card>();
 		Card newCard;
-		
+
 		for (String name : weapons) {
 			newCard = new Card(name, CardType.WEAPON);
 			weaponsDeck.add(newCard);
 		}
-		
+
 		for (Player p : players) {
 			newCard = new Card(p.getPlayerName(), CardType.PERSON);
 			playersDeck.add(newCard);
 		}
-		
+
 		for (String r: legend.values()) {
 			if (roomTypes.get(r).equals("Card")) { 
 				newCard = new Card(r, CardType.ROOM);
@@ -105,9 +105,9 @@ public class Board {
 		deck.addAll(placesDeck);
 		deck.addAll(playersDeck);
 		deck.addAll(weaponsDeck);
-		
+
 	}
-	
+
 	/**
 	 * Shuffles deck by shuffling weapons, players, and rooms separately.
 	 * Then, the answer is selected, and each of the cards are shuffled together
@@ -120,24 +120,23 @@ public class Board {
 		dealingDeck.addAll(placesDeck);
 		dealingDeck.addAll(playersDeck);
 		dealingDeck.addAll(weaponsDeck);
-		Collections.shuffle(deck);
+		Collections.shuffle(dealingDeck);
 	}
-	
+
 	/**
 	 * Deals the deck, after it has been created and shuffled (and the answer
 	 * has been selected and removed from the deck).
 	 */
 	private void dealDeck() {
-		for (Player player : players) {
-			/*
-			 * Adds the first three cards of the deck to each players hand, removing them as added.
-			 */
-			player.addCard(dealingDeck.get(0));
-			dealingDeck.remove(0);
-			player.addCard(dealingDeck.get(0));
-			dealingDeck.remove(0);
-			player.addCard(dealingDeck.get(0));
-			dealingDeck.remove(0);
+		while (!dealingDeck.isEmpty()) {
+			for (Player player : players) {
+				/*
+				 * Adds one card to the players hand, removing them as added.
+				 */
+				if (dealingDeck.isEmpty()) break;
+				player.addCard(dealingDeck.get(0));
+				dealingDeck.remove(0);
+			}
 		}
 	}
 
@@ -163,7 +162,7 @@ public class Board {
 			roomTypes.put(splitLine[1], splitLine[2]);
 		}
 	}
-	
+
 	/**
 	 * Load the player information from proper file
 	 * @throws FileNotFoundException 
@@ -171,20 +170,20 @@ public class Board {
 	 */
 	public void loadPlayers() throws FileNotFoundException, BadConfigFormatException {
 		players = new ArrayList<Player>();
-		
+
 		// Read in from playerConfig file
 		FileReader reader = new FileReader(playerConfigFile);
 		Scanner in = new Scanner(reader);
 		while (in.hasNextLine()) {
 			String line = in.nextLine();
 			String[] splitLine = line.split(", ");
-			
+
 			String name = splitLine[0];
 			String color = splitLine[1];
 			String type = splitLine[2];
 			int row = Integer.parseInt(splitLine[3]);
 			int column = Integer.parseInt(splitLine[4]);
-			
+
 			Player player;
 			if (type.equals("Human")) {
 				player = new HumanPlayer(name, color, row, column);
@@ -193,11 +192,11 @@ public class Board {
 			} else {
 				throw new BadConfigFormatException("Player type " + type + " not recognized (must be Human or Comp).");
 			}
-			
+
 			players.add(player);
 		}
 	}
-	
+
 	/**
 	 * Load the weapons information from proper file
 	 * @throws FileNotFoundException 
@@ -213,7 +212,7 @@ public class Board {
 			weapons.add(line);
 		}
 	}
-	
+
 	/**
 	 * Load board information from proper file
 	 * @throws FileNotFoundException 
@@ -223,7 +222,7 @@ public class Board {
 		// Read in from boardConfig file
 		FileReader reader = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(reader);
-		
+
 		// Store each row into this ArrayList
 		ArrayList<String[]> collectedRows = new ArrayList<String[]>(); 
 		numRows = 0;
@@ -232,21 +231,21 @@ public class Board {
 			String[] splitLine = line.split(",");
 			// Store the number of columns as the length of the array
 			numColumns = splitLine.length;
-			
+
 			// Store the row
 			collectedRows.add(splitLine);
 			numRows++; // Each time we read a line, that is the same as a row
 		}
-		
+
 		board = new BoardCell[numRows][numColumns];
-		
+
 		// Check to make sure that the number of columns is consistent
 		for (int i = 0; i < numRows; i++) {
 			if (collectedRows.get(i).length != numColumns) {
 				throw new BadConfigFormatException("Number of columns is not constant across all rows."); 
 			}
 		}
-		
+
 		// Populate board with BoardCells
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numColumns; j++) {
@@ -271,19 +270,19 @@ public class Board {
 						break;
 					}
 				}
-				
+
 				// Check to ensure each room is in the legend
 				if (!legend.containsKey(collectedRows.get(i)[j].charAt(0))) {
 					throw new BadConfigFormatException("Room does not exist in legend."); 
 				}
-				
+
 				// Place the BoardCell into the board
 				board[i][j] = new BoardCell(i, j, collectedRows.get(i)[j].charAt(0), direction);
 				adjMatrix.put(board[i][j], new HashSet<BoardCell>());
 			}
 		}
 	}
-	
+
 	/**
 	 * @param current = cell to evaluate adjacencies of
 	 * @param neighbor = neighboring cell
@@ -317,7 +316,7 @@ public class Board {
 		}
 		return (neighbor.isWalkway());
 	}
-	
+
 	/**
 	 * Create the adjacency matrix
 	 */
@@ -327,7 +326,7 @@ public class Board {
 			for (BoardCell cell : row) {
 				int x = cell.getRow();
 				int y = cell.getColumn();
-				
+
 				// If the cell is a doorway, it can only be adjacent to the cell that it is pointing to.
 				if (cell.isDoorway()) {
 					switch(cell.getDoorDirection()) {
@@ -377,15 +376,15 @@ public class Board {
 			}
 		}
 	}
-	
+
 	public Set<BoardCell> getAdjList(BoardCell cell) {
 		return adjMatrix.get(cell);
 	}
-	
+
 	public Set<BoardCell> getAdjList(int i, int j) {
 		return adjMatrix.get(getCellAt(i,j));
 	}
-	
+
 	/**
 	 * @param startCell = initial cell
 	 * @param pathLength = length of path
@@ -398,7 +397,7 @@ public class Board {
 		visited.add(startCell);
 		findAllTargets(startCell, pathLength);
 	}
-	
+
 	/**
 	 * @param startCell = initial cell
 	 * @param pathLength = length of path
@@ -422,9 +421,9 @@ public class Board {
 			if (visited.contains(cell)) {
 				continue;
 			}
-			
+
 			visited.add(cell);
-			
+
 			if (pathLength == 1) {
 				targets.add(cell);
 			} else {
@@ -438,9 +437,9 @@ public class Board {
 			}
 			visited.remove(cell);
 		}
-		
+
 	}
-	
+
 	/**
 	 * Selects the answer from the deck. Note that
 	 * createDeck and shuffleDeck must be called first.
@@ -460,12 +459,12 @@ public class Board {
 		theAnswer.person = placesDeck.get(0).getCardName();
 		placesDeck.remove(0);
 	}
-	
+
 	// Needs fixing
 	public Card handleSuggestion() {
 		return new Card();
 	}
-	
+
 	public boolean checkAccusation(Solution accusation) {
 		return false;
 	}
@@ -473,7 +472,7 @@ public class Board {
 	public Set<BoardCell> getTargets() {
 		return targets;
 	}
-	
+
 	/**
 	 * @param layout = name of config file corresponding to the layout of the board
 	 * @param legend = name of config file corresponding to the legend (i.e. each room)
@@ -486,12 +485,12 @@ public class Board {
 		playerConfigFile = playerFile;
 		weaponConfigFile = weaponsFile;
 	}
-	
+
 	public void setConfigFiles(String layout, String legend) {
 		boardConfigFile = layout;
 		roomConfigFile = legend;
 	}
-	
+
 	/**
 	 * @param cardName = the name of the card to be evaluated
 	 * @return true if and only if cardName is a part of the answer
@@ -502,7 +501,7 @@ public class Board {
 		if (cardName == theAnswer.room) return true;
 		return false;
 	}
-	
+
 	/**
 	 * @param card = the card to be evaluated
 	 * @return true if and only if card is a part of the answer
@@ -510,7 +509,7 @@ public class Board {
 	public boolean inAnswer(Card card) {
 		return inAnswer(card.getCardName());
 	}
-	
+
 	public Map<Character, String> getLegend() {
 		return legend;
 	}
@@ -526,11 +525,11 @@ public class Board {
 	public BoardCell getCellAt(int i, int j) {
 		return board[i][j];
 	}
-	
+
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
-	
+
 	public ArrayList<Card> getDeck() {
 		return deck;
 	}

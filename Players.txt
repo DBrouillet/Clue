@@ -1,6 +1,6 @@
 Bob, Green, Human, 13, 7
 Jack, Blue, Comp, 4, 14
 Fred, Red, Comp, 18, 15
-Joe, Purple, Comp, 16, 8
+Joe, Magenta, Comp, 16, 8
 Greg, Black, Comp, 4, 5
 John, Orange, Comp, 10, 11
