@@ -110,6 +110,7 @@ public class Board {
 		Collections.shuffle(playersDeck);
 		Collections.shuffle(placesDeck);
 		selectAnswer();
+		deck = new ArrayList<Card>();
 		deck.addAll(placesDeck);
 		deck.addAll(playersDeck);
 		deck.addAll(weaponsDeck);
@@ -445,6 +446,7 @@ public class Board {
 		// THEY ARE ALREADY SHUFFLED (ONCCE SHUFFLEDECK IS IMPLEMENTED),
 		// SO THEY CAN BE CHOSEN ARBITRARILY.
 		// ALSO REMOVES THE ANSWER FROM THE DECK
+		theAnswer = new Solution();
 		theAnswer.person = playersDeck.get(0).getCardName();
 		playersDeck.remove(0);
 		theAnswer.person = weaponsDeck.get(0).getCardName();
