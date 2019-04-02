@@ -31,6 +31,7 @@ public class Board {
 	private Solution theAnswer;
 	private ArrayList<Player> players;
 	private ArrayList<Card> deck;
+	private ArrayList<Card> dealingDeck;
 	private ArrayList<Card> weaponsDeck;
 	private ArrayList<Card> playersDeck;
 	private ArrayList<Card> placesDeck;
@@ -80,6 +81,8 @@ public class Board {
 		weaponsDeck = new ArrayList<Card>();
 		playersDeck = new ArrayList<Card>();
 		placesDeck = new ArrayList<Card>();
+		deck = new ArrayList<Card>();
+		dealingDeck = new ArrayList<Card>();
 		Card newCard;
 		
 		for (String name : weapons) {
@@ -98,6 +101,10 @@ public class Board {
 				placesDeck.add(newCard);
 			}
 		}
+
+		deck.addAll(placesDeck);
+		deck.addAll(playersDeck);
+		deck.addAll(weaponsDeck);
 		
 	}
 	
@@ -110,10 +117,9 @@ public class Board {
 		Collections.shuffle(playersDeck);
 		Collections.shuffle(placesDeck);
 		selectAnswer();
-		deck = new ArrayList<Card>();
-		deck.addAll(placesDeck);
-		deck.addAll(playersDeck);
-		deck.addAll(weaponsDeck);
+		dealingDeck.addAll(placesDeck);
+		dealingDeck.addAll(playersDeck);
+		dealingDeck.addAll(weaponsDeck);
 		Collections.shuffle(deck);
 	}
 	
@@ -126,12 +132,12 @@ public class Board {
 			/*
 			 * Adds the first three cards of the deck to each players hand, removing them as added.
 			 */
-			player.addCard(deck.get(0));
-			playersDeck.remove(0);
-			player.addCard(deck.get(0));
-			playersDeck.remove(0);
-			player.addCard(deck.get(0));
-			playersDeck.remove(0);
+			player.addCard(dealingDeck.get(0));
+			dealingDeck.remove(0);
+			player.addCard(dealingDeck.get(0));
+			dealingDeck.remove(0);
+			player.addCard(dealingDeck.get(0));
+			dealingDeck.remove(0);
 		}
 	}
 
