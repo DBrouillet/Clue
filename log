@@ -1,3 +1,21 @@
+commit 83dbc49747132be76afc34090e751551b4b503f0
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Apr 1 23:37:47 2019 -0600
+
+    Fixed all failing tests.
+
+commit 5bae397cc22c0793c2b4229b23e119e54e673fac
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Apr 1 23:06:52 2019 -0600
+
+    Fixed bug in selectAnswer
+
+commit ec6808fc01db6c001673b9d956b3c29f7a20770d
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Apr 1 22:56:34 2019 -0600
+
+    Filled out dealDeck, shuffleDeck, selectAnswer stubs. - Curr
+
 commit d8faa81914afe5032262bae4941c4088ad5d7f77
 Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
 Date:   Sun Mar 31 19:00:54 2019 -0500
