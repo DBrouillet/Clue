@@ -32,8 +32,8 @@ public class ComputerPlayer extends Player {
 		return choices.get(0);
 	}
 	
-	public void makeAccusation() {
-		
+	public Solution makeAccusation(String person, String room, String weapon) {
+		return new Solution();
 	}
 	
 	public void createSuggestion() {

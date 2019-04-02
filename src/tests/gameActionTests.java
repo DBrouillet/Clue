@@ -9,6 +9,7 @@ import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.ComputerPlayer;
 import clueGame.Player;
+import clueGame.Solution;
 
 public class gameActionTests {
 	private static Board board;
@@ -82,7 +83,18 @@ public class gameActionTests {
 	
 	@Test
 	public void testCheckAccusation() {
+		Solution solution = new Solution("Bob", "Kitchen", "Knife");
+		board.setTheAnswer(solution);
+		ComputerPlayer testPlayer = new ComputerPlayer("testPlayer", "green", 17, 8);
+		Solution accusation = testPlayer.makeAccusation("Bob", "Kitchen", "Knife");
+		assert(board.checkAccusation(accusation));
 		
+		accusation = testPlayer.makeAccusation("Joe", "Kitchen", "Knife");
+		assert(board.checkAccusation(accusation) == false);
+		accusation = testPlayer.makeAccusation("Bob", "Office", "Knife");
+		assert(board.checkAccusation(accusation) == false);
+		accusation = testPlayer.makeAccusation("Bob", "Kitchen", "Gun");
+		assert(board.checkAccusation(accusation) == false);
 	}
 
 }

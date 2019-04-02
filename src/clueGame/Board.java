@@ -533,4 +533,13 @@ public class Board {
 	public ArrayList<Card> getDeck() {
 		return deck;
 	}
+
+	public Solution getTheAnswer() {
+		return theAnswer;
+	}
+	
+	// Setter is only for JUnit tests
+	public void setTheAnswer(Solution theAnswer) {
+		this.theAnswer = theAnswer;
+	}
 }
