@@ -466,7 +466,9 @@ public class Board {
 	}
 
 	public boolean checkAccusation(Solution accusation) {
-		return false;
+		return (accusation.person == theAnswer.person &&
+				accusation.room == theAnswer.room &&
+				accusation.weapon == theAnswer.weapon);
 	}
 
 	public Set<BoardCell> getTargets() {

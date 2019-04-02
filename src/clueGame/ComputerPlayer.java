@@ -33,7 +33,7 @@ public class ComputerPlayer extends Player {
 	}
 	
 	public Solution makeAccusation(String person, String room, String weapon) {
-		return new Solution();
+		return new Solution(person, room, weapon);
 	}
 	
 	public void createSuggestion() {
