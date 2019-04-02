@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.Set;
 
 public class ComputerPlayer extends Player {
+	private char mostRecentRoom;
+	
 	public ComputerPlayer(String playerName, Color color, int row, int column) {
 		super(playerName, color, row, column);
 	}
@@ -22,5 +24,13 @@ public class ComputerPlayer extends Player {
 	
 	public void createSuggestion() {
 		
+	}
+
+	public char getMostRecentRoom() {
+		return mostRecentRoom;
+	}
+
+	public void setMostRecentRoom(char mostRecentRoom) {
+		this.mostRecentRoom = mostRecentRoom;
 	}
 }
