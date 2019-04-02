@@ -44,6 +44,10 @@ public class Player {
 		}
 		return color;
 	}
+	
+	public void addCard(Card c) {
+		myCards.add(c);
+	}
 
 	public Color getColor() {
 		return color;

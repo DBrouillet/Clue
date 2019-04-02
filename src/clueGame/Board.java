@@ -3,6 +3,7 @@ package clueGame;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -30,6 +31,9 @@ public class Board {
 	private Solution theAnswer;
 	private ArrayList<Player> players;
 	private ArrayList<Card> deck;
+	private ArrayList<Card> weaponsDeck;
+	private ArrayList<Card> playersDeck;
+	private ArrayList<Card> placesDeck;
 	private ArrayList<String> weapons;
 	private Map<String, String> roomTypes;
 	
@@ -70,26 +74,28 @@ public class Board {
 	}
 	
 	/**
-	 * Creates the deck by adding in weapons, players, and rooms
+	 * Creates the the three sub-decks to be used in setting up the game. Decks are combined later in the shuffleDeck method.
 	 */
 	private void createDeck() {
-		deck = new ArrayList<Card>();
+		weaponsDeck = new ArrayList<Card>();
+		playersDeck = new ArrayList<Card>();
+		placesDeck = new ArrayList<Card>();
 		Card newCard;
 		
 		for (String name : weapons) {
 			newCard = new Card(name, CardType.WEAPON);
-			deck.add(newCard);
+			weaponsDeck.add(newCard);
 		}
 		
 		for (Player p : players) {
 			newCard = new Card(p.getPlayerName(), CardType.PERSON);
-			deck.add(newCard);
+			playersDeck.add(newCard);
 		}
 		
 		for (String r: legend.values()) {
 			if (roomTypes.get(r).equals("Card")) { 
 				newCard = new Card(r, CardType.ROOM);
-				deck.add(newCard);
+				placesDeck.add(newCard);
 			}
 		}
 		
@@ -100,9 +106,14 @@ public class Board {
 	 * Then, the answer is selected, and each of the cards are shuffled together
 	 */
 	private void shuffleDeck() {
-		// TO-DO: SHUFFLE WEAPONS, PLAYERS, ROOMS SEPARATELY
+		Collections.shuffle(weaponsDeck);
+		Collections.shuffle(playersDeck);
+		Collections.shuffle(placesDeck);
 		selectAnswer();
-		// TO-DO: SHUFFLE ALL CARDS TOGETHER
+		deck.addAll(placesDeck);
+		deck.addAll(playersDeck);
+		deck.addAll(weaponsDeck);
+		Collections.shuffle(deck);
 	}
 	
 	/**
@@ -110,7 +121,17 @@ public class Board {
 	 * has been selected and removed from the deck).
 	 */
 	private void dealDeck() {
-		// TO-DO: DEAL THE DECK TO EACH PLAYER
+		for (Player player : players) {
+			/*
+			 * Adds the first three cards of the deck to each players hand, removing them as added.
+			 */
+			player.addCard(deck.get(0));
+			playersDeck.remove(0);
+			player.addCard(deck.get(0));
+			playersDeck.remove(0);
+			player.addCard(deck.get(0));
+			playersDeck.remove(0);
+		}
 	}
 
 	/**
@@ -424,6 +445,12 @@ public class Board {
 		// THEY ARE ALREADY SHUFFLED (ONCCE SHUFFLEDECK IS IMPLEMENTED),
 		// SO THEY CAN BE CHOSEN ARBITRARILY.
 		// ALSO REMOVES THE ANSWER FROM THE DECK
+		theAnswer.person = playersDeck.get(0).getCardName();
+		playersDeck.remove(0);
+		theAnswer.person = weaponsDeck.get(0).getCardName();
+		weaponsDeck.remove(0);
+		theAnswer.person = placesDeck.get(0).getCardName();
+		placesDeck.remove(0);
 	}
 	
 	// Needs fixing
