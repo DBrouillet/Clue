@@ -69,5 +69,10 @@ public class Player {
 		return myCards;
 	}
 
+	// ONLY USED FOR JUNIT TESTS
+	public void setMyCards(ArrayList<Card> myCards) {
+		this.myCards = myCards;
+	}
+
 
 }

@@ -446,11 +446,6 @@ public class Board {
 	 * Removes the answer from the deck once it is picked
 	 */
 	private void selectAnswer() {
-		// TO-DO: MAKE THIS FUNCTION SELECT THE ANSWER
-		// I.E. ONE OF EACH TYPE OF CARD.
-		// THEY ARE ALREADY SHUFFLED (ONCCE SHUFFLEDECK IS IMPLEMENTED),
-		// SO THEY CAN BE CHOSEN ARBITRARILY.
-		// ALSO REMOVES THE ANSWER FROM THE DECK
 		theAnswer = new Solution();
 		theAnswer.person = playersDeck.get(0).getCardName();
 		playersDeck.remove(0);
