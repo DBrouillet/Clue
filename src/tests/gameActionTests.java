@@ -202,9 +202,9 @@ public class gameActionTests {
 		
 		// Test for matching weapon
 		ArrayList<Card> oneMatchingWeapon = new ArrayList<Card>();
-		noMatching.add(weaponMatch);
-		noMatching.add(personNoMatch);
-		noMatching.add(roomNoMatch);
+		oneMatchingWeapon.add(weaponMatch);
+		oneMatchingWeapon.add(personNoMatch);
+		oneMatchingWeapon.add(roomNoMatch);
 		
 		testPlayer.setMyCards(oneMatchingWeapon);
 		
@@ -243,7 +243,7 @@ public class gameActionTests {
 		twoMatching.add(personMatch);
 		twoMatching.add(roomMatch);
 		
-		testPlayer.setMyCards(oneMatchingRoom);
+		testPlayer.setMyCards(twoMatching);
 		
 		int numRoomChosen = 0;
 		int numPersonChosen = 0;

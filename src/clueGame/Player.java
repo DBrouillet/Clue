@@ -3,6 +3,7 @@ package clueGame;
 import java.awt.Color;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Player {
 	private String playerName;
@@ -27,9 +28,38 @@ public class Player {
 		this.column = column;
 		this.color = convertColor(color);
 	}
+	
+	private boolean matching(String card, String solution) {
+		return (card.equals(solution));
+	}
 
+	/**
+	 * @param suggestion = suggestion to disprove by the player
+	 * @return a Card which disproves the suggestion
+	 */
 	public Card disproveSuggesstion(Solution suggestion) {
-		return new Card();
+		// Find all potential matches
+		ArrayList<Card> matches = new ArrayList<Card>();
+		for (Card card : myCards) {
+			if (matching(card.getCardName(), suggestion.person)) {
+				matches.add(card);
+			}
+			else if (matching(card.getCardName(), suggestion.room)) {
+				matches.add(card);
+			}
+			else if (matching(card.getCardName(), suggestion.weapon)) {
+				matches.add(card);
+			}
+		}
+		
+		// If there are no matches, return null
+		if (matches.isEmpty()) {
+			return null;
+		}
+		
+		// Otherwise, return a random match
+		Collections.shuffle(matches);
+		return matches.get(0);
 	}
 	
 	private Color convertColor(String strColor) {
