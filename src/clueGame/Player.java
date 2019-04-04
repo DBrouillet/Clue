@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Player {
 	private String playerName;
@@ -11,7 +13,7 @@ public class Player {
 	private int column;
 	private Color color;
 	private ArrayList<Card> myCards = new ArrayList<Card>();
-	private ArrayList<Card> seenCards = new ArrayList<Card>();
+	private Map<Card, Boolean> seenCards = new HashMap<Card, Boolean>();
 
 	public Player(String playerName, Color color, int row, int column) {
 		super();
@@ -61,7 +63,7 @@ public class Player {
 		Collections.shuffle(matches);
 		return matches.get(0);
 	}
-	
+
 	private Color convertColor(String strColor) {
 		Color color;
 		strColor = strColor.toUpperCase();
@@ -75,12 +77,29 @@ public class Player {
 		return color;
 	}
 	
+	public void initializeSeenCards() {
+		Board theInstance = Board.getInstance();
+		for(Card c : theInstance.getWeaponsDeck()) {
+			seenCards.put(c, false);
+		}
+		for(Card c : theInstance.getPlayersDeck()) {
+			seenCards.put(c, false);
+		}
+		for(Card c : theInstance.getPlacesDeck()) {
+			seenCards.put(c, false);
+		}
+		seenCards.put(theInstance.getTheAnswer().personCard, false);
+		seenCards.put(theInstance.getTheAnswer().weaponCard, false);
+		seenCards.put(theInstance.getTheAnswer().roomCard, false);
+	}
+
+	
 	public void addCard(Card c) {
 		myCards.add(c);
 	}
 	
 	public void addSeenCard(Card c) {
-		seenCards.add(c);
+		seenCards.put(c, true);
 	}
 
 	public Color getColor() {
@@ -102,7 +121,11 @@ public class Player {
 	public ArrayList<Card> getMyCards() {
 		return myCards;
 	}
-
+	
+	public Map<Card, Boolean> getSeenCards() {
+		return seenCards;
+	}
+	
 	// ONLY USED FOR JUNIT TESTS
 	public void setMyCards(ArrayList<Card> myCards) {
 		this.myCards = myCards;

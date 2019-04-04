@@ -38,8 +38,30 @@ public class ComputerPlayer extends Player {
 	
 	public Solution createSuggestion() {
 		Board theInstance = Board.getInstance();
+		Solution theAnswer = theInstance.getTheAnswer();
 		String roomName = theInstance.getLegend().get(theInstance.getCellAt(getRow(), getColumn()).getInitial());
-		return new Solution("",roomName,"");
+		ArrayList<Card> unseenWeapons = new ArrayList<Card>();
+		ArrayList<Card> unseenPlayers = new ArrayList<Card>();
+		for(Card weapon : theInstance.getWeaponsDeck()) {
+			if(!getSeenCards().get(weapon)) {
+				unseenWeapons.add(weapon);
+			}
+		}
+		for(Card player : theInstance.getPlayersDeck()) {
+			if(!getSeenCards().get(player)) {
+				unseenPlayers.add(player);
+			}
+		}
+		if(!getSeenCards().get(theAnswer.weaponCard)) {
+			unseenWeapons.add(theAnswer.weaponCard);
+			
+		}
+		if(!getSeenCards().get(theAnswer.personCard)) {
+			unseenPlayers.add(theAnswer.personCard);
+		}
+		Collections.shuffle(unseenWeapons);
+		Collections.shuffle(unseenPlayers);
+		return new Solution(unseenPlayers.get(0).getCardName(),roomName,unseenWeapons.get(0).getCardName());
 	}
 
 	public char getMostRecentRoom() {

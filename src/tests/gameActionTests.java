@@ -135,6 +135,7 @@ public class gameActionTests {
 	public void testCheckAccusation() {
 		// Create the solution and the test player
 		Solution solution = new Solution("Bob", "Kitchen", "Knife");
+		Solution oldAnswer = board.getTheAnswer();
 		board.setTheAnswer(solution);
 		ComputerPlayer testPlayer = new ComputerPlayer("testPlayer", "green", 17, 8);
 		
@@ -153,6 +154,9 @@ public class gameActionTests {
 		// Check accusation when the weapon is incorrect
 		accusation = testPlayer.makeAccusation("Bob", "Kitchen", "Gun");
 		assert(board.checkAccusation(accusation) == false);
+		
+		//Reset the solution to the removed cards
+		board.setTheAnswer(oldAnswer);
 	}
 	
 	/**
@@ -274,6 +278,7 @@ public class gameActionTests {
 		 * and the room the player is in are the same
 		 */
 		ComputerPlayer testPlayer = new ComputerPlayer("testPlayer", "green", 3, 3);
+		testPlayer.initializeSeenCards();
 		BoardCell location = board.getCellAt(testPlayer.getRow(), testPlayer.getColumn());
 		Map<Character, String> legend = board.getLegend();
 		ArrayList<Card> weaponsDeck = board.getWeaponsDeck();
@@ -284,24 +289,25 @@ public class gameActionTests {
 		 * Test to see that if only one weapon/player is unseen
 		 * it will always be in the suggestion.
 		 */
-		for(int i = 0; i < weaponsDeck.size()-1; i++) {
-			testPlayer.addSeenCard(weaponsDeck.get(i));
+		for(Card c : weaponsDeck) {
+			testPlayer.addSeenCard(c);
 		}
-		for(int i = 0; i < playersDeck.size()-1; i++) {
-			testPlayer.addSeenCard(playersDeck.get(i));
+		for(Card c : playersDeck) {
+			testPlayer.addSeenCard(c);
 		}
-		assertTrue(testPlayer.createSuggestion().weapon.equals(weaponsDeck.get(weaponsDeck.size()-1).getCardName()));
-		assertTrue(testPlayer.createSuggestion().person.equals(playersDeck.get(playersDeck.size()-1).getCardName()));
+		assertTrue(testPlayer.createSuggestion().weapon.equals(board.getTheAnswer().weapon));
+		assertTrue(testPlayer.createSuggestion().person.equals(board.getTheAnswer().person));
 		
 		/*
 		 * Test to see that if multiple weapons/players 
 		 * are unseen one is chosen randomly for the suggestion.
 		 */
-		ComputerPlayer testPlayer2 = new ComputerPlayer("testPlayer", "green", 3, 3);
-		for(int i = 0; i < weaponsDeck.size()-2; i++) {
+		ComputerPlayer testPlayer2 = new ComputerPlayer("testPlayer2", "green", 3, 3);
+		testPlayer2.initializeSeenCards();
+		for(int i = 0; i < weaponsDeck.size()-1; i++) {
 			testPlayer2.addSeenCard(weaponsDeck.get(i));
 		}
-		for(int i = 0; i < playersDeck.size()-2; i++) {
+		for(int i = 0; i < playersDeck.size()-1; i++) {
 			testPlayer2.addSeenCard(playersDeck.get(i));
 		}
 		int unseenPlayer1Chosen = 0;
@@ -311,23 +317,26 @@ public class gameActionTests {
 		
 		for(int i = 0; i < 100; i++) {
 			Solution testSuggestion = testPlayer2.createSuggestion();
-			if(testSuggestion.weapon.equals(weaponsDeck.get(weaponsDeck.size()-2).getCardName())) {
+			// Count the number of times each possible weapon or player is chosen
+			if(testSuggestion.weapon.equals(board.getTheAnswer().weapon)) {
 				unseenWeapon1Chosen++;
 			}
 			else if(testSuggestion.weapon.equals(weaponsDeck.get(weaponsDeck.size()-1).getCardName())) {
 				unseenWeapon2Chosen++;
 			}
-			else if(testSuggestion.person.equals(playersDeck.get(playersDeck.size()-2).getCardName())) {
+			if(testSuggestion.person.equals(board.getTheAnswer().person)) {
 				unseenPlayer1Chosen++;
 			}
 			else if(testSuggestion.person.equals(playersDeck.get(playersDeck.size()-1).getCardName())) {
 				unseenPlayer2Chosen++;
 			}
-			else fail();
+			else fail();// But if anything else is ever chosen, fail
 		}
+		
+		// Make sure we have a reasonable number of each chosen
 		assert(unseenWeapon1Chosen > 10);
 		assert(unseenWeapon2Chosen > 10);
 		assert(unseenPlayer1Chosen > 10);
 		assert(unseenPlayer2Chosen > 10);
-	}
+	}	
 }

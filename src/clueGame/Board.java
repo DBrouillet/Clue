@@ -446,12 +446,9 @@ public class Board {
 	 * Removes the answer from the deck once it is picked
 	 */
 	private void selectAnswer() {
-		theAnswer = new Solution();
-		theAnswer.person = playersDeck.get(0).getCardName();
+		theAnswer = new Solution(playersDeck.get(0), placesDeck.get(0), weaponsDeck.get(0));
 		playersDeck.remove(0);
-		theAnswer.person = weaponsDeck.get(0).getCardName();
 		weaponsDeck.remove(0);
-		theAnswer.person = placesDeck.get(0).getCardName();
 		placesDeck.remove(0);
 	}
 
@@ -543,6 +540,10 @@ public class Board {
 		return playersDeck;
 	}
 	
+	public ArrayList<Card> getPlacesDeck() {
+		return placesDeck;
+	}
+
 	// Setter is only for JUnit tests
 	public void setTheAnswer(Solution theAnswer) {
 		this.theAnswer = theAnswer;
