@@ -377,14 +377,6 @@ public class Board {
 		}
 	}
 
-	public Set<BoardCell> getAdjList(BoardCell cell) {
-		return adjMatrix.get(cell);
-	}
-
-	public Set<BoardCell> getAdjList(int i, int j) {
-		return adjMatrix.get(getCellAt(i,j));
-	}
-
 	/**
 	 * @param startCell = initial cell
 	 * @param pathLength = length of path
@@ -463,10 +455,6 @@ public class Board {
 				accusation.weapon == theAnswer.weapon);
 	}
 
-	public Set<BoardCell> getTargets() {
-		return targets;
-	}
-
 	/**
 	 * @param layout = name of config file corresponding to the layout of the board
 	 * @param legend = name of config file corresponding to the legend (i.e. each room)
@@ -502,6 +490,18 @@ public class Board {
 	 */
 	public boolean inAnswer(Card card) {
 		return inAnswer(card.getCardName());
+	}
+	
+	public Set<BoardCell> getAdjList(BoardCell cell) {
+		return adjMatrix.get(cell);
+	}
+	
+	public Set<BoardCell> getTargets() {
+		return targets;
+	}
+
+	public Set<BoardCell> getAdjList(int i, int j) {
+		return adjMatrix.get(getCellAt(i,j));
 	}
 
 	public Map<Character, String> getLegend() {

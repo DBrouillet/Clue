@@ -314,7 +314,7 @@ public class gameActionTests {
 		int unseenPlayer2Chosen = 0;
 		int unseenWeapon1Chosen = 0;
 		int unseenWeapon2Chosen = 0;
-		
+		//Run 100 trials to disprove the suggestion
 		for(int i = 0; i < 100; i++) {
 			Solution testSuggestion = testPlayer2.createSuggestion();
 			// Count the number of times each possible weapon or player is chosen

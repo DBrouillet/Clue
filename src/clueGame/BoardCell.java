@@ -6,10 +6,16 @@ package clueGame;
  *
  */
 public class BoardCell {
-	public int getRow() {
-		return row;
+	private int row;
+	private int column;
+	private char initial;
+	private DoorDirection doorDirection;
+	public static final char walkway = 'W';
+	
+	public BoardCell() {
+		
 	}
-
+	
 	public BoardCell(int row, int column, char initial, DoorDirection doorDirection) {
 		super();
 		this.row = row;
@@ -17,9 +23,17 @@ public class BoardCell {
 		this.initial = initial;
 		this.doorDirection = doorDirection;
 	}
-
-	public BoardCell() {
-		
+	
+	public boolean isDoorway() {
+		return doorDirection != DoorDirection.NONE;
+	}
+	
+	public boolean isWalkway() {
+		return Character.toUpperCase(initial) == walkway;
+	}
+	
+	public int getRow() {
+		return row;
 	}
 
 	public int getColumn() {
@@ -29,22 +43,9 @@ public class BoardCell {
 	public char getInitial() {
 		return initial;
 	}
-
-	private int row;
-	private int column;
-	private char initial;
-	private DoorDirection doorDirection;
-	public static final char walkway = 'W';
 	
 	public DoorDirection getDoorDirection() {
 		return doorDirection;
 	}
 
-	public boolean isDoorway() {
-		return doorDirection != DoorDirection.NONE;
-	}
-	
-	public boolean isWalkway() {
-		return Character.toUpperCase(initial) == walkway;
-	}
 }
