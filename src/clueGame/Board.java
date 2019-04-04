@@ -535,6 +535,14 @@ public class Board {
 		return theAnswer;
 	}
 	
+	public ArrayList<Card> getWeaponsDeck() {
+		return weaponsDeck;
+	}
+
+	public ArrayList<Card> getPlayersDeck() {
+		return playersDeck;
+	}
+	
 	// Setter is only for JUnit tests
 	public void setTheAnswer(Solution theAnswer) {
 		this.theAnswer = theAnswer;

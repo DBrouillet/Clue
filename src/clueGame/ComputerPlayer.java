@@ -36,8 +36,10 @@ public class ComputerPlayer extends Player {
 		return new Solution(person, room, weapon);
 	}
 	
-	public void createSuggestion() {
-		
+	public Solution createSuggestion() {
+		Board theInstance = Board.getInstance();
+		String roomName = theInstance.getLegend().get(theInstance.getCellAt(getRow(), getColumn()).getInitial());
+		return new Solution("",roomName,"");
 	}
 
 	public char getMostRecentRoom() {

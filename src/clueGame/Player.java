@@ -78,6 +78,10 @@ public class Player {
 	public void addCard(Card c) {
 		myCards.add(c);
 	}
+	
+	public void addSeenCard(Card c) {
+		seenCards.add(c);
+	}
 
 	public Color getColor() {
 		return color;

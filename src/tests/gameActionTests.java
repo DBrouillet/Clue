@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -266,4 +267,67 @@ public class gameActionTests {
 		assert(numPersonChosen > 20);
 	}
 
+	@Test
+	public void testCreateSuggestion() {
+		/*
+		 * Test to see that the suggested room
+		 * and the room the player is in are the same
+		 */
+		ComputerPlayer testPlayer = new ComputerPlayer("testPlayer", "green", 3, 3);
+		BoardCell location = board.getCellAt(testPlayer.getRow(), testPlayer.getColumn());
+		Map<Character, String> legend = board.getLegend();
+		ArrayList<Card> weaponsDeck = board.getWeaponsDeck();
+		ArrayList<Card> playersDeck = board.getPlayersDeck();
+		assertTrue(testPlayer.createSuggestion().room.equals(legend.get(location.getInitial())));
+		
+		/*
+		 * Test to see that if only one weapon/player is unseen
+		 * it will always be in the suggestion.
+		 */
+		for(int i = 0; i < weaponsDeck.size()-1; i++) {
+			testPlayer.addSeenCard(weaponsDeck.get(i));
+		}
+		for(int i = 0; i < playersDeck.size()-1; i++) {
+			testPlayer.addSeenCard(playersDeck.get(i));
+		}
+		assertTrue(testPlayer.createSuggestion().weapon.equals(weaponsDeck.get(weaponsDeck.size()-1).getCardName()));
+		assertTrue(testPlayer.createSuggestion().person.equals(playersDeck.get(playersDeck.size()-1).getCardName()));
+		
+		/*
+		 * Test to see that if multiple weapons/players 
+		 * are unseen one is chosen randomly for the suggestion.
+		 */
+		ComputerPlayer testPlayer2 = new ComputerPlayer("testPlayer", "green", 3, 3);
+		for(int i = 0; i < weaponsDeck.size()-2; i++) {
+			testPlayer2.addSeenCard(weaponsDeck.get(i));
+		}
+		for(int i = 0; i < playersDeck.size()-2; i++) {
+			testPlayer2.addSeenCard(playersDeck.get(i));
+		}
+		int unseenPlayer1Chosen = 0;
+		int unseenPlayer2Chosen = 0;
+		int unseenWeapon1Chosen = 0;
+		int unseenWeapon2Chosen = 0;
+		
+		for(int i = 0; i < 100; i++) {
+			Solution testSuggestion = testPlayer2.createSuggestion();
+			if(testSuggestion.weapon.equals(weaponsDeck.get(weaponsDeck.size()-2).getCardName())) {
+				unseenWeapon1Chosen++;
+			}
+			else if(testSuggestion.weapon.equals(weaponsDeck.get(weaponsDeck.size()-1).getCardName())) {
+				unseenWeapon2Chosen++;
+			}
+			else if(testSuggestion.person.equals(playersDeck.get(playersDeck.size()-2).getCardName())) {
+				unseenPlayer1Chosen++;
+			}
+			else if(testSuggestion.person.equals(playersDeck.get(playersDeck.size()-1).getCardName())) {
+				unseenPlayer2Chosen++;
+			}
+			else fail();
+		}
+		assert(unseenWeapon1Chosen > 10);
+		assert(unseenWeapon2Chosen > 10);
+		assert(unseenPlayer1Chosen > 10);
+		assert(unseenPlayer2Chosen > 10);
+	}
 }
