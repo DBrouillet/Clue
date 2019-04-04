@@ -383,16 +383,22 @@ public class gameActionTests {
 			switch(i) {
 			case 1:
 				player.setMyCards(p1Cards);
+				break;
 			case 2:
 				player.setMyCards(p2Cards);
+				break;
 			case 3:
 				player.setMyCards(p3Cards);
+				break;
 			case 4:
 				player.setMyCards(p4Cards);
+				break;
 			case 5:
 				player.setMyCards(p5Cards);
+				break;
 			case 6:
 				player.setMyCards(p6Cards);
+				break;
 			}
 			i++;
 		}
@@ -406,7 +412,7 @@ public class gameActionTests {
 		// Player 1 with the hand Kitchen/Gun/Jack is the only one that can disprove this
 		// Player 1 has index of 0 in players array
 		Solution suggestion2 = new Solution("Jack", "Office", "Bottle");
-		Card result2 = board.handleSuggestion(suggestion, 0);
+		Card result2 = board.handleSuggestion(suggestion2, 0);
 		assert (result == null);
 		
 		// Tests suggestion only human can disprove.
@@ -414,7 +420,7 @@ public class gameActionTests {
 		// Player 1 has index of 0 in players array - testing that player not being accuser
 		// result should be the Jack card.
 		Solution suggestion3 = new Solution("Jack", "Office", "Bottle");
-		Card result3 = board.handleSuggestion(suggestion, 1);
+		Card result3 = board.handleSuggestion(suggestion3, 1);
 		assert (result3.getCardName() == "Jack");
 		
 		// Tests suggestion only human can disprove, human is accuser.
@@ -422,7 +428,7 @@ public class gameActionTests {
 		// Player 1 has index of 0 in players array
 		// Should null
 		Solution suggestion4 = new Solution("Jack", "Office", "Bottle");
-		Card result4 = board.handleSuggestion(suggestion, 0);
+		Card result4 = board.handleSuggestion(suggestion4, 0);
 		assert (result4 == null);
 		
 		// Tests suggestion two players can disprove.
@@ -431,7 +437,7 @@ public class gameActionTests {
 		// Player 4 should be the one to disprove it
 		// Result should be Game room
 		Solution suggestion5 = new Solution("Jack", "Game room", "Bottle");
-		Card result5 = board.handleSuggestion(suggestion, 2);
+		Card result5 = board.handleSuggestion(suggestion5, 2);
 		assert (result5.getCardName() == "Game room");
 	}
 	
