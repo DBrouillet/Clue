@@ -10,72 +10,105 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-
+/**
+ * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson
+ * Control panel GUI which contains all of the basic information
+ * needed to control the game (as a human player).
+ *
+ */
 public class ControlGUI extends JPanel {
 	private JTextField name;
 
-	public ControlGUI()
-	{
+	/**
+	 * Create the overall GUI and add the relevant panels.
+	 */
+	public ControlGUI() {
 		// Create a layout with 2 rows
 		setLayout(new GridLayout(2,0));
-		JPanel panel = createNamePanel();
+		JPanel panel = createTopPanel();
 		add(panel);
-		panel = createTextPanel();
+		panel = createBottomPanel();
 		add(panel);
 	}
 
-	 private JPanel createNamePanel() {
-		 	JPanel panel = new JPanel();
-		 	// Use a grid layout, 1 row, 2 elements (label, text)
-			panel.setLayout(new GridLayout(1,2));
-			JPanel subPanel = new JPanel();
-			subPanel.setLayout(new GridLayout(2,1));
-		 	JLabel nameLabel = new JLabel("Current Player");
-			name = new JTextField(20);
-			name.setEditable(false);
-			subPanel.add(nameLabel);
-			subPanel.add(name);
-			subPanel.setBorder(new TitledBorder (new EtchedBorder(), "Whose turn is it?"));
-			panel.add(subPanel);
-			JButton nextPlayer = new JButton("Next Player");
-			JButton makeAccusation = new JButton("Make an Accusation");
-			panel.add(nextPlayer);
-			panel.add(makeAccusation);
-			return panel;
-	}
-	 
-	private JPanel createTextPanel() {
+	/**
+	 * @return JPanel which contains the top panel
+	 * Creates each of the components of the top panel
+	 * and then adds them to the top panel.
+	 */
+	private JPanel createTopPanel() {
 		JPanel panel = new JPanel();
-		JPanel sub1 = new JPanel();
-		sub1.setLayout(new GridLayout(1,2));
+		// Use a grid layout, 1 row, 2 elements (label, text)
+		panel.setLayout(new GridLayout(1,2));
+		
+		/* Create a subpanel so we can display
+		 * whose turn it is in 2 rows
+		 */
+		
+		JPanel turnPanel = new JPanel();
+		turnPanel.setLayout(new GridLayout(2,1));
+		JLabel nameLabel = new JLabel("Current Player");
+		name = new JTextField(20);
+		name.setEditable(false);
+		turnPanel.add(nameLabel);
+		turnPanel.add(name);
+		turnPanel.setBorder(new TitledBorder (new EtchedBorder(), "Whose turn is it?"));
+		panel.add(turnPanel);
+		
+		// Button to click for next player
+		JButton nextPlayer = new JButton("Next Player");
+		
+		// Button to click to make an accusation
+		JButton makeAccusation = new JButton("Make an Accusation");
+		panel.add(nextPlayer);
+		panel.add(makeAccusation);
+		return panel;
+	}
+
+	/**
+	 * @return JPanel which contains the bottom panel
+	 * Creates each of the components of the bottom panel
+	 * and then adds them to the bottom panel.
+	 */
+	private JPanel createBottomPanel() {
+		JPanel panel = new JPanel();
+		
+		// Create the subpanel which contains the die roll
+		JPanel dieRoll = new JPanel();
+		dieRoll.setLayout(new GridLayout(1,2));
 		JLabel nameLabel = new JLabel("Roll");
 		name = new JTextField(3);
 		name.setEditable(false);
-		sub1.add(nameLabel);
-		sub1.add(name);
-		sub1.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
-		JPanel sub2 = new JPanel();
-		sub2.setLayout(new GridLayout(2,1));
+		dieRoll.add(nameLabel);
+		dieRoll.add(name);
+		dieRoll.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
+		
+		// Create the subpanel which contains the guess
+		JPanel guess = new JPanel();
+		guess.setLayout(new GridLayout(2,1));
 		JLabel nameLabel2 = new JLabel("Guess");
 		name = new JTextField(25);
 		name.setEditable(false);
-		sub2.add(nameLabel2);
-		sub2.add(name);
-		sub2.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
-		JPanel sub3 = new JPanel();
-		sub3.setLayout(new GridLayout(1,2));
+		guess.add(nameLabel2);
+		guess.add(name);
+		guess.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
+		
+		// Create the subpanel which contains the result of the guess
+		JPanel guessResult = new JPanel();
+		guessResult.setLayout(new GridLayout(1,2));
 		JLabel nameLabel3 = new JLabel("Response");
 		name = new JTextField(12);
 		name.setEditable(false);
-		sub3.add(nameLabel3);
-		sub3.add(name);
-		sub3.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
-		panel.add(sub1);
-		panel.add(sub2);
-		panel.add(sub3);
+		guessResult.add(nameLabel3);
+		guessResult.add(name);
+		guessResult.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
+		
+		panel.add(dieRoll);
+		panel.add(guess);
+		panel.add(guessResult);
 		return panel;
 	}
-	
+
 	public static void main(String[] args) {
 		// Create a JFrame with all the normal functionality
 		JFrame frame = new JFrame();
