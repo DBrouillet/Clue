@@ -338,5 +338,101 @@ public class gameActionTests {
 		assert(unseenWeapon2Chosen > 10);
 		assert(unseenPlayer1Chosen > 10);
 		assert(unseenPlayer2Chosen > 10);
-	}	
+	}
+	
+	@Test
+	public void testHandleSuggestion() {
+		
+		/*
+		 * Creates the hands of each player.
+		 * The actual solution is Office, Bottle, Greg
+		 */
+		
+		ArrayList<Card> p1Cards = new ArrayList<Card>();
+		p1Cards.add(new Card("Kitchen", CardType.ROOM));
+		p1Cards.add(new Card("Gun", CardType.WEAPON));
+		p1Cards.add(new Card("Jack", CardType.PERSON));
+		
+		ArrayList<Card> p2Cards = new ArrayList<Card>();
+		p2Cards.add(new Card("Bathroom", CardType.ROOM));
+		p2Cards.add(new Card("Knife", CardType.WEAPON));
+		p2Cards.add(new Card("Bob", CardType.PERSON));
+		
+		ArrayList<Card> p3Cards = new ArrayList<Card>();
+		p3Cards.add(new Card("Conservatory", CardType.ROOM));
+		p3Cards.add(new Card("Pipe", CardType.WEAPON));
+		p3Cards.add(new Card("John", CardType.PERSON));
+		
+		ArrayList<Card> p4Cards = new ArrayList<Card>();
+		p4Cards.add(new Card("Game room", CardType.ROOM));
+		p4Cards.add(new Card("Candlestick", CardType.WEAPON));
+		p4Cards.add(new Card("Fred", CardType.PERSON));
+		
+		ArrayList<Card> p5Cards = new ArrayList<Card>();
+		p5Cards.add(new Card("Dressing room", CardType.ROOM));
+		p5Cards.add(new Card("Golf Club", CardType.WEAPON));
+		p5Cards.add(new Card("Joe", CardType.PERSON));
+		
+		ArrayList<Card> p6Cards = new ArrayList<Card>();
+		p6Cards.add(new Card("Living room", CardType.ROOM));
+		p6Cards.add(new Card("Study", CardType.ROOM));
+		p6Cards.add(new Card("Hall", CardType.ROOM));
+		
+		int i = 1;
+		for (Player player : board.getPlayers()) {
+			switch(i) {
+			case 1:
+				player.setMyCards(p1Cards);
+			case 2:
+				player.setMyCards(p2Cards);
+			case 3:
+				player.setMyCards(p3Cards);
+			case 4:
+				player.setMyCards(p4Cards);
+			case 5:
+				player.setMyCards(p5Cards);
+			case 6:
+				player.setMyCards(p6Cards);
+			}
+			i++;
+		}
+		
+		// Tests suggestion no one can disprove. 
+		Solution suggestion = new Solution("Greg", "Office", "Bottle");
+		Card result = board.handleSuggestion(suggestion, 0);
+		assert(result == null);
+		
+		// Tests suggestion only accusing Player can disprove.
+		// Player 1 with the hand Kitchen/Gun/Jack is the only one that can disprove this
+		// Player 1 has index of 0 in players array
+		Solution suggestion2 = new Solution("Jack", "Office", "Bottle");
+		Card result2 = board.handleSuggestion(suggestion, 0);
+		assert (result == null);
+		
+		// Tests suggestion only human can disprove.
+		// Player 1 is human with the hand Kitchen/Gun/Jack
+		// Player 1 has index of 0 in players array - testing that player not being accuser
+		// result should be the Jack card.
+		Solution suggestion3 = new Solution("Jack", "Office", "Bottle");
+		Card result3 = board.handleSuggestion(suggestion, 1);
+		assert (result3.getCardName() == "Jack");
+		
+		// Tests suggestion only human can disprove, human is accuser.
+		// Player 1 is human with the hand Kitchen/Gun/Jack
+		// Player 1 has index of 0 in players array
+		// Should null
+		Solution suggestion4 = new Solution("Jack", "Office", "Bottle");
+		Card result4 = board.handleSuggestion(suggestion, 0);
+		assert (result4 == null);
+		
+		// Tests suggestion two players can disprove.
+		// Player 3 is asking (index is 2)
+		// Player 4 and 1 can disprove
+		// Player 4 should be the one to disprove it
+		// Result should be Game room
+		Solution suggestion5 = new Solution("Jack", "Game room", "Bottle");
+		Card result5 = board.handleSuggestion(suggestion, 2);
+		assert (result5.getCardName() == "Game room");
+	}
+	
 }

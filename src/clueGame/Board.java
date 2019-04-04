@@ -444,9 +444,31 @@ public class Board {
 		placesDeck.remove(0);
 	}
 
-	// Needs fixing
-	public Card handleSuggestion() {
-		return new Card();
+	/*
+	 * The next player that is not the active player returns a card that disproves suggestion
+	 * If no non-active player can disprove the suggestion, returns null.
+	 * @param activePlayerIndex = index in the players array of the player making the suggestion
+	 */
+	public Card handleSuggestion(Solution suggestion, int activePlayerIndex) {
+		/*
+		 * Starting at the next player after the active player, asks them to disprove suggestion.
+		 */
+		for (int i = activePlayerIndex + 1; i < players.size(); i++) {
+			Card ans = players.get(i).disproveSuggesstion(suggestion);
+			if (ans != null) {
+				return ans;
+			}
+		}
+		/*
+		 * If active player is in the middle of the playerArray, needs to wrap around.
+		 */
+		for (int i = 0; i < activePlayerIndex; i++) {
+			Card ans = players.get(i).disproveSuggesstion(suggestion);
+			if (ans != null) {
+				return ans;
+			}
+		}
+		return null;
 	}
 
 	public boolean checkAccusation(Solution accusation) {
