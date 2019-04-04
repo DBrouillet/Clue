@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -108,19 +109,4 @@ public class ControlGUI extends JPanel {
 		panel.add(guessResult);
 		return panel;
 	}
-
-	public static void main(String[] args) {
-		// Create a JFrame with all the normal functionality
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("GUI Example");
-		frame.setSize(750, 200);	
-		// Create the JPanel and add it to the JFrame
-		ControlGUI gui = new ControlGUI();
-		frame.add(gui, BorderLayout.CENTER);
-		// Now let's view it
-		frame.setVisible(true);
-	}
-
-
 }
