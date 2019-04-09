@@ -616,5 +616,9 @@ public class Board extends JPanel {
 	public ArrayList<String> getRoomNames() {
 		return roomNames;
 	}
+
+	public ArrayList<String> getWeapons() {
+		return weapons;
+	}
 	
 }
