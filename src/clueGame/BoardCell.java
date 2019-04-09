@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 /**
- * @author Miika Jarvela and Daniel Brouillet
+ * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson
  * Class used to create a simple BoardCell consisting of integers
  * (i.e. only a row and a column), an initial, and a DoorDirection.
  *

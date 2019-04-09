@@ -10,7 +10,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 /**
- * @author Miika Jarvela and Daniel Brouillet
+ * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson
  * Class used to create and display all graphics (i.e.
  * the graphics window). Used as the main class
  * to control all functionality of the game and handle

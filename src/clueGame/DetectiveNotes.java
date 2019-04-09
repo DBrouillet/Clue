@@ -11,7 +11,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 /**
- * @author Miika Jarvela and Daniel Brouillet
+ * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson
  * Class used to create and display the detective
  * notes custom dialog to facilitate player note-taking.
  */
