@@ -1,22 +1,30 @@
-K,K,K,K,K,K,W,W,S,S,S,S,S,W,W,R,R,R,R,R,R,R
-K,K,K,K,K,K,W,W,S,S,S,S,S,W,W,RL,R,R,R,R,R,R
-K,K,K,K,K,K,W,W,SL,S,S,S,S,W,W,RL,R,R,R,R,R,R
-K,K,K,KD,K,K,W,W,SL,S,S,S,S,W,W,R,R,R,R,RD,R,R
-W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W
-W,D,D,D,D,D,D,W,W,W,W,W,W,W,W,W,W,O,O,O,O,O
-W,D,D,D,D,D,D,W,W,HU,HU,W,X,X,X,W,W,O,O,O,O,O
-W,D,D,D,D,D,DR,W,W,H,H,W,X,X,X,W,W,OL,O,O,O,O
-D,D,D,D,D,D,DR,W,W,H,H,W,X,X,X,W,W,OL,O,O,O,O
-D,D,D,D,D,D,D,W,W,H,H,W,X,X,X,W,W,OL,O,O,O,O
-D,D,D,D,D,D,D,W,W,H,H,W,X,X,X,W,W,OL,O,O,O,O
-D,D,D,D,D,D,D,W,W,H,H,W,X,X,X,W,W,O,O,O,O,O
-D,D,D,D,DR,W,W,W,W,H,H,W,X,X,X,W,W,O,O,O,O,O
-W,W,W,W,W,W,W,W,W,H,H,W,X,X,X,W,W,W,W,W,W,W
-W,W,W,W,W,W,W,W,W,HD,HD,W,X,X,X,W,W,W,W,W,W,W
-W,W,L,LU,LU,LU,L,W,W,W,W,W,W,W,W,W,W,C,CU,CU,C,C
-W,W,L,L,L,L,L,W,W,W,W,W,W,W,W,W,W,C,C,C,C,C
-L,L,L,L,L,L,L,L,W,BL,B,B,B,B,BR,W,W,C,C,C,C,C
-L,L,L,L,L,L,L,L,W,B,B,B,B,B,B,W,W,C,C,C,C,C
-L,L,L,L,L,L,L,L,W,B,B,B,B,B,B,W,W,CL,C,C,C,C
-L,L,L,L,L,L,L,L,W,B,B,B,B,B,B,W,W,C,C,C,C,C
-L,L,L,L,L,L,L,L,W,B,B,B,B,B,B,W,W,C,C,C,C,C
+K,K,K,K,K,K,W,W,S,S,S,S,S,W,W,R,R,R,R,R,R,R,0
+K,KN,K,K,K,K,W,W,S,SN,S,S,S,W,W,RL,RN,R,R,R,R,R,1
+K,K,K,K,K,K,W,W,SL,S,S,S,S,W,W,RL,R,R,R,R,R,R,2
+K,K,K,KD,K,K,W,W,SL,S,S,S,S,W,W,R,R,R,R,RD,R,R,3
+W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,4
+W,D,D,D,D,D,D,W,W,W,W,W,W,W,W,W,W,O,O,O,O,O,5
+W,D,D,D,D,D,D,W,W,HU,HU,W,X,X,X,W,W,O,O,O,O,O,6
+W,D,D,D,D,D,DR,W,W,H,H,W,X,X,X,W,W,OL,O,O,O,O,7
+D,DN,D,D,D,D,DR,W,W,H,H,W,X,X,X,W,W,OL,O,O,O,O,8
+D,D,D,D,D,D,D,W,W,HN,H,W,X,X,X,W,W,OL,ON,O,O,O,9
+D,D,D,D,D,D,D,W,W,H,H,W,X,X,X,W,W,OL,O,O,O,O,10
+D,D,D,D,D,D,D,W,W,H,H,W,X,X,X,W,W,O,O,O,O,O,11
+D,D,D,D,DR,W,W,W,W,H,H,W,X,X,X,W,W,O,O,O,O,O,12
+W,W,W,W,W,W,W,W,W,H,H,W,X,X,X,W,W,W,W,W,W,W,13
+W,W,W,W,W,W,W,W,W,HD,HD,W,X,X,X,W,W,W,W,W,W,W,14
+W,W,L,LU,LU,LU,L,W,W,W,W,W,W,W,W,W,W,C,CU,CU,C,C,15
+W,W,L,L,L,L,L,W,W,W,W,W,W,W,W,W,W,C,C,C,C,C,16
+L,L,L,L,L,L,L,L,W,BL,B,B,B,B,BR,W,W,C,C,C,C,C,17
+L,L,L,L,L,L,L,L,W,B,B,B,B,B,B,W,W,C,C,C,C,C,18
+L,LN,L,L,L,L,L,L,W,B,BN,B,B,B,B,W,W,CL,CN,C,C,C,19
+L,L,L,L,L,L,L,L,W,B,B,B,B,B,B,W,W,C,C,C,C,C,20
+L,L,L,L,L,L,L,L,W,B,B,B,B,B,B,W,W,C,C,C,C,C,21
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,
+Number of Doors: 25,,,,,,,,,,,,,,,,,,,,,,
+White: Door Direction Tests,,,,,,,,,,,,,,,,,,,,,,
+Orange: Adjacency List tests inside room,,,,,,,,,,,,,,,,,,,,,,
+Purple: Adjacency list tests room exits,,,,,,,,,,,,,,,,,,,,,,
+Green: Adjacency lists besides room entrance,,,,,,,,,,,,,,,,,,,,,,
+Gray Blue: walkway scenarios,,,,,,,,,,,,,,,,,,,,,,
+Light blue: test targets,,,,,,,,,,,,,,,,,,,,,,

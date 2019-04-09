@@ -1,7 +1,9 @@
 package clueGame;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  * @author Miika Jarvela and Daniel Brouillet
@@ -17,6 +19,8 @@ public class BoardCell {
 	public static final Color WALKWAY_FILL = Color.YELLOW;
 	public static final Color ROOM_OUTLINE = Color.GRAY;
 	public static final Color ROOM_FILL = Color.GRAY;
+	public static final Color DOOR_COLOR = Color.cyan;
+	public static final int DOOR_THICKNESS = 3;
 	
 	private int row;
 	private int column;
@@ -64,7 +68,31 @@ public class BoardCell {
 		} else {
 			drawCell(g, ROOM_OUTLINE, ROOM_FILL);
 		}
+		if(isDoorway()) {
+			switch(doorDirection) {
+			case UP:
+				drawDoor(g, column * CELL_DIMENSION, row * CELL_DIMENSION, (column + 1) * CELL_DIMENSION, row * CELL_DIMENSION);
+				break;
+			case RIGHT:
+				drawDoor(g, (column + 1) * CELL_DIMENSION - (DOOR_THICKNESS - 1), row * CELL_DIMENSION, (column + 1) * CELL_DIMENSION - (DOOR_THICKNESS - 1), (row + 1) * CELL_DIMENSION);
+				break;
+			case LEFT:
+				drawDoor(g, column * CELL_DIMENSION, row * CELL_DIMENSION, column * CELL_DIMENSION, (row + 1) * CELL_DIMENSION);
+				break;
+			case DOWN:
+				drawDoor(g, column * CELL_DIMENSION, (row + 1) * CELL_DIMENSION - (DOOR_THICKNESS - 1), (column + 1) * CELL_DIMENSION, (row + 1) * CELL_DIMENSION - (DOOR_THICKNESS - 1));
+				break;
+			}
+		}
 		
+	}
+	
+	public void drawDoor(Graphics g, int x1, int y1, int x2, int y2) {
+		g.setColor(DOOR_COLOR);
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setStroke(new BasicStroke(DOOR_THICKNESS));
+		g2.drawLine(x1, y1, x2, y2);
+		g2.setStroke(new BasicStroke(1));
 	}
 	
 	public boolean isDoorway() {
