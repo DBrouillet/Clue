@@ -1,4 +1,7 @@
 package clueGame;
+
+import java.awt.Graphics;
+
 /**
  * @author Miika Jarvela and Daniel Brouillet
  * Class used to create a simple BoardCell consisting of integers
@@ -22,6 +25,11 @@ public class BoardCell {
 		this.column = column;
 		this.initial = initial;
 		this.doorDirection = doorDirection;
+	}
+	
+	// Method stub - called from paintComponent in Board. 
+	public void draw(Graphics g) {
+		
 	}
 	
 	public boolean isDoorway() {

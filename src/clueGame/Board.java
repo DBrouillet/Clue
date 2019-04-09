@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -10,12 +11,14 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JPanel;
+
 /**
  * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson
  * Class used to create and manipulate the board
  *
  */
-public class Board {
+public class Board extends JPanel {
 	private int numRows;
 	private int numColumns;
 	public final static int MAX_BOARD_SIZE = 50;
@@ -477,6 +480,14 @@ public class Board {
 				accusation.weapon == theAnswer.weapon);
 	}
 
+	public void paintComponent(Graphics g) {
+		for(BoardCell[] row : board) {
+			for (BoardCell cell : row) {
+				cell.draw(g);
+			}
+		}
+	}
+	
 	/**
 	 * @param layout = name of config file corresponding to the layout of the board
 	 * @param legend = name of config file corresponding to the legend (i.e. each room)
