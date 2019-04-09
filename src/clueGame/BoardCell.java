@@ -20,16 +20,23 @@ public class BoardCell {
 	public static final Color ROOM_OUTLINE = Color.GRAY;
 	public static final Color ROOM_FILL = Color.GRAY;
 	public static final Color DOOR_COLOR = Color.cyan;
+	public static final Color NAME_COLOR = Color.cyan;
 	public static final int DOOR_THICKNESS = 3;
 	
+	private boolean isNameCell;
 	private int row;
 	private int column;
 	private char initial;
 	private DoorDirection doorDirection;
 	public static final char walkway = 'W';
 	
-	public BoardCell() {
-		
+	public BoardCell(int row, int column, char initial, DoorDirection doorDirection, boolean isNameCell) {
+		super();
+		this.row = row;
+		this.column = column;
+		this.initial = initial;
+		this.doorDirection = doorDirection;
+		this.isNameCell = isNameCell;
 	}
 	
 	public BoardCell(int row, int column, char initial, DoorDirection doorDirection) {
@@ -85,6 +92,13 @@ public class BoardCell {
 			}
 		}
 		
+	}
+	
+	public void drawName(Graphics g) {
+		if(isNameCell) {
+			g.setColor(NAME_COLOR);
+			g.drawString(Board.getInstance().getRoomString(initial), (int) (column * CELL_DIMENSION + CELL_DIMENSION * 0.5), (int) (row * CELL_DIMENSION + CELL_DIMENSION * 0.5));
+		}
 	}
 	
 	public void drawDoor(Graphics g, int x1, int y1, int x2, int y2) {

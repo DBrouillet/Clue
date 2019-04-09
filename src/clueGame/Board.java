@@ -254,6 +254,7 @@ public class Board extends JPanel {
 			for (int j = 0; j < numColumns; j++) {
 				// Specify the DoorDirection of the cell
 				DoorDirection direction = DoorDirection.NONE;
+				boolean isNameCell = false;
 				// If there is a second character in the cell,
 				// then we specify the direction accordingly
 				// (otherwise it is NONE)
@@ -271,6 +272,9 @@ public class Board extends JPanel {
 					case 'R':
 						direction = DoorDirection.RIGHT;
 						break;
+					case 'N':
+						isNameCell = true;
+						break;
 					}
 				}
 
@@ -280,7 +284,7 @@ public class Board extends JPanel {
 				}
 
 				// Place the BoardCell into the board
-				board[i][j] = new BoardCell(i, j, collectedRows.get(i)[j].charAt(0), direction);
+				board[i][j] = new BoardCell(i, j, collectedRows.get(i)[j].charAt(0), direction, isNameCell);
 				adjMatrix.put(board[i][j], new HashSet<BoardCell>());
 			}
 		}
@@ -496,6 +500,11 @@ public class Board extends JPanel {
 				cell.draw(g);
 			}
 		}
+		for(BoardCell[] row : board) {
+			for (BoardCell cell : row) {
+				cell.drawName(g);
+			}
+		}
 		
 		// Draw all players
 		for(Player player : players) {
@@ -595,5 +604,9 @@ public class Board extends JPanel {
 	// Setter is only for JUnit tests
 	public void setTheAnswer(Solution theAnswer) {
 		this.theAnswer = theAnswer;
+	}
+
+	public String getRoomString(char initial) {
+		return legend.get(initial);
 	}
 }
