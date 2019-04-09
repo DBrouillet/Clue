@@ -27,6 +27,7 @@ public class Board extends JPanel {
 	private Map<BoardCell, Set<BoardCell>> adjMatrix;
 	private Set<BoardCell> visited;
 	private Set<BoardCell> targets;
+	private ArrayList<String> roomNames;
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String playerConfigFile = new String();
@@ -84,6 +85,7 @@ public class Board extends JPanel {
 		weaponsDeck = new ArrayList<Card>();
 		playersDeck = new ArrayList<Card>();
 		placesDeck = new ArrayList<Card>();
+		roomNames = new ArrayList<String>();
 		deck = new ArrayList<Card>();
 		dealingDeck = new ArrayList<Card>();
 		Card newCard;
@@ -101,6 +103,7 @@ public class Board extends JPanel {
 		for (String r: legend.values()) {
 			if (roomTypes.get(r).equals("Card")) { 
 				newCard = new Card(r, CardType.ROOM);
+				roomNames.add(r);
 				placesDeck.add(newCard);
 			}
 		}
@@ -609,4 +612,9 @@ public class Board extends JPanel {
 	public String getRoomString(char initial) {
 		return legend.get(initial);
 	}
+
+	public ArrayList<String> getRoomNames() {
+		return roomNames;
+	}
+	
 }
