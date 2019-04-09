@@ -19,6 +19,8 @@ import javax.swing.JMenuItem;
  */
 
 public class ClueGame extends JFrame {
+	private DetectiveNotes detectiveNotes;
+	
 	public ClueGame() {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -30,6 +32,7 @@ public class ClueGame extends JFrame {
 	 */
 	private JMenu createFileMenu() {
 		JMenu menu = new JMenu("File");
+		menu.add(createNotesItem());
 		menu.add(createFileExitItem());
 		return menu;
 	}
@@ -45,6 +48,26 @@ public class ClueGame extends JFrame {
 		class MenuItemListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+			}
+		}
+		
+		item.addActionListener(new MenuItemListener());
+		
+		return item;
+	}
+	
+	/**
+	 * @return Detective notes functionality of file bar
+	 * Listen for action events, specifically for
+	 * when the user clicks on file and then Detective Notes.
+	 * Opens detective notes once this is pressed by the user.
+	 */
+	private JMenuItem createNotesItem() {
+		JMenuItem item = new JMenuItem("Detective Notes");
+		class MenuItemListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				detectiveNotes = new DetectiveNotes();
+				detectiveNotes.setVisible(true);
 			}
 		}
 		
