@@ -33,12 +33,16 @@ public class BoardCell {
 	public void draw(Graphics g) {
 		if(this.isWalkway()) {
 			g.setColor(Color.yellow);
+			g.fillRect(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION);
+			g.setColor(Color.black);
+			g.drawRect(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION);
 		}
 		else {
 			g.setColor(Color.GRAY);
+			g.drawRect(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION);
+			g.fillRect(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION);
 		}
-		g.drawRect(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION);
-		g.fillRect(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION);
+		
 	}
 	
 	public boolean isDoorway() {

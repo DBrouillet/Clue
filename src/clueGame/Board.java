@@ -486,6 +486,9 @@ public class Board extends JPanel {
 				cell.draw(g);
 			}
 		}
+		for(Player player : players) {
+			player.draw(g);
+		}
 	}
 	
 	/**

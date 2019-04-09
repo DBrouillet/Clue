@@ -39,12 +39,17 @@ public class ClueGame extends JFrame {
 	public static void main(String[] args) {
 		// Create a JFrame with all the normal functionality
 		JFrame frame = new ClueGame();
+		Board board = Board.getInstance();
+		board.setConfigFiles("BoardLayout.csv", "Rooms.txt", "Players.txt", "Weapons.txt");		
+		board.initialize();
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("GUI Example");
-		frame.setSize(750, 200);	
+		frame.setSize(1000, 800);	
 		// Create the JPanel and add it to the JFrame
 		ControlGUI controlGUI = new ControlGUI();
-		frame.getContentPane().add(controlGUI, BorderLayout.CENTER);
+		frame.getContentPane().add(controlGUI, BorderLayout.SOUTH);
+		frame.add(board, BorderLayout.CENTER);
 		// Now let's view it
 		frame.setVisible(true);
 	}
