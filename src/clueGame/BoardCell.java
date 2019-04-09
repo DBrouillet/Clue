@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -9,6 +10,7 @@ import java.awt.Graphics;
  *
  */
 public class BoardCell {
+	public static final int CELL_DIMENSION = 30; //Number of pixels in width and height.
 	private int row;
 	private int column;
 	private char initial;
@@ -29,7 +31,14 @@ public class BoardCell {
 	
 	// Method stub - called from paintComponent in Board. 
 	public void draw(Graphics g) {
-		
+		if(this.isWalkway()) {
+			g.setColor(Color.yellow);
+		}
+		else {
+			g.setColor(Color.GRAY);
+		}
+		g.drawRect(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION);
+		g.fillRect(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION);
 	}
 	
 	public boolean isDoorway() {
