@@ -474,18 +474,30 @@ public class Board extends JPanel {
 		return null;
 	}
 
+	/**
+	 * @param accusation = accusation to check
+	 * @return true if and only if the accusation is correct (the same as the answer)
+	 */
 	public boolean checkAccusation(Solution accusation) {
 		return (accusation.person == theAnswer.person &&
 				accusation.room == theAnswer.room &&
 				accusation.weapon == theAnswer.weapon);
 	}
 
+	/**
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 * @param g = the graphics object that we are currently drawing on
+	 * Draw each of the components of the board, i.e. each cell and each player
+	 */
 	public void paintComponent(Graphics g) {
+		// Draw all BoardCells
 		for(BoardCell[] row : board) {
 			for (BoardCell cell : row) {
 				cell.draw(g);
 			}
 		}
+		
+		// Draw all players
 		for(Player player : players) {
 			player.draw(g);
 		}

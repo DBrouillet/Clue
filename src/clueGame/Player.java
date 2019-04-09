@@ -9,6 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Player {
+	// Color used to draw a player's border
+	public static final Color PLAYER_BORDER = Color.BLACK;
+	// Pixel offset to make it so the player circle isn't intersecting the board cell
+	public static final int PLAYER_PIXEL_OFFSET = 4;
+	
 	private String playerName;
 	private int row;
 	private int column;
@@ -94,13 +99,18 @@ public class Player {
 		seenCards.put(theInstance.getTheAnswer().roomCard, false);
 	}
 	
+	/**
+	 * @param g = Graphics object that we are drawing on
+	 * Draws the player as a circle with appropriate color
+	 */
 	public void draw(Graphics g) {
 		int size = BoardCell.CELL_DIMENSION;
-//		int offSet = 
+		
 		g.setColor(color);
-		g.fillOval(size * column, size * row, size, size);
-		g.setColor(Color.black);
-		g.drawOval(size * column, size * row, size, size);
+		g.fillOval(size * column + PLAYER_PIXEL_OFFSET/2, size * row + PLAYER_PIXEL_OFFSET/2, size - PLAYER_PIXEL_OFFSET, size - PLAYER_PIXEL_OFFSET);
+		
+		g.setColor(PLAYER_BORDER);
+		g.drawOval(size * column + PLAYER_PIXEL_OFFSET/2, size * row + PLAYER_PIXEL_OFFSET/2, size - PLAYER_PIXEL_OFFSET, size - PLAYER_PIXEL_OFFSET);
 	}
 
 	
