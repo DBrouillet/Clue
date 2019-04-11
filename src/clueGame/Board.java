@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -41,6 +42,17 @@ public class Board extends JPanel {
 	private ArrayList<Card> placesDeck;
 	private ArrayList<String> weapons;
 	private Map<String, String> roomTypes;
+	
+	/*
+	 * This is true whenever it is ok
+	 * to click the next player button.
+	 * This occurs whenever it is a computer player's turn,
+	 * or it is the human player's turn and they have already moved.
+	 */
+	private boolean nextPlayerIsValid = false;
+	private int currentPlayerIndex;
+	private int dieRoll;
+	private Random random = new Random();
 
 	private static Board theInstance = new Board();
 
@@ -515,6 +527,18 @@ public class Board extends JPanel {
 		}
 	}
 	
+	public void nextPlayerClicked() {
+		if (nextPlayerIsValid) {
+			currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+			dieRoll = random.nextInt(6) + 1;
+			
+			Player currentPlayer = players.get(currentPlayerIndex);
+			calcTargets(currentPlayer.getRow(), currentPlayer.getColumn(), dieRoll);
+
+			currentPlayer.move(targets);
+		}
+	}
+	
 	/**
 	 * @param layout = name of config file corresponding to the layout of the board
 	 * @param legend = name of config file corresponding to the legend (i.e. each room)
@@ -550,6 +574,10 @@ public class Board extends JPanel {
 	 */
 	public boolean inAnswer(Card card) {
 		return inAnswer(card.getCardName());
+	}
+	
+	public Player getCurrentPlayer() {
+		return players.get(currentPlayerIndex);
 	}
 	
 	public Set<BoardCell> getAdjList(BoardCell cell) {
@@ -619,6 +647,10 @@ public class Board extends JPanel {
 
 	public ArrayList<String> getWeapons() {
 		return weapons;
+	}
+	
+	public int getDieRoll() {
+		return dieRoll;
 	}
 	
 }

@@ -19,6 +19,16 @@ import javax.swing.border.TitledBorder;
  */
 public class ControlGUI extends JPanel {
 	private JTextField name;
+	
+	private JPanel topPanel;
+	private JPanel bottomPanel;
+	
+	private JTextField currentPlayer;
+	
+	// TODO: unknown if this actually does what we think
+	public void updateName() {
+		currentPlayer.setText(Board.getInstance().getCurrentPlayer().getPlayerName());
+	}
 
 	/**
 	 * Create the overall GUI and add the relevant panels.
@@ -26,10 +36,10 @@ public class ControlGUI extends JPanel {
 	public ControlGUI() {
 		// Create a layout with 2 rows
 		setLayout(new GridLayout(2,0));
-		JPanel panel = createTopPanel();
-		add(panel);
-		panel = createBottomPanel();
-		add(panel);
+		topPanel = createTopPanel();
+		add(topPanel);
+		bottomPanel = createBottomPanel();
+		add(bottomPanel);
 	}
 
 	/**
@@ -38,6 +48,8 @@ public class ControlGUI extends JPanel {
 	 * and then adds them to the top panel.
 	 */
 	private JPanel createTopPanel() {
+		Board board = Board.getInstance();
+		
 		JPanel panel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));
@@ -49,10 +61,13 @@ public class ControlGUI extends JPanel {
 		JPanel turnPanel = new JPanel();
 		turnPanel.setLayout(new GridLayout(2,1));
 		JLabel nameLabel = new JLabel("Current Player");
-		name = new JTextField(20);
-		name.setEditable(false);
+		
+		currentPlayer = new JTextField(20);
+		currentPlayer.setEditable(false);
+		currentPlayer.setText(board.getCurrentPlayer().getPlayerName());
+		
 		turnPanel.add(nameLabel);
-		turnPanel.add(name);
+		turnPanel.add(currentPlayer);
 		turnPanel.setBorder(new TitledBorder (new EtchedBorder(), "Whose turn is it?"));
 		panel.add(turnPanel);
 		

@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-public class Player {
+public abstract class Player {
 	// Color used to draw a player's border
 	public static final Color PLAYER_BORDER = Color.BLACK;
 	// Pixel offset to make it so the player circle isn't intersecting the board cell
@@ -150,6 +151,8 @@ public class Player {
 	public void setMyCards(ArrayList<Card> myCards) {
 		this.myCards = myCards;
 	}
+	
+	public abstract void move(Set<BoardCell> targets);
 
 
 }

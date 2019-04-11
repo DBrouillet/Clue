@@ -71,4 +71,11 @@ public class ComputerPlayer extends Player {
 	public void setMostRecentRoom(char mostRecentRoom) {
 		this.mostRecentRoom = mostRecentRoom;
 	}
+
+	// Make computers move
+	@Override
+	public void move(Set<BoardCell> targets) {
+		
+		
+	}
 }
