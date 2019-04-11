@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -93,6 +94,8 @@ public class ClueGame extends JFrame {
 		Board board = Board.getInstance();
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(6,1));
+		
+		// Loop through players cards, add them to the panel
 		for(Card card : board.getPlayers().get(0).getMyCards()) { // 0th index of getPlayers is the human player.
 			JPanel cPanel = new JPanel();
 			name = new JTextField(10);
@@ -129,5 +132,9 @@ public class ClueGame extends JFrame {
 		
 		// Now let's view it
 		frame.setVisible(true);
+		
+		// Show the splash message
+		String message = "You are " + board.getPlayers().get(0).getPlayerName() + ", press Next Player to begin play.";
+		JOptionPane.showMessageDialog(frame, message, "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 	}
 }
