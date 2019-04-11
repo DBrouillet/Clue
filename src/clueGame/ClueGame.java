@@ -1,13 +1,20 @@
 package clueGame;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 /**
  * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson
@@ -76,6 +83,29 @@ public class ClueGame extends JFrame {
 		return item;
 	}
 	
+	/**
+	 * @return JPanel which contains the right panel
+	 * Creates each of the components of the right panel
+	 * and then adds them to the right panel.
+	 */
+	private JPanel createRightPanel() {
+		JTextField name;
+		Board board = Board.getInstance();
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(6,1));
+		for(Card card : board.getPlayers().get(0).getMyCards()) { // 0th index of getPlayers is the human player.
+			JPanel cPanel = new JPanel();
+			name = new JTextField(10);
+			name.setText(card.getCardName());
+			name.setEditable(false);
+			cPanel.setLayout(new FlowLayout());
+			cPanel.add(name);
+			cPanel.setBorder(new TitledBorder (new EtchedBorder(), card.getCardType().toString()));
+			panel.add(cPanel);
+		}
+		panel.setBorder(new TitledBorder (new EtchedBorder(), "My Cards"));
+		return panel;
+	}
 
 	public static void main(String[] args) {
 		// Create a JFrame with all the normal functionality
@@ -90,6 +120,8 @@ public class ClueGame extends JFrame {
 		board.setConfigFiles("BoardLayout.csv", "Rooms.txt", "Players.txt", "Weapons.txt");		
 		board.initialize();
 		frame.add(board, BorderLayout.CENTER);
+		
+		frame.add(((ClueGame) frame).createRightPanel(), BorderLayout.EAST);
 		
 		// Create the control GUI and add it to the JFrame
 		ControlGUI controlGUI = new ControlGUI();
