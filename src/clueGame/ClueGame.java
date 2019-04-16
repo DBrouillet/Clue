@@ -127,7 +127,7 @@ public class ClueGame extends JFrame {
 		frame.add(((ClueGame) frame).createRightPanel(), BorderLayout.EAST);
 		
 		// Create the control GUI and add it to the JFrame
-		ControlGUI controlGUI = new ControlGUI();
+		ControlGUI controlGUI = new ControlGUI(frame);
 		frame.getContentPane().add(controlGUI, BorderLayout.SOUTH);
 		
 		// Now let's view it

@@ -22,6 +22,8 @@ import javax.swing.border.TitledBorder;
  *
  */
 public class ControlGUI extends JPanel {
+	private JFrame game;
+	
 	private JTextField name;
 	
 	private JPanel topPanel;
@@ -37,7 +39,8 @@ public class ControlGUI extends JPanel {
 	/**
 	 * Create the overall GUI and add the relevant panels.
 	 */
-	public ControlGUI() {
+	public ControlGUI(JFrame frame) {
+		game = frame;
 		// Create a layout with 2 rows
 		setLayout(new GridLayout(2,0));
 		topPanel = createTopPanel();
@@ -82,6 +85,7 @@ public class ControlGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				Board.getInstance().nextPlayerClicked();
+				game.repaint();
 			}
 			
 		});
