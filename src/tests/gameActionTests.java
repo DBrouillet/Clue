@@ -176,7 +176,7 @@ public class gameActionTests {
 		 * and one that doesn't for each type)
 		 */
 		Solution suggestion = new Solution("Joe", "Kitchen", "Knife");
-		Player testPlayer = new Player("testPlayer", "green", 17, 8);
+		Player testPlayer = new ComputerPlayer("testPlayer", "green", 17, 8);
 
 		Card personMatch = new Card("Joe", CardType.PERSON);
 		Card personNoMatch = new Card("Bob", CardType.PERSON);
