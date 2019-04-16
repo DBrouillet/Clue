@@ -1,6 +1,8 @@
 package clueGame;
 
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ import javax.swing.JPanel;
  * Class used to create and manipulate the board
  *
  */
-public class Board extends JPanel {
+public class Board extends JPanel implements MouseListener {
 	private int numRows;
 	private int numColumns;
 	public final static int MAX_BOARD_SIZE = 50;
@@ -56,7 +58,9 @@ public class Board extends JPanel {
 
 	private static Board theInstance = new Board();
 
-	private Board() {}
+	private Board() {
+		addMouseListener(this);
+	}
 
 	/**
 	 * @return because this class is a Singleton, we only create one instance of the Board
@@ -80,6 +84,13 @@ public class Board extends JPanel {
 			createDeck();
 			shuffleDeck();
 			dealDeck();
+			
+			// Set the current player index to be the last player
+			// as the human needs to click the next player button
+			// in order to start, and this will increment this index
+			currentPlayerIndex = players.size() - 1;
+			nextPlayerIsValid = true;
+			
 		}
 		catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
@@ -528,7 +539,7 @@ public class Board extends JPanel {
 	}
 	
 	public void nextPlayerClicked() {
-		//if (nextPlayerIsValid) {
+		if (nextPlayerIsValid) {
 			currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
 			dieRoll = random.nextInt(6) + 1;
 			
@@ -539,9 +550,8 @@ public class Board extends JPanel {
 				((ComputerPlayer) currentPlayer).move(targets);
 			} else {
 				nextPlayerIsValid = false;
-			}
-			
-		//}
+			}	
+		}
 	}
 	
 	/**
@@ -656,6 +666,51 @@ public class Board extends JPanel {
 	
 	public int getDieRoll() {
 		return dieRoll;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		BoardCell cellClicked = null;
+		for (BoardCell[] row : board) {
+			for(BoardCell cell : row) {
+				if (cell.clickedOn(e.getX(), e.getY())) {
+					cellClicked = cell;
+					break;
+				}
+			}
+			 if (cellClicked != null) break;
+		}
+		if(targets.contains(cellClicked) && getCurrentPlayer() instanceof HumanPlayer) {
+			((HumanPlayer) getCurrentPlayer()).move(cellClicked);
+			targets.clear();
+			repaint();
+			nextPlayerIsValid = true;
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

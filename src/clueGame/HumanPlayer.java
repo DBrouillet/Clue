@@ -16,7 +16,6 @@ public class HumanPlayer extends Player {
 	// Display these targets
 	public void move(BoardCell target) {
 		setCurrentCell(target);
-		
 	}
 	
 }

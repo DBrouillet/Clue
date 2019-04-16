@@ -25,7 +25,7 @@ public class ControlGUI extends JPanel {
 	private JFrame game;
 	
 	private JTextField name;
-	
+	private JTextField dieRollText;
 	private JPanel topPanel;
 	private JPanel bottomPanel;
 	
@@ -71,7 +71,6 @@ public class ControlGUI extends JPanel {
 		
 		currentPlayer = new JTextField(20);
 		currentPlayer.setEditable(false);
-		currentPlayer.setText(board.getCurrentPlayer().getPlayerName());
 		
 		turnPanel.add(nameLabel);
 		turnPanel.add(currentPlayer);
@@ -86,6 +85,8 @@ public class ControlGUI extends JPanel {
 			public void actionPerformed(ActionEvent event) {
 				Board.getInstance().nextPlayerClicked();
 				game.repaint();
+				updateDieRoll();
+				updateCurrentPlayer();
 			}
 			
 		});
@@ -97,6 +98,13 @@ public class ControlGUI extends JPanel {
 		return panel;
 	}
 
+	private void updateDieRoll() {
+		dieRollText.setText(Integer.toString(Board.getInstance().getDieRoll()));
+	}
+	
+	private void updateCurrentPlayer() {
+		currentPlayer.setText(Board.getInstance().getCurrentPlayer().getPlayerName());
+	}
 	/**
 	 * @return JPanel which contains the bottom panel
 	 * Creates each of the components of the bottom panel
@@ -109,10 +117,10 @@ public class ControlGUI extends JPanel {
 		JPanel dieRoll = new JPanel();
 		dieRoll.setLayout(new GridLayout(1,2));
 		JLabel nameLabel = new JLabel("Roll");
-		name = new JTextField(3);
-		name.setEditable(false);
+		dieRollText = new JTextField(3);
+		dieRollText.setEditable(false);
 		dieRoll.add(nameLabel);
-		dieRoll.add(name);
+		dieRoll.add(dieRollText);
 		dieRoll.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
 		
 		// Create the subpanel which contains the guess

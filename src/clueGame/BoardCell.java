@@ -4,6 +4,8 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  * @author Miika Jarvela, Daniel Brouillet, Richard Figueroa Erickson
@@ -139,6 +141,13 @@ public class BoardCell {
 
 	public DoorDirection getDoorDirection() {
 		return doorDirection;
+	}
+	
+	public boolean clickedOn(int mouseX, int mouseY) {
+		Rectangle rect = new Rectangle(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION);
+		if (rect.contains(new Point(mouseX, mouseY)))
+			return true;
+		return false;
 	}
 
 }
