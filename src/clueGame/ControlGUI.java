@@ -1,16 +1,12 @@
 package clueGame;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -25,16 +21,12 @@ public class ControlGUI extends JPanel {
 	private JFrame game;
 	
 	private JTextField name;
-	private JTextField dieRollText;
+	
 	private JPanel topPanel;
 	private JPanel bottomPanel;
 	
 	private JTextField currentPlayer;
-	
-	// TODO: unknown if this actually does what we think
-	public void updateName() {
-		currentPlayer.setText(Board.getInstance().getCurrentPlayer().getPlayerName());
-	}
+	private JTextField dieRollText;
 
 	/**
 	 * Create the overall GUI and add the relevant panels.
@@ -55,8 +47,6 @@ public class ControlGUI extends JPanel {
 	 * and then adds them to the top panel.
 	 */
 	private JPanel createTopPanel() {
-		Board board = Board.getInstance();
-		
 		JPanel panel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));

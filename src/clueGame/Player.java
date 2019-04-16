@@ -149,8 +149,6 @@ public abstract class Player {
 		this.myCards = myCards;
 	}
 
-//	public abstract void move(Set<BoardCell> targets);
-
 	public BoardCell getCurrentCell() {
 		return currentCell;
 	}

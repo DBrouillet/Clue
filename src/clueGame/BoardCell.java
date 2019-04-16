@@ -104,6 +104,10 @@ public class BoardCell {
 
 	}
 
+	/**
+	 * @param g = Graphics object to draw on
+	 * Draws all of the names for the rooms.
+	 */
 	public void drawName(Graphics g) {
 		if(isNameCell) {
 			g.setColor(NAME_COLOR);
@@ -111,6 +115,14 @@ public class BoardCell {
 		}
 	}
 
+	/**
+	 * @param g
+	 * @param x1
+	 * @param y1
+	 * @param x2
+	 * @param y2
+	 * Draws a door at the specified x and y points
+	 */
 	public void drawDoor(Graphics g, int x1, int y1, int x2, int y2) {
 		g.setColor(DOOR_COLOR);
 		Graphics2D g2 = (Graphics2D) g;
@@ -143,6 +155,11 @@ public class BoardCell {
 		return doorDirection;
 	}
 	
+	/**
+	 * @param mouseX = x position of mouse click
+	 * @param mouseY = y position of mouse click
+	 * @return true if and only if the mouse click is within this BoardCell
+	 */
 	public boolean clickedOn(int mouseX, int mouseY) {
 		Rectangle rect = new Rectangle(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION);
 		if (rect.contains(new Point(mouseX, mouseY)))

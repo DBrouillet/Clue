@@ -71,8 +71,12 @@ public class ComputerPlayer extends Player {
 	public void setMostRecentRoom(char mostRecentRoom) {
 		this.mostRecentRoom = mostRecentRoom;
 	}
-
-	// Make computers move
+	
+	/**
+	 * @param targets = Set of BoardCells that are valid to move to
+	 * Picks a (valid) location to move to, then updates the computer player
+	 * to that BoardCell and (if it was a room) the most recent room variable.
+	 */
 	public void move(Set<BoardCell> targets) {
 		BoardCell nextMove = pickLocation(targets);
 		

@@ -14,6 +14,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -44,7 +45,7 @@ public class Board extends JPanel implements MouseListener {
 	private ArrayList<Card> placesDeck;
 	private ArrayList<String> weapons;
 	private Map<String, String> roomTypes;
-	
+
 	/*
 	 * This is true whenever it is ok
 	 * to click the next player button.
@@ -84,13 +85,13 @@ public class Board extends JPanel implements MouseListener {
 			createDeck();
 			shuffleDeck();
 			dealDeck();
-			
+
 			// Set the current player index to be the last player
 			// as the human needs to click the next player button
 			// in order to start, and this will increment this index
 			currentPlayerIndex = players.size() - 1;
 			nextPlayerIsValid = true;
-			
+
 		}
 		catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
@@ -531,29 +532,40 @@ public class Board extends JPanel implements MouseListener {
 				cell.drawName(g);
 			}
 		}
-		
+
 		// Draw all players
 		for(Player player : players) {
 			player.draw(g);
 		}
 	}
-	
+
+	/**
+	 * Method used to control what happens whenever
+	 * the next player button is clicked. We check
+	 * to see if it is valid to click this button; if it
+	 * is, then we go to the next player and roll the die.
+	 * Otherwise, we do nothing.
+	 */
 	public void nextPlayerClicked() {
 		if (nextPlayerIsValid) {
+			// Update the next player and roll the die
 			currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
 			dieRoll = random.nextInt(6) + 1;
-			
+
 			Player currentPlayer = players.get(currentPlayerIndex);
 			calcTargets(currentPlayer.getRow(), currentPlayer.getColumn(), dieRoll);
-			
+
+			// If this is a computer player, we need to select a square to move to
 			if (currentPlayer instanceof ComputerPlayer) {
 				((ComputerPlayer) currentPlayer).move(targets);
 			} else {
+				// At the end of the human player's turn (after they click next player),
+				// it is now invalid for them to click it until it is set to valid next
 				nextPlayerIsValid = false;
 			}	
 		}
 	}
-	
+
 	/**
 	 * @param layout = name of config file corresponding to the layout of the board
 	 * @param legend = name of config file corresponding to the legend (i.e. each room)
@@ -590,15 +602,15 @@ public class Board extends JPanel implements MouseListener {
 	public boolean inAnswer(Card card) {
 		return inAnswer(card.getCardName());
 	}
-	
+
 	public Player getCurrentPlayer() {
 		return players.get(currentPlayerIndex);
 	}
-	
+
 	public Set<BoardCell> getAdjList(BoardCell cell) {
 		return adjMatrix.get(cell);
 	}
-	
+
 	public Set<BoardCell> getTargets() {
 		return targets;
 	}
@@ -634,7 +646,7 @@ public class Board extends JPanel implements MouseListener {
 	public Solution getTheAnswer() {
 		return theAnswer;
 	}
-	
+
 	public ArrayList<Card> getWeaponsDeck() {
 		return weaponsDeck;
 	}
@@ -642,7 +654,7 @@ public class Board extends JPanel implements MouseListener {
 	public ArrayList<Card> getPlayersDeck() {
 		return playersDeck;
 	}
-	
+
 	public ArrayList<Card> getPlacesDeck() {
 		return placesDeck;
 	}
@@ -663,14 +675,14 @@ public class Board extends JPanel implements MouseListener {
 	public ArrayList<String> getWeapons() {
 		return weapons;
 	}
-	
+
 	public int getDieRoll() {
 		return dieRoll;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		// Determine which BoardCell was clicked
 		BoardCell cellClicked = null;
 		for (BoardCell[] row : board) {
 			for(BoardCell cell : row) {
@@ -679,38 +691,55 @@ public class Board extends JPanel implements MouseListener {
 					break;
 				}
 			}
-			 if (cellClicked != null) break;
+			if (cellClicked != null) break;
 		}
-		if(targets.contains(cellClicked) && getCurrentPlayer() instanceof HumanPlayer) {
-			((HumanPlayer) getCurrentPlayer()).move(cellClicked);
-			targets.clear();
-			repaint();
-			nextPlayerIsValid = true;
+		
+		// If the current player is human, we need to do something
+		// otherwise, we do nothing
+		if(getCurrentPlayer() instanceof HumanPlayer) {
+			// Check to see if this cell is a valid target
+			if (targets.contains(cellClicked)) {
+				// If it is, move the player to this cell
+				((HumanPlayer) getCurrentPlayer()).move(cellClicked);
+				targets.clear();
+				repaint();
+				nextPlayerIsValid = true;
+			} else {
+				// Otherwise, display an error message, either if
+				// the move has already been made or if it
+				// has not been made and the target is invalid
+				if (nextPlayerIsValid) {
+					JOptionPane.showMessageDialog(this, "Move already made, please click next player!", "Error", JOptionPane.ERROR_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(this, "Invalid target clicked, please click another target!", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		}
 	}
 
+	// unimplemented MouseListener methods
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }
