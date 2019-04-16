@@ -1376,3 +1376,686 @@ Author: dbrouillet@gmail.com <dbrouill@mines.edu>
 Date:   Tue Feb 26 11:19:47 2019 -0700
 
     first commit
+commit b8354c7d78639ebb356524c3f3a79167fa8d1ada
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 16 17:40:21 2019 -0600
+
+    Added element comments
+
+commit 45a30408f15b12fb5265dc811e044a5c86343cbc
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 16 17:18:16 2019 -0600
+
+    Added mouselistener for board, allows for human player to move
+
+commit 4df8871626c5a58966fb428c161dca9661eb0753
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 16 16:35:37 2019 -0600
+
+    Updated canvas to redraw itself when next player is clicked
+
+commit b9fe4ec28cd352df785c360e6385c2953a8c3da0
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 16 16:31:04 2019 -0600
+
+    Next player clicked updated, added action listener, TODO: make action listener update the graphics
+
+commit 31fd124adfc82f4a3618b069b6dee44820abd54b
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 16 10:54:21 2019 -0600
+
+    Fixed test errors caused by player being abstract now.
+
+commit 3c96333c63ea156c66d78f9800a38034d19b8a4b
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 11 12:12:50 2019 -0600
+
+    Started nextPlayerClicked function in Board
+
+commit 7714841386eb1e02fa2b66a373107b8a576ca939
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 11 11:38:39 2019 -0600
+
+    Updated git log
+
+commit 477b7bf9dcf0d56c8084a04c1338ef3e0be605c3
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 11 11:38:18 2019 -0600
+
+    Added splash message
+
+commit 66e872a086af5e2e7bd7ea4c1a066f1e525fbaf7
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 11 11:34:29 2019 -0600
+
+    Added Player Card Display
+
+commit 255278541e9c1c069b153b3223022ef917ffa120
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 11 10:47:42 2019 -0600
+
+    Updated git log
+
+commit 62a0872432b8d029d6241f477f9d81141530b4a5
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Apr 9 17:44:40 2019 -0600
+
+    Added more comments.
+
+commit 8ae016595a3c5276f5642f08d432c6819df14c00
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Apr 9 17:43:10 2019 -0600
+
+    Added comments.
+
+commit dd1a51a9df3128373e30c283fecd00e42ff80865
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Apr 9 17:39:26 2019 -0600
+
+    Added guess boxes to detective notes.
+
+commit 904e4b542cbc0b084585721ad44bfb41662389a8
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 9 17:23:35 2019 -0600
+
+    Added checkboxes for people and rooms in detective notes
+
+commit 4fe1649dc9c3a7e90456d9a268f215a9745704ad
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 9 17:00:53 2019 -0600
+
+    Created stub for detective notes class, added into file menu
+
+commit 803660c1da901ff100c952bfaaf78281c23a4286
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Apr 9 16:48:03 2019 -0600
+
+    drawName now working.
+
+commit e87effcbee5a5e1798145202b05762e5f1ec73b0
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 9 16:30:03 2019 -0600
+
+    Doors displaying, change layout file to include spaces for names
+
+commit 8d116310f4c67642f829acfd52d86827f66b4aab
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 9 15:50:30 2019 -0600
+
+    Made window bigger, small refactoring, element comments, remove magic constants, add pixel offset for players (from the board)
+
+commit 81735f99ef8ab189a9d305cdf4d0d259ef018d9d
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 9 12:12:11 2019 -0600
+
+    Filled out draw methods and fixed ClueGame main layout.
+
+commit da9bacd06bfbbd78079dce5b8219de17461b7271
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 9 11:54:49 2019 -0600
+
+    Filled out draw method
+
+commit 41ca24d871cd0a42ba607aa32516f360e96099fb
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 9 11:41:47 2019 -0600
+
+    Converted Board to extend JPanel, added paintComponent to board and draw to boardCell
+
+commit 31bf582b5b1a6eccb804857d21ab8666e64d43e5
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 4 12:03:09 2019 -0600
+
+    Created ClueGame class and DetectiveNotes class, added file menu and ability to exit
+
+commit a0b0467390818a3e80835efe792f8053282e8958
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 4 11:38:58 2019 -0600
+
+    Refactoring code & adding comments
+
+commit 1352b5cae868682694b66927a323e47f1b555017
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 4 11:31:16 2019 -0600
+
+    Made the control panel
+
+commit c51cd5bf62c47cee0a5563b5399f313280581d1e
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 4 11:03:28 2019 -0600
+
+    Added ControlGUI class and copied GUI_Example code.
+
+commit de6bd118adb74890d20def83db491a0fe3c3bffe
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 4 00:10:08 2019 -0600
+
+    Passing HandleSolution tests
+
+commit 6b59f33561e271509b859e28254967328d05ee07
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Wed Apr 3 23:57:56 2019 -0600
+
+    Created failing tests for handle suggestion
+
+commit 4b2d9658584f2aac65ff36cf759c14057d7193a3
+Author: RichardFigueroaErickson <richarddfe@gmail.com>
+Date:   Wed Apr 3 22:37:16 2019 -0600
+
+    Refactored board cell, board, and solution classes.
+
+commit 65cdf6c5324cc9408d5c91323f33901cc795a5d0
+Author: RichardFigueroaErickson <richarddfe@gmail.com>
+Date:   Wed Apr 3 22:18:24 2019 -0600
+
+    Got all create suggestion tests working
+
+commit 9ed3fe8e655982e6cbae9b0854cc71391b13bbe4
+Author: RichardFigueroaErickson <richarddfe@gmail.com>
+Date:   Wed Apr 3 20:05:26 2019 -0600
+
+    Set up failing tests for computer players making suggestions
+
+commit 349e2490437950b17f6bc48c65a5a4acad055109
+Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
+Date:   Wed Apr 3 00:08:25 2019 -0600
+
+    Made disprove suggestion work, modified some tests that had typo (so they were wrong)
+
+commit 8c296aed0e7f6065e029f9b90253c2f27208323e
+Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
+Date:   Tue Apr 2 23:57:04 2019 -0600
+
+    Created failing test for disproving a suggestion
+
+commit cdc8558383e30711a0e7e9f79a49334f20cdf10d
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 12:03:56 2019 -0600
+
+    Made checking accusation test pass
+
+commit 069455d27be3e031f0fc57e504c844a8912490d8
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 12:02:25 2019 -0600
+
+    Wrote failing test for checking accusation
+
+commit 1463735a0466bdac273bb0156e07dec99275ea58
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 11:52:15 2019 -0600
+
+    Implemented pickLocation so that tests pass
+
+commit 34cb8f8e1d46c006fc3797f591b0256fc54be84f
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 11:43:47 2019 -0600
+
+    Filled out ComputerTargetSelection tests.
+
+commit 6ab31210b7ac5fd338abe5dcaa19d5a14bbd195f
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 11:19:26 2019 -0600
+
+    Created gameActionTests file.
+
+commit e4a73ad45c41338d0824bf12ffdef21fd4ab68ff
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 10:59:48 2019 -0600
+
+    Changed dealDeck to handle a generic number of cards.
+
+commit 1a6f857c15348bfa470a2cc635293162e1362d85
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Apr 1 23:39:52 2019 -0600
+
+    Comment edit.
+
+commit 83dbc49747132be76afc34090e751551b4b503f0
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Apr 1 23:37:47 2019 -0600
+
+    Fixed all failing tests.
+
+commit 5bae397cc22c0793c2b4229b23e119e54e673fac
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Apr 1 23:06:52 2019 -0600
+
+    Fixed bug in selectAnswer
+
+commit ec6808fc01db6c001673b9d956b3c29f7a20770d
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Apr 1 22:56:34 2019 -0600
+
+    Filled out dealDeck, shuffleDeck, selectAnswer stubs. - Curr
+
+commit d8faa81914afe5032262bae4941c4088ad5d7f77
+Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
+Date:   Sun Mar 31 19:00:54 2019 -0500
+
+    Made some method stubs that are required for properly shuffling and dealing the deck
+
+commit 5218f6dbf083d1dc667e57f0d6ef7ef2c2ba72ad
+Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
+Date:   Sun Mar 31 18:48:31 2019 -0500
+
+    Created failing test for checking to see if the deck was properly loaded
+
+commit bbb6b7f542c18a8fecdc673f290479b0a82aa2d2
+Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
+Date:   Sun Mar 31 17:17:05 2019 -0500
+
+    Fixed null pointer error occuring in previous tests (due to loading player file, which was recently added, and is being called but does nothing for those tests)
+
+commit 9a464feb1cf8aeaf2194acb070f2da4536864cb0
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Mar 21 12:17:19 2019 -0600
+
+    Added method stubs and tests stubs for testing that the deck was dealt.
+
+commit f2925b64c02f2ffe801174acd8aceb8eb10e5845
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Mar 21 12:07:26 2019 -0600
+
+    Added loadWeapons and made testDeckLoading test pass
+
+commit 380d4db59fe70232cb74e8defe7872a4d0d27e19
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Mar 21 11:40:33 2019 -0600
+
+    Created failing test for loading the deck
+
+commit b24afa91dcd849898994dd04d51a03ae127cedb2
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Thu Mar 21 11:39:22 2019 -0600
+
+    Added Weapons.txt
+
+commit 2274ac962eaa5f7eaddbfd17ae9d7410b68c68fa
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 19 12:16:06 2019 -0600
+
+    Added functionality for loading players, loading player test passing
+
+commit ae30b379470bfa9badcff4030e694bee8fbbc02b
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Mar 19 12:03:27 2019 -0600
+
+    Set up failing tests for player setup.
+
+commit 8c102e4fa016fec9b86e4f777a0de5417ba35d01
+Merge: 8497988 b555cd4
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Mar 19 11:31:17 2019 -0600
+
+    Merge https://github.com/DBrouillet/Clue
+
+commit b555cd4cfde6fce7a46930fea0670446517e92dc
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 19 11:29:45 2019 -0600
+
+    Updated checkAccusation
+
+commit f785262a25d812042ac15db87efcfaf2abc19320
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 19 11:29:16 2019 -0600
+
+    Added skeleton classes for player, card, and solution
+
+commit 25bb8266657fb73fb242166946cad988d91579f5
+Author: Daniel Brouillet <Dbrouillet@gmail.com>
+Date:   Mon Mar 18 22:40:20 2019 -0600
+
+    Reworded some comments and clustered getters in the BoardCell class to improve readability.
+
+commit 266355e55c48b48ae144d8aa0462e63be4553096
+Author: Daniel Brouillet <Dbrouillet@gmail.com>
+Date:   Mon Mar 18 22:37:10 2019 -0600
+
+    Moved BadConfigFormatException to the front of the relevant code in Board/loadRoomConfig
+
+commit d4083bb851f68d1cd499c9c32ad54be851888515
+Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
+Date:   Sun Mar 17 20:58:23 2019 -0600
+
+    Removed magic character W used for walkway testing, utilize boolean isWalkway in its place
+
+commit 1fc88caa32a5d2226b594fee2a2bd4642786db47
+Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
+Date:   Sun Mar 17 20:56:10 2019 -0600
+
+    Added boolean for is walkway to BoardCell class
+
+commit 9733696ebe0cb414c22b49a818f20f19a149edcf
+Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
+Date:   Sun Mar 17 20:53:40 2019 -0600
+
+    Made FileNotFoundException message nicer/more readable for user
+
+commit a6a561830c15d2e989bc697e36b66544fac1c5c0
+Author: Daniel Brouillet <Dbrouillet@gmail.com>
+Date:   Wed Mar 13 17:59:55 2019 -0600
+
+    Fixed all failing tests.
+
+commit f56636943134a5b41efe0659e76df82e3d24d5bd
+Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
+Date:   Wed Mar 13 17:34:40 2019 -0600
+
+    Fixed calculating adjacencies to account for doors and rooms
+
+commit c433db5149bd68171cff1e56d82c11742607c2b3
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 12 12:07:31 2019 -0600
+
+    Removed some filler code for failing tests
+
+commit 8497988559fd96a77497288a064dcfba0ff1d037
+Merge: 6cd0522 75ce507
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Mar 12 12:03:45 2019 -0600
+
+    Merge branch 'master' of https://github.com/DBrouillet/Clue
+    
+    No actual differences between spreadsheets.
+
+commit 75ce5077430e01c8d3239d0bbc1eab988179aba3
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 12 11:58:12 2019 -0600
+
+    More element comments in tests
+
+commit fba5702b9554f19070e55c1bea1aff212343f8a2
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 12 11:55:57 2019 -0600
+
+    Spreadsheet updated
+
+commit 6cd0522f7f9b7d1d4758e768c4fc560768755fe7
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Mar 12 11:46:16 2019 -0600
+
+    Updated Spreadsheet
+
+commit 862205ae91c19e6335f254a98d46fa017d21d095
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 12 11:42:11 2019 -0600
+
+    Finished failing tests for our board
+
+commit d636ad3512d023617dfb2c925f4d277c9adf46cd
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 12 11:03:11 2019 -0600
+
+    Made tests fail by commenting out some code
+
+commit b0b8bd52e33c0e431bea67fff46210bbff0187b4
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 5 12:14:22 2019 -0700
+
+    Updated some of the tests for our board
+
+commit 16e5c56a1a86f05dd9b370aa38f5f312551dbbbe
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Mar 5 12:05:38 2019 -0700
+
+    Updated Spreadsheet with key
+
+commit f259201c1cc90fa91ba0139c3d34c64dc0498e96
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Mar 5 11:56:29 2019 -0700
+
+    Updated spreadsheet with key and new tests
+
+commit 02247c81ce9c9e034a595bb80b2127a441d9581b
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Mar 5 11:55:53 2019 -0700
+
+    Updated spreadsheet with key and new tests
+
+commit af3622a7205475ff4d26a2e1667bedec19985e80
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 5 11:28:16 2019 -0700
+
+    Import new tests for adj/target
+
+commit 3e38a2e735c288175bcad1118e09297029283ff7
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 5 11:26:52 2019 -0700
+
+    Import new tests for adj/target
+
+commit 5506f0a8fc4f6c1b2da2f3b25635a01eaa682ed4
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 5 11:20:42 2019 -0700
+
+    Added in all methods from IntBoard into Board
+
+commit a4e433f5e84df1dde78795b888badb0c0041c85b
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Mar 5 10:57:46 2019 -0700
+
+    Added some element comments
+
+commit 1863e1a3007e46e3d89576bc6ca09e939a37fb6c
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Mon Mar 4 19:05:30 2019 -0700
+
+    Added check to see if a room is in the legend
+
+commit 288139b4e29a45226a05fb3f1bb8f9058e1f89dc
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Mar 4 18:54:06 2019 -0700
+
+    All CTest_Exceptions tests passing
+
+commit 934a503610340869bfa0709ce3a698a80c468a36
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Mar 4 18:46:49 2019 -0700
+
+    Fixes first CTest_Exception test
+
+commit ad77899acaff33e5cca579ab2b082b3a9f95b92d
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Mon Mar 4 18:29:29 2019 -0700
+
+    Loading board from config file
+
+commit f37ed6be582bf192a46c030980cf1305d623c169
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Mar 4 18:07:28 2019 -0700
+
+    Passed first JUnit test on legend size.
+
+commit 577fbaa701588dd588f8bd8c7c855fa769e93d62
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Mar 4 17:54:48 2019 -0700
+
+    Some updates to Board.java - setConfigFiles, initialize, loadRoomConfig
+
+commit 73e43d9f0b173b61782f07c734facf3915f70a75
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Mon Mar 4 17:36:21 2019 -0700
+
+    Tracking csv file
+
+commit 49c58aed1993b66e5b85b60f92808bbad7625e6b
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Mon Mar 4 17:35:58 2019 -0700
+
+    Minor clarification in OurTests
+
+commit 64d319f47e95ad979e6b8159cd521be4f79a5718
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Mon Mar 4 17:34:09 2019 -0700
+
+    Changed config files in our tests to our proper files
+
+commit 9de70a02d6975a0158312c2b2bb7b8c5a8b0bb35
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Mon Mar 4 17:29:33 2019 -0700
+
+    Added element comments
+
+commit b9450b4471e894bc55e665114250da9c70202d1d
+Merge: 7939795 31c4072
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Mar 4 17:27:43 2019 -0700
+
+    Merge branch 'master' of https://github.com/DBrouillet/Clue
+
+commit 7939795ccc9f45ee59f42b4d305556f5192db682
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Mar 4 17:27:21 2019 -0700
+
+    Added OurTests.txt
+
+commit 31c40722d7026530330099b08f24fdd972dcb1f4
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Mon Mar 4 17:21:40 2019 -0700
+
+    Modified tests in ConfigTests to match our board
+
+commit 7c349d541444a8fa8cdf2c03ccb784abc89292bd
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Mar 4 17:14:05 2019 -0700
+
+    Adding ConfigTests.java
+
+commit 025547512bb70c6d91aacebb16c2a955f31b8806
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Fri Mar 1 15:52:41 2019 -0700
+
+    Edited ConfigTests
+
+commit 83cfcc6c663da0f8bb57f3dd1111671afb59d9e8
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Fri Mar 1 15:37:13 2019 -0700
+
+    Skeleton classes
+
+commit a7e4a89740aa170798ca1ab7e6b53dd46d5cec57
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Fri Mar 1 15:35:38 2019 -0700
+
+    Finished skeleton for all classes (no errors in tests)
+
+commit 8ed15862dbc696ea88c4b37b1898de2c3c90f837
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Fri Mar 1 15:19:40 2019 -0700
+
+    Included downloads from C13A-1
+
+commit 642351bf1e27cc5a88ba81e902df671ea912ab57
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 12:13:07 2019 -0700
+
+    Added more element comments
+
+commit a7eccbf3c3bc6db5f9dbb6e4ec7111e3cc9ae5eb
+Merge: 3563cb7 52ab502
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 12:10:00 2019 -0700
+
+    Merge branch 'master' of https://github.com/DBrouillet/Clue
+
+commit 3563cb70bc8ab79a8ee2abc95ce4db37c28fd66b
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 12:09:40 2019 -0700
+
+    Added element comments
+
+commit 52ab502a3f73f760f27453f33f2f067cfe4d3396
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Thu Feb 28 12:09:06 2019 -0700
+
+    Added comments to IntBoard
+
+commit b7810c9b72ae52838ce827f5bcb753cc08a97111
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Thu Feb 28 11:58:40 2019 -0700
+
+    Fixed bugs
+
+commit 29237ffe79e456dd50bbbb3a4f062d7d2c93cf8b
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 11:49:37 2019 -0700
+
+    Finished all methods in IntBoard
+
+commit bd72a2075684122f9aff3908dc98068d809d214b
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Thu Feb 28 11:25:32 2019 -0700
+
+    Final test code
+
+commit 7bef0f01b989d548dca867c1fd3acd71da7baa26
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Thu Feb 28 11:13:13 2019 -0700
+
+    Some updates to the testTargets tests
+
+commit 7fdaa29a90b4090353fa15d5f7baf8af19e723b9
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 11:04:25 2019 -0700
+
+    Change to junit.Test
+
+commit b114e548058cbe93c6ae5ce0626ce8dbfce17be4
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 11:02:49 2019 -0700
+
+    JUnit5
+
+commit 0f34f93277347b9d80c5b910d2b6a580f5e05044
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Feb 28 10:58:59 2019 -0700
+
+    JUnit4
+
+commit 75866a11bbb53fe3eb41eb42ae245cb47e318972
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Tue Feb 26 12:16:10 2019 -0700
+
+    Added some failing tests in IntBoardTests
+
+commit e04031d64cbe21530cbcbaa13462907126690c29
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Feb 26 11:56:48 2019 -0700
+
+    Created stubs for BoardCell and IntBoard classes
+
+commit c070b424c48dd13ba31743dfb3564e71b331fc47
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Tue Feb 26 11:47:33 2019 -0700
+
+    Adding classes to Clue experiment and test packages
+
+commit 6b5b685915e80b56dc2f55f2963e194ecd80ff46
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Feb 26 11:43:32 2019 -0700
+
+    Text files and .zip file for C12A-1
+
+commit e59aea1600d393496c09994a35edc3a29ce1a847
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Feb 26 11:39:47 2019 -0700
+
+    Added legend Rooms.txt, color coded BoardLayout
+
+commit 22cf088dbc83ca767d463320aa334c3748433c41
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Tue Feb 26 11:25:25 2019 -0700
+
+    Edit of BoardLayout
+
+commit 301cc76152cde13ff32ded45bbe11181a21c6075
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Tue Feb 26 11:21:22 2019 -0700
+
+    Adding BoardLayout to git
+
+commit 3acfe966eef0423951a5252703127032dfafab7e
+Author: dbrouillet@gmail.com <dbrouill@mines.edu>
+Date:   Tue Feb 26 11:19:47 2019 -0700
+
+    first commit
