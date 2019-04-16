@@ -73,9 +73,12 @@ public class ComputerPlayer extends Player {
 	}
 
 	// Make computers move
-	@Override
 	public void move(Set<BoardCell> targets) {
+		BoardCell nextMove = pickLocation(targets);
 		
-		
+		setCurrentCell(nextMove);
+		if(this.getCurrentCell().isDoorway()) {
+			this.setMostRecentRoom(this.getCurrentCell().getInitial());
+		}
 	}
 }

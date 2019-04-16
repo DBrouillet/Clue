@@ -16,8 +16,7 @@ public abstract class Player {
 	public static final int PLAYER_PIXEL_OFFSET = 4;
 	
 	private String playerName;
-	private int row;
-	private int column;
+	private BoardCell currentCell;
 	private Color color;
 	private ArrayList<Card> myCards = new ArrayList<Card>();
 	private Map<Card, Boolean> seenCards = new HashMap<Card, Boolean>();
@@ -25,16 +24,14 @@ public abstract class Player {
 	public Player(String playerName, Color color, int row, int column) {
 		super();
 		this.playerName = playerName;
-		this.row = row;
-		this.column = column;
+		this.setCurrentCell(Board.getInstance().getCellAt(row, column));
 		this.color = color;
 	}
 
 	public Player(String playerName, String color, int row, int column) {
 		super();
 		this.playerName = playerName;
-		this.row = row;
-		this.column = column;
+		this.setCurrentCell(Board.getInstance().getCellAt(row, column));
 		this.color = convertColor(color);
 	}
 	
@@ -108,10 +105,10 @@ public abstract class Player {
 		int size = BoardCell.CELL_DIMENSION;
 		
 		g.setColor(color);
-		g.fillOval(size * column + PLAYER_PIXEL_OFFSET/2, size * row + PLAYER_PIXEL_OFFSET/2, size - PLAYER_PIXEL_OFFSET, size - PLAYER_PIXEL_OFFSET);
+		g.fillOval(size * getColumn() + PLAYER_PIXEL_OFFSET/2, size * getRow() + PLAYER_PIXEL_OFFSET/2, size - PLAYER_PIXEL_OFFSET, size - PLAYER_PIXEL_OFFSET);
 		
 		g.setColor(PLAYER_BORDER);
-		g.drawOval(size * column + PLAYER_PIXEL_OFFSET/2, size * row + PLAYER_PIXEL_OFFSET/2, size - PLAYER_PIXEL_OFFSET, size - PLAYER_PIXEL_OFFSET);
+		g.drawOval(size * getColumn() + PLAYER_PIXEL_OFFSET/2, size * getRow() + PLAYER_PIXEL_OFFSET/2, size - PLAYER_PIXEL_OFFSET, size - PLAYER_PIXEL_OFFSET);
 	}
 
 	
@@ -128,11 +125,11 @@ public abstract class Player {
 	}
 
 	public int getRow() {
-		return row;
+		return getCurrentCell().getRow();
 	}
 
 	public int getColumn() {
-		return column;
+		return getCurrentCell().getColumn();
 	}
 
 	public String getPlayerName() {
@@ -151,8 +148,16 @@ public abstract class Player {
 	public void setMyCards(ArrayList<Card> myCards) {
 		this.myCards = myCards;
 	}
-	
-	public abstract void move(Set<BoardCell> targets);
+
+//	public abstract void move(Set<BoardCell> targets);
+
+	public BoardCell getCurrentCell() {
+		return currentCell;
+	}
+
+	public void setCurrentCell(BoardCell currentCell) {
+		this.currentCell = currentCell;
+	}
 
 
 }

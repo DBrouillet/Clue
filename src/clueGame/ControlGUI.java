@@ -2,6 +2,10 @@ package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -73,6 +77,14 @@ public class ControlGUI extends JPanel {
 		
 		// Button to click for next player
 		JButton nextPlayer = new JButton("Next Player");
+		nextPlayer.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				Board.getInstance().nextPlayerClicked();
+			}
+			
+		});
 		
 		// Button to click to make an accusation
 		JButton makeAccusation = new JButton("Make an Accusation");

@@ -528,15 +528,20 @@ public class Board extends JPanel {
 	}
 	
 	public void nextPlayerClicked() {
-		if (nextPlayerIsValid) {
+		//if (nextPlayerIsValid) {
 			currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
 			dieRoll = random.nextInt(6) + 1;
 			
 			Player currentPlayer = players.get(currentPlayerIndex);
 			calcTargets(currentPlayer.getRow(), currentPlayer.getColumn(), dieRoll);
-
-			currentPlayer.move(targets);
-		}
+			
+			if (currentPlayer instanceof ComputerPlayer) {
+				((ComputerPlayer) currentPlayer).move(targets);
+			} else {
+				nextPlayerIsValid = false;
+			}
+			
+		//}
 	}
 	
 	/**
