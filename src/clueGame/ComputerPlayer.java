@@ -79,6 +79,10 @@ public class ComputerPlayer extends Player {
 	 * to that BoardCell and (if it was a room) the most recent room variable.
 	 */
 	public void move(Set<BoardCell> targets) {
+		if (accusation != null) {
+			Board.getInstance().handleAccusation(accusation);
+		}
+		
 		BoardCell nextMove = pickLocation(targets);
 		
 		setCurrentCell(nextMove);

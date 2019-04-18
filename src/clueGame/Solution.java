@@ -22,4 +22,9 @@ public class Solution {
 		this.weapon = weaponCard.getCardName();
 	}
 	
+	@Override
+	public String toString() {
+		return "Person: " + person + ", Room: " + room + ", Weapon: " + weapon;
+	}
+	
 }
