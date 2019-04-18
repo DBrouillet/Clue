@@ -84,7 +84,11 @@ public class Board extends JPanel implements MouseListener {
 			loadWeapons();
 			createDeck();
 			shuffleDeck();
+			for(Player p: players) {
+				p.initializeSeenCards();
+			}
 			dealDeck();
+			
 
 			// Set the current player index to be the last player
 			// as the human needs to click the next player button
