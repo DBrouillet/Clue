@@ -28,11 +28,19 @@ import javax.swing.border.TitledBorder;
 
 public class ClueGame extends JFrame {
 	private DetectiveNotes detectiveNotes;
+	private Board board;
+	private ControlGUI controlGUI;
 	
-	public ClueGame() {
+	private ClueGame() {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
+	}
+	
+	private static ClueGame theInstance = new ClueGame();
+	
+	public static ClueGame getInstance() {
+		return theInstance;
 	}
 	
 	/**
@@ -112,29 +120,33 @@ public class ClueGame extends JFrame {
 
 	public static void main(String[] args) {
 		// Create a JFrame with all the normal functionality
-		JFrame frame = new ClueGame();
+		JFrame frame = theInstance;
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Clue Game");
 		frame.setSize(1000, 900);
 		
 		// Create and initialize the board; add to the JFrame
-		Board board = Board.getInstance();
-		board.setConfigFiles("BoardLayout.csv", "Rooms.txt", "Players.txt", "Weapons.txt");		
-		board.initialize();
-		frame.add(board, BorderLayout.CENTER);
+		theInstance.board = Board.getInstance();
+		theInstance.board.setConfigFiles("BoardLayout.csv", "Rooms.txt", "Players.txt", "Weapons.txt");		
+		theInstance.board.initialize();
+		theInstance.add(theInstance.board, BorderLayout.CENTER);
 		
 		frame.add(((ClueGame) frame).createRightPanel(), BorderLayout.EAST);
 		
 		// Create the control GUI and add it to the JFrame
-		ControlGUI controlGUI = new ControlGUI(frame);
-		frame.getContentPane().add(controlGUI, BorderLayout.SOUTH);
+		theInstance.controlGUI = new ControlGUI(frame);
+		frame.getContentPane().add(theInstance.controlGUI, BorderLayout.SOUTH);
 		
 		// Now let's view it
 		frame.setVisible(true);
 		
 		// Show the splash message
-		String message = "You are " + board.getPlayers().get(0).getPlayerName() + ", press Next Player to begin play.";
+		String message = "You are " + theInstance.board.getPlayers().get(0).getPlayerName() + ", press Next Player to begin play.";
 		JOptionPane.showMessageDialog(frame, message, "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	public ControlGUI getControlGUI() {
+		return controlGUI;
 	}
 }

@@ -27,6 +27,9 @@ public class ControlGUI extends JPanel {
 	
 	private JTextField currentPlayer;
 	private JTextField dieRollText;
+	
+	private JTextField guessText;
+	private JTextField guessResultText;
 
 	/**
 	 * Create the overall GUI and add the relevant panels.
@@ -95,6 +98,15 @@ public class ControlGUI extends JPanel {
 	private void updateCurrentPlayer() {
 		currentPlayer.setText(Board.getInstance().getCurrentPlayer().getPlayerName());
 	}
+	
+	public void updateGuess(Solution guess) {
+		guessText.setText(guess.toString());
+	}
+	
+	public void updateResult(Card guess) {
+		guessResultText.setText(guess.toString());
+	}
+	
 	/**
 	 * @return JPanel which contains the bottom panel
 	 * Creates each of the components of the bottom panel
@@ -117,20 +129,20 @@ public class ControlGUI extends JPanel {
 		JPanel guess = new JPanel();
 		guess.setLayout(new GridLayout(2,1));
 		JLabel nameLabel2 = new JLabel("Guess");
-		name = new JTextField(25);
-		name.setEditable(false);
+		guessText = new JTextField(25);
+		guessText.setEditable(false);
 		guess.add(nameLabel2);
-		guess.add(name);
+		guess.add(guessText);
 		guess.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
 		
 		// Create the subpanel which contains the result of the guess
 		JPanel guessResult = new JPanel();
 		guessResult.setLayout(new GridLayout(1,2));
 		JLabel nameLabel3 = new JLabel("Response");
-		name = new JTextField(12);
-		name.setEditable(false);
+		guessResultText = new JTextField(12);
+		guessResultText.setEditable(false);
 		guessResult.add(nameLabel3);
-		guessResult.add(name);
+		guessResult.add(guessResultText);
 		guessResult.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 		
 		panel.add(dieRoll);

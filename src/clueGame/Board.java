@@ -514,12 +514,15 @@ public class Board extends JPanel implements MouseListener {
 	 * If no non-active player can disprove the suggestion, returns null.
 	 */
 	public Card handleSuggestion(Solution suggestion) {
+		// TODO: WORK ON THIS
+		//ClueGame.getInstance().geupdateGuess(suggestion);
 		/*
 		 * Starting at the next player after the active player, asks them to disprove suggestion.
 		 */
 		for (int i = currentPlayerIndex + 1; i < players.size(); i++) {
 			Card ans = players.get(i).disproveSuggesstion(suggestion);
 			if (ans != null) {
+				//update
 				return ans;
 			}
 		}
