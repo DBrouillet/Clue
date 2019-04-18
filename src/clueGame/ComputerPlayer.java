@@ -73,6 +73,16 @@ public class ComputerPlayer extends Player {
 		this.mostRecentRoom = mostRecentRoom;
 	}
 	
+	// Creates a suggestion when the computer player enters a room.
+	public void makeSuggestion() {
+		Solution suggestion = createSuggestion();
+		Card returnedCard = Board.getInstance().handleSuggestion(suggestion);
+		if(returnedCard == null) {
+			if(! getSeenCards().get(suggestion.roomCard)) {
+				accusation = suggestion;
+			}
+		}
+	}
 	/**
 	 * @param targets = Set of BoardCells that are valid to move to
 	 * Picks a (valid) location to move to, then updates the computer player
@@ -84,13 +94,7 @@ public class ComputerPlayer extends Player {
 		setCurrentCell(nextMove);
 		if(this.getCurrentCell().isDoorway()) {
 			this.setMostRecentRoom(this.getCurrentCell().getInitial());
-			Solution suggestion = createSuggestion();
-			Card returnedCard = Board.getInstance().handleSuggestion(suggestion);
-			if(returnedCard == null) {
-				if(! getSeenCards().get(suggestion.roomCard)) {
-					accusation = suggestion;
-				}
-			}
+			makeSuggestion();
 		}
 	}
 }
