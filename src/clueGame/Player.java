@@ -114,6 +114,7 @@ public abstract class Player {
 	
 	public void addCard(Card c) {
 		myCards.add(c);
+		addSeenCard(c);
 	}
 	
 	public void addSeenCard(Card c) {
