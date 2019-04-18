@@ -504,6 +504,32 @@ public class Board extends JPanel implements MouseListener {
 		}
 		return null;
 	}
+	
+	/*
+	 * The next player that is not the active player returns a card that disproves suggestion
+	 * If no non-active player can disprove the suggestion, returns null.
+	 */
+	public Card handleSuggestion(Solution suggestion) {
+		/*
+		 * Starting at the next player after the active player, asks them to disprove suggestion.
+		 */
+		for (int i = currentPlayerIndex + 1; i < players.size(); i++) {
+			Card ans = players.get(i).disproveSuggesstion(suggestion);
+			if (ans != null) {
+				return ans;
+			}
+		}
+		/*
+		 * If active player is in the middle of the playerArray, needs to wrap around.
+		 */
+		for (int i = 0; i < currentPlayerIndex; i++) {
+			Card ans = players.get(i).disproveSuggesstion(suggestion);
+			if (ans != null) {
+				return ans;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * @param accusation = accusation to check
