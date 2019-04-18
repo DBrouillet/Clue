@@ -540,6 +540,19 @@ public class Board extends JPanel implements MouseListener {
 				accusation.room == theAnswer.room &&
 				accusation.weapon == theAnswer.weapon);
 	}
+	
+	/** 
+	 * Generates a message panel for victory or loss. If a loss occurs, removes accuser from players array. If victory, exits the game.
+	 */
+	public void handleAccusation(Solution accusation) {
+		if (checkAccusation(accusation)) {
+			JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has made the correct accusation and won the game!\nThe accusation was " + accusation.toString(), "Victory!", JOptionPane.PLAIN_MESSAGE);
+			System.exit(0);
+		} else {
+			JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has made the incorrect accusation and lost the game!\nThe accusation was " + accusation.toString(), "Loss!", JOptionPane.PLAIN_MESSAGE);
+			players.remove(currentPlayerIndex);
+		}
+	}
 
 	/**
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
