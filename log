@@ -1,3 +1,207 @@
+commit 3c96333c63ea156c66d78f9800a38034d19b8a4b
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 11 12:12:50 2019 -0600
+
+    Started nextPlayerClicked function in Board
+
+commit 7714841386eb1e02fa2b66a373107b8a576ca939
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 11 11:38:39 2019 -0600
+
+    Updated git log
+
+commit 477b7bf9dcf0d56c8084a04c1338ef3e0be605c3
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 11 11:38:18 2019 -0600
+
+    Added splash message
+
+commit 66e872a086af5e2e7bd7ea4c1a066f1e525fbaf7
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 11 11:34:29 2019 -0600
+
+    Added Player Card Display
+
+commit 255278541e9c1c069b153b3223022ef917ffa120
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 11 10:47:42 2019 -0600
+
+    Updated git log
+
+commit 62a0872432b8d029d6241f477f9d81141530b4a5
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Apr 9 17:44:40 2019 -0600
+
+    Added more comments.
+
+commit 8ae016595a3c5276f5642f08d432c6819df14c00
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Apr 9 17:43:10 2019 -0600
+
+    Added comments.
+
+commit dd1a51a9df3128373e30c283fecd00e42ff80865
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Apr 9 17:39:26 2019 -0600
+
+    Added guess boxes to detective notes.
+
+commit 904e4b542cbc0b084585721ad44bfb41662389a8
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 9 17:23:35 2019 -0600
+
+    Added checkboxes for people and rooms in detective notes
+
+commit 4fe1649dc9c3a7e90456d9a268f215a9745704ad
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 9 17:00:53 2019 -0600
+
+    Created stub for detective notes class, added into file menu
+
+commit 803660c1da901ff100c952bfaaf78281c23a4286
+Author: RichardFigueroaErickson <rfigueroaerickson@mymail.mines.edu>
+Date:   Tue Apr 9 16:48:03 2019 -0600
+
+    drawName now working.
+
+commit e87effcbee5a5e1798145202b05762e5f1ec73b0
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 9 16:30:03 2019 -0600
+
+    Doors displaying, change layout file to include spaces for names
+
+commit 8d116310f4c67642f829acfd52d86827f66b4aab
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 9 15:50:30 2019 -0600
+
+    Made window bigger, small refactoring, element comments, remove magic constants, add pixel offset for players (from the board)
+
+commit 81735f99ef8ab189a9d305cdf4d0d259ef018d9d
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 9 12:12:11 2019 -0600
+
+    Filled out draw methods and fixed ClueGame main layout.
+
+commit da9bacd06bfbbd78079dce5b8219de17461b7271
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 9 11:54:49 2019 -0600
+
+    Filled out draw method
+
+commit 41ca24d871cd0a42ba607aa32516f360e96099fb
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 9 11:41:47 2019 -0600
+
+    Converted Board to extend JPanel, added paintComponent to board and draw to boardCell
+
+commit 31bf582b5b1a6eccb804857d21ab8666e64d43e5
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 4 12:03:09 2019 -0600
+
+    Created ClueGame class and DetectiveNotes class, added file menu and ability to exit
+
+commit a0b0467390818a3e80835efe792f8053282e8958
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 4 11:38:58 2019 -0600
+
+    Refactoring code & adding comments
+
+commit 1352b5cae868682694b66927a323e47f1b555017
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 4 11:31:16 2019 -0600
+
+    Made the control panel
+
+commit c51cd5bf62c47cee0a5563b5399f313280581d1e
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 4 11:03:28 2019 -0600
+
+    Added ControlGUI class and copied GUI_Example code.
+
+commit de6bd118adb74890d20def83db491a0fe3c3bffe
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 4 00:10:08 2019 -0600
+
+    Passing HandleSolution tests
+
+commit 6b59f33561e271509b859e28254967328d05ee07
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Wed Apr 3 23:57:56 2019 -0600
+
+    Created failing tests for handle suggestion
+
+commit 4b2d9658584f2aac65ff36cf759c14057d7193a3
+Author: RichardFigueroaErickson <richarddfe@gmail.com>
+Date:   Wed Apr 3 22:37:16 2019 -0600
+
+    Refactored board cell, board, and solution classes.
+
+commit 65cdf6c5324cc9408d5c91323f33901cc795a5d0
+Author: RichardFigueroaErickson <richarddfe@gmail.com>
+Date:   Wed Apr 3 22:18:24 2019 -0600
+
+    Got all create suggestion tests working
+
+commit 9ed3fe8e655982e6cbae9b0854cc71391b13bbe4
+Author: RichardFigueroaErickson <richarddfe@gmail.com>
+Date:   Wed Apr 3 20:05:26 2019 -0600
+
+    Set up failing tests for computer players making suggestions
+
+commit 349e2490437950b17f6bc48c65a5a4acad055109
+Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
+Date:   Wed Apr 3 00:08:25 2019 -0600
+
+    Made disprove suggestion work, modified some tests that had typo (so they were wrong)
+
+commit 8c296aed0e7f6065e029f9b90253c2f27208323e
+Author: Miika Jarvela <miikajarvela@Miikas-MacBook-Pro.local>
+Date:   Tue Apr 2 23:57:04 2019 -0600
+
+    Created failing test for disproving a suggestion
+
+commit cdc8558383e30711a0e7e9f79a49334f20cdf10d
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 12:03:56 2019 -0600
+
+    Made checking accusation test pass
+
+commit 069455d27be3e031f0fc57e504c844a8912490d8
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 12:02:25 2019 -0600
+
+    Wrote failing test for checking accusation
+
+commit 1463735a0466bdac273bb0156e07dec99275ea58
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 11:52:15 2019 -0600
+
+    Implemented pickLocation so that tests pass
+
+commit 34cb8f8e1d46c006fc3797f591b0256fc54be84f
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 11:43:47 2019 -0600
+
+    Filled out ComputerTargetSelection tests.
+
+commit 6ab31210b7ac5fd338abe5dcaa19d5a14bbd195f
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 11:19:26 2019 -0600
+
+    Created gameActionTests file.
+
+commit e4a73ad45c41338d0824bf12ffdef21fd4ab68ff
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Tue Apr 2 10:59:48 2019 -0600
+
+    Changed dealDeck to handle a generic number of cards.
+
+commit 1a6f857c15348bfa470a2cc635293162e1362d85
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Mon Apr 1 23:39:52 2019 -0600
+
+    Comment edit.
+
 commit 83dbc49747132be76afc34090e751551b4b503f0
 Author: Daniel Brouillet <dbrouill@mines.edu>
 Date:   Mon Apr 1 23:37:47 2019 -0600

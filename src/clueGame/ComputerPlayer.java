@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class ComputerPlayer extends Player {
 	private char mostRecentRoom;
+	private Solution accusation;
 	
 	public ComputerPlayer(String playerName, Color color, int row, int column) {
 		super(playerName, color, row, column);
@@ -83,6 +84,13 @@ public class ComputerPlayer extends Player {
 		setCurrentCell(nextMove);
 		if(this.getCurrentCell().isDoorway()) {
 			this.setMostRecentRoom(this.getCurrentCell().getInitial());
+			Solution suggestion = createSuggestion();
+			Card returnedCard = Board.getInstance().handleSuggestion(suggestion);
+			if(returnedCard == null) {
+				if(! getSeenCards().get(suggestion.roomCard)) {
+					accusation = suggestion;
+				}
+			}
 		}
 	}
 }
