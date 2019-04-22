@@ -20,6 +20,9 @@ public class HumanPlayer extends Player {
 	 */
 	public void move(BoardCell target) {
 		setCurrentCell(target);
+		if(target.isDoorway()) {
+			ClueGame.getInstance().displaySuggestionGUI(this);
+		}
 	}
 	
 }

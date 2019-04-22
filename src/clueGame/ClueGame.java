@@ -145,6 +145,11 @@ public class ClueGame extends JFrame {
 		String message = "You are " + theInstance.board.getPlayers().get(0).getPlayerName() + ", press Next Player to begin play.";
 		JOptionPane.showMessageDialog(frame, message, "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 	}
+	
+	public void displaySuggestionGUI(Player player) {
+		SuggestionGUI suggestionGUI = new SuggestionGUI(player);
+		suggestionGUI.setVisible(true);
+	}
 
 	public ControlGUI getControlGUI() {
 		return controlGUI;
