@@ -488,12 +488,15 @@ public class Board extends JPanel implements MouseListener {
 	 * @param activePlayerIndex = index in the players array of the player making the suggestion
 	 */
 	public Card handleSuggestion(Solution suggestion, int activePlayerIndex) {
+
+		ClueGame.getInstance().getControlGUI().updateGuess(suggestion);
 		/*
 		 * Starting at the next player after the active player, asks them to disprove suggestion.
 		 */
 		for (int i = activePlayerIndex + 1; i < players.size(); i++) {
 			Card ans = players.get(i).disproveSuggesstion(suggestion);
 			if (ans != null) {
+				ClueGame.getInstance().getControlGUI().updateResult(ans);
 				return ans;
 			}
 		}
@@ -503,6 +506,7 @@ public class Board extends JPanel implements MouseListener {
 		for (int i = 0; i < activePlayerIndex; i++) {
 			Card ans = players.get(i).disproveSuggesstion(suggestion);
 			if (ans != null) {
+				ClueGame.getInstance().getControlGUI().updateResult(ans);
 				return ans;
 			}
 		}
@@ -514,29 +518,7 @@ public class Board extends JPanel implements MouseListener {
 	 * If no non-active player can disprove the suggestion, returns null.
 	 */
 	public Card handleSuggestion(Solution suggestion) {
-		// TODO: WORK ON THIS
-		ClueGame.getInstance().getControlGUI().updateGuess(suggestion);
-		/*
-		 * Starting at the next player after the active player, asks them to disprove suggestion.
-		 */
-		for (int i = currentPlayerIndex + 1; i < players.size(); i++) {
-			Card ans = players.get(i).disproveSuggesstion(suggestion);
-			if (ans != null) {
-				ClueGame.getInstance().getControlGUI().updateResult(ans);
-				return ans;
-			}
-		}
-		/*
-		 * If active player is in the middle of the playerArray, needs to wrap around.
-		 */
-		for (int i = 0; i < currentPlayerIndex; i++) {
-			Card ans = players.get(i).disproveSuggesstion(suggestion);
-			if (ans != null) {
-				ClueGame.getInstance().getControlGUI().updateResult(ans);
-				return ans;
-			}
-		}
-		return null;
+		return handleSuggestion(suggestion, currentPlayerIndex);
 	}
 
 	/**
