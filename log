@@ -1,3 +1,88 @@
+commit a9117f5dd4b30d9a09d53824cfe43188d9b140b5
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 18 12:15:45 2019 -0600
+
+    Updated ClueGame to singleton pattern
+
+commit c300bde5776620820614a61e0621b621de3b5ce5
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 18 11:59:14 2019 -0600
+
+    Bug fix
+
+commit b8656ec3b4a9eb7084b5659a764ca82b981fdfa1
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 18 11:46:03 2019 -0600
+
+    Finished handleAccusation
+
+commit d0c345624ce2445a6cd94c02c7c35a64bd940b1e
+Merge: b633e54 235c31c
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 18 11:41:16 2019 -0600
+
+    Merge branch 'master' of https://github.com/DBrouillet/Clue
+
+commit 235c31c0cae911cf9826d2bf9862fabf2ed36ff2
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 18 11:40:54 2019 -0600
+
+    Solution toString, computer player makes accusation when it can
+
+commit b633e547e03c2ac56769b6e6ba8c02258df8491e
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 18 11:32:09 2019 -0600
+
+    Refactored makeSuggestion in computerPlayer.
+
+commit b0ea7cff3ec53b99179249c771d54692e7d37768
+Author: Daniel Brouillet <dbrouill@mines.edu>
+Date:   Thu Apr 18 11:27:45 2019 -0600
+
+    Added computer makeSuggestion functionality inside of Move
+
+commit c1de2a59d4acf2d93c063995c09d671f97ece825
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Thu Apr 18 11:21:47 2019 -0600
+
+    Created overloaded handle suggestion that doesn't need index
+
+commit f042e0636a5e37f0cc6e38c7a2f3753d294ccec4
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 16 17:42:20 2019 -0600
+
+    Updated git log
+
+commit b8354c7d78639ebb356524c3f3a79167fa8d1ada
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 16 17:40:21 2019 -0600
+
+    Added element comments
+
+commit 45a30408f15b12fb5265dc811e044a5c86343cbc
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 16 17:18:16 2019 -0600
+
+    Added mouselistener for board, allows for human player to move
+
+commit 4df8871626c5a58966fb428c161dca9661eb0753
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 16 16:35:37 2019 -0600
+
+    Updated canvas to redraw itself when next player is clicked
+
+commit b9fe4ec28cd352df785c360e6385c2953a8c3da0
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 16 16:31:04 2019 -0600
+
+    Next player clicked updated, added action listener, TODO: make action listener update the graphics
+
+commit 31fd124adfc82f4a3618b069b6dee44820abd54b
+Author: Miika Jarvela <mjarvela@mines.edu>
+Date:   Tue Apr 16 10:54:21 2019 -0600
+
+    Fixed test errors caused by player being abstract now.
+
 commit 3c96333c63ea156c66d78f9800a38034d19b8a4b
 Author: Miika Jarvela <mjarvela@mines.edu>
 Date:   Thu Apr 11 12:12:50 2019 -0600

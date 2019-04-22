@@ -24,7 +24,7 @@ public class Solution {
 	
 	@Override
 	public String toString() {
-		return "Person: " + person + ", Room: " + room + ", Weapon: " + weapon;
+		return person + " in the " + room + " with the " + weapon;
 	}
 	
 }

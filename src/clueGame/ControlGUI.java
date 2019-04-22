@@ -103,8 +103,16 @@ public class ControlGUI extends JPanel {
 		guessText.setText(guess.toString());
 	}
 	
+	public void updateGuess(String textString) {
+		guessText.setText(textString);
+	}
+	
 	public void updateResult(Card guess) {
 		guessResultText.setText(guess.toString());
+	}
+	
+	public void updateResult(String textString) {
+		guessResultText.setText(textString);
 	}
 	
 	/**

@@ -99,6 +99,9 @@ public class ComputerPlayer extends Player {
 		if(this.getCurrentCell().isDoorway()) {
 			this.setMostRecentRoom(this.getCurrentCell().getInitial());
 			makeSuggestion();
+		} else {
+			ClueGame.getInstance().getControlGUI().updateGuess("");
+			ClueGame.getInstance().getControlGUI().updateResult("");
 		}
 	}
 }

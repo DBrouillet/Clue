@@ -515,14 +515,14 @@ public class Board extends JPanel implements MouseListener {
 	 */
 	public Card handleSuggestion(Solution suggestion) {
 		// TODO: WORK ON THIS
-		//ClueGame.getInstance().geupdateGuess(suggestion);
+		ClueGame.getInstance().getControlGUI().updateGuess(suggestion);
 		/*
 		 * Starting at the next player after the active player, asks them to disprove suggestion.
 		 */
 		for (int i = currentPlayerIndex + 1; i < players.size(); i++) {
 			Card ans = players.get(i).disproveSuggesstion(suggestion);
 			if (ans != null) {
-				//update
+				ClueGame.getInstance().getControlGUI().updateResult(ans);
 				return ans;
 			}
 		}
@@ -532,6 +532,7 @@ public class Board extends JPanel implements MouseListener {
 		for (int i = 0; i < currentPlayerIndex; i++) {
 			Card ans = players.get(i).disproveSuggesstion(suggestion);
 			if (ans != null) {
+				ClueGame.getInstance().getControlGUI().updateResult(ans);
 				return ans;
 			}
 		}
