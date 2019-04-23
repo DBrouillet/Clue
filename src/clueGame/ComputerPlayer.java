@@ -78,7 +78,7 @@ public class ComputerPlayer extends Player {
 		Solution suggestion = createSuggestion();
 		Card returnedCard = Board.getInstance().handleSuggestion(suggestion);
 		if(returnedCard == null) {
-			if(! getSeenCards().get(suggestion.roomCard)) {
+			if(! getSeenCards().get(Board.getInstance().getCard(suggestion.room))) {
 				accusation = suggestion;
 			}
 		}
