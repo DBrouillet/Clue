@@ -497,6 +497,9 @@ public class Board extends JPanel implements MouseListener {
 			Card ans = players.get(i).disproveSuggesstion(suggestion);
 			if (ans != null) {
 				ClueGame.getInstance().getControlGUI().updateResult(ans);
+				for(Player player : players) {
+					player.addSeenCard(ans);
+				}
 				return ans;
 			}
 		}
@@ -507,6 +510,9 @@ public class Board extends JPanel implements MouseListener {
 			Card ans = players.get(i).disproveSuggesstion(suggestion);
 			if (ans != null) {
 				ClueGame.getInstance().getControlGUI().updateResult(ans);
+				for(Player player : players) {
+					player.addSeenCard(ans);
+				}
 				return ans;
 			}
 		}
@@ -632,6 +638,15 @@ public class Board extends JPanel implements MouseListener {
 		return inAnswer(card.getCardName());
 	}
 
+	public Card getCard(String cardName) {
+		for(Card c : deck) {
+			if(c.getCardName().equals(cardName)) {
+				return c;
+			}
+		}
+		return null;
+	}
+	
 	public Player getCurrentPlayer() {
 		return players.get(currentPlayerIndex);
 	}

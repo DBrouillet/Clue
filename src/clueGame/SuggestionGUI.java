@@ -79,18 +79,22 @@ public class SuggestionGUI extends JDialog {
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		
 		JPanel submitButton = new JPanel();
-		JButton submit = new JButton();
+		JButton submit = new JButton("Submit");
 		submit.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				String roomCard = board.getRoomString(player.getCurrentCell().getInitial());
-				String personCard = guessBoxP.getItemAt(guessBoxP.getSelectedIndex());
-				String weaponCard = guessBoxW.getItemAt(guessBoxW.getSelectedIndex());
+				Card roomCard = board.getCard(board.getRoomString(player.getCurrentCell().getInitial()));
+				Card personCard = board.getCard(guessBoxP.getItemAt(guessBoxP.getSelectedIndex()));
+				Card weaponCard = board.getCard(guessBoxW.getItemAt(guessBoxW.getSelectedIndex()));
 				Solution suggestion = new Solution(personCard, roomCard, weaponCard);
 				board.handleSuggestion(suggestion);
+				setVisible(false);
+				dispose();
 			}
 			
 		});
+		submitButton.add(submit);
+		add(submitButton);
 	}
 }
