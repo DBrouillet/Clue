@@ -26,6 +26,7 @@ public class Board extends JPanel implements MouseListener {
 	private int numRows;
 	private int numColumns;
 	public final static int MAX_BOARD_SIZE = 50;
+	public static final String NO_NEW_CLUE = "no new clue";
 	private BoardCell[][] board;
 	private Map<Character, String> legend;
 	private Map<BoardCell, Set<BoardCell>> adjMatrix;
@@ -516,6 +517,7 @@ public class Board extends JPanel implements MouseListener {
 				return ans;
 			}
 		}
+		ClueGame.getInstance().getControlGUI().updateResult(NO_NEW_CLUE);
 		return null;
 	}
 	
