@@ -563,6 +563,9 @@ public class Board extends JPanel implements MouseListener {
 			JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has made the incorrect accusation and should have lost the game!\nThe accusation was " + accusation.toString(), "Loss!", JOptionPane.PLAIN_MESSAGE);
 			// Note: We do not remove the player from play
 			//players.remove(currentPlayerIndex);
+			nextPlayerIsValid = true;
+			targets.clear();
+			ClueGame.getInstance().repaint();
 		}
 	}
 
