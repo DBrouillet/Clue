@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -19,15 +20,15 @@ import javax.swing.border.TitledBorder;
  */
 public class ControlGUI extends JPanel {
 	private JFrame game;
-	
+
 	private JTextField name;
-	
+
 	private JPanel topPanel;
 	private JPanel bottomPanel;
-	
+
 	private JTextField currentPlayer;
 	private JTextField dieRollText;
-	
+
 	private JTextField guessText;
 	private JTextField guessResultText;
 
@@ -53,23 +54,23 @@ public class ControlGUI extends JPanel {
 		JPanel panel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		panel.setLayout(new GridLayout(1,2));
-		
+
 		/* Create a subpanel so we can display
 		 * whose turn it is in 2 rows
 		 */
-		
+
 		JPanel turnPanel = new JPanel();
 		turnPanel.setLayout(new GridLayout(2,1));
 		JLabel nameLabel = new JLabel("Current Player");
-		
+
 		currentPlayer = new JTextField(20);
 		currentPlayer.setEditable(false);
-		
+
 		turnPanel.add(nameLabel);
 		turnPanel.add(currentPlayer);
 		turnPanel.setBorder(new TitledBorder (new EtchedBorder(), "Whose turn is it?"));
 		panel.add(turnPanel);
-		
+
 		// Button to click for next player
 		JButton nextPlayer = new JButton("Next Player");
 		nextPlayer.addActionListener(new ActionListener() {
@@ -81,11 +82,24 @@ public class ControlGUI extends JPanel {
 				updateDieRoll();
 				updateCurrentPlayer();
 			}
-			
+
 		});
-		
+
 		// Button to click to make an accusation
 		JButton makeAccusation = new JButton("Make an Accusation");
+		makeAccusation.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				if(Board.getInstance().getCurrentPlayer() instanceof HumanPlayer && !Board.getInstance().isNextPlayerIsValid()) {
+					AccusationGUI accusation = new AccusationGUI();
+					accusation.setVisible(true);
+				} else {
+					ClueGame.getInstance().displayErrorMessage();
+				}
+			}
+
+		});
 		panel.add(nextPlayer);
 		panel.add(makeAccusation);
 		return panel;
@@ -94,27 +108,27 @@ public class ControlGUI extends JPanel {
 	private void updateDieRoll() {
 		dieRollText.setText(Integer.toString(Board.getInstance().getDieRoll()));
 	}
-	
+
 	private void updateCurrentPlayer() {
 		currentPlayer.setText(Board.getInstance().getCurrentPlayer().getPlayerName());
 	}
-	
+
 	public void updateGuess(Solution guess) {
 		guessText.setText(guess.toString());
 	}
-	
+
 	public void updateGuess(String textString) {
 		guessText.setText(textString);
 	}
-	
+
 	public void updateResult(Card guess) {
 		guessResultText.setText(guess.toString());
 	}
-	
+
 	public void updateResult(String textString) {
 		guessResultText.setText(textString);
 	}
-	
+
 	/**
 	 * @return JPanel which contains the bottom panel
 	 * Creates each of the components of the bottom panel
@@ -122,7 +136,7 @@ public class ControlGUI extends JPanel {
 	 */
 	private JPanel createBottomPanel() {
 		JPanel panel = new JPanel();
-		
+
 		// Create the subpanel which contains the die roll
 		JPanel dieRoll = new JPanel();
 		dieRoll.setLayout(new GridLayout(1,2));
@@ -132,7 +146,7 @@ public class ControlGUI extends JPanel {
 		dieRoll.add(nameLabel);
 		dieRoll.add(dieRollText);
 		dieRoll.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
-		
+
 		// Create the subpanel which contains the guess
 		JPanel guess = new JPanel();
 		guess.setLayout(new GridLayout(2,1));
@@ -142,7 +156,7 @@ public class ControlGUI extends JPanel {
 		guess.add(nameLabel2);
 		guess.add(guessText);
 		guess.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
-		
+
 		// Create the subpanel which contains the result of the guess
 		JPanel guessResult = new JPanel();
 		guessResult.setLayout(new GridLayout(1,2));
@@ -152,7 +166,7 @@ public class ControlGUI extends JPanel {
 		guessResult.add(nameLabel3);
 		guessResult.add(guessResultText);
 		guessResult.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
-		
+
 		panel.add(dieRoll);
 		panel.add(guess);
 		panel.add(guessResult);

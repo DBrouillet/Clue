@@ -146,6 +146,10 @@ public class ClueGame extends JFrame {
 		JOptionPane.showMessageDialog(frame, message, "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	public void displayErrorMessage() {
+		JOptionPane.showMessageDialog(this, "You can only make an accusation at the beginning of your turn!", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
 	public void displaySuggestionGUI(Player player) {
 		SuggestionGUI suggestionGUI = new SuggestionGUI(player);
 		suggestionGUI.setVisible(true);
