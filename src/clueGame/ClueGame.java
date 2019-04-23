@@ -82,7 +82,6 @@ public class ClueGame extends JFrame {
 		JMenuItem item = new JMenuItem("Detective Notes");
 		class MenuItemListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				detectiveNotes = new DetectiveNotes();
 				detectiveNotes.setVisible(true);
 			}
 		}
@@ -140,6 +139,8 @@ public class ClueGame extends JFrame {
 		
 		// Now let's view it
 		frame.setVisible(true);
+		
+		theInstance.detectiveNotes = DetectiveNotes.getInstance();
 		
 		// Show the splash message
 		String message = "You are " + theInstance.board.getPlayers().get(0).getPlayerName() + ", press Next Player to begin play.";

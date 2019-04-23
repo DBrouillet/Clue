@@ -16,7 +16,13 @@ import javax.swing.border.TitledBorder;
  * notes custom dialog to facilitate player note-taking.
  */
 public class DetectiveNotes extends JDialog {
-	public DetectiveNotes() {
+	private static DetectiveNotes theInstance = new DetectiveNotes();
+	
+	public static DetectiveNotes getInstance() {
+		return theInstance;
+	}
+	
+	private DetectiveNotes() {
 		Board board = Board.getInstance();
 		setTitle("Detective Notes");
 		setSize(600, 800);
