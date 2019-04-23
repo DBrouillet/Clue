@@ -30,6 +30,9 @@ public class ComputerPlayer extends Player {
 		}
 		choices.addAll(targets);
 		Collections.shuffle(choices);
+		
+		if (choices.isEmpty()) return null;
+		
 		return choices.get(0);
 	}
 	
@@ -94,6 +97,8 @@ public class ComputerPlayer extends Player {
 		}
 		
 		BoardCell nextMove = pickLocation(targets);
+		
+		if (nextMove == null) return;
 		
 		setCurrentCell(nextMove);
 		if(this.getCurrentCell().isDoorway()) {

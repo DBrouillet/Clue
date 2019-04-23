@@ -440,6 +440,15 @@ public class Board extends JPanel implements MouseListener {
 		visited.add(startCell);
 		findAllTargets(startCell, pathLength);
 	}
+	
+	private boolean containsPlayer(BoardCell cell) {
+		for (Player player : players) {
+			if (player.getCurrentCell() == cell) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * @param startCell = starting cell
@@ -449,10 +458,14 @@ public class Board extends JPanel implements MouseListener {
 	 */
 	private void findAllTargets(BoardCell startCell, int pathLength) {
 		for (BoardCell cell : adjMatrix.get(startCell)) {
-			if (visited.contains(cell)) {
+			if (visited.contains(cell) || (!cell.isDoorway() && containsPlayer(cell))) {
 				continue;
 			}
 
+			if (cell.isDoorway() && cell.getInitial() == getCurrentPlayer().getCurrentCell().getInitial()) {
+				continue;
+			}
+			
 			visited.add(cell);
 
 			if (pathLength == 1) {
