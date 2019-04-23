@@ -762,7 +762,7 @@ public class Board extends JPanel implements MouseListener {
 				// If it is, move the player to this cell
 				((HumanPlayer) getCurrentPlayer()).move(cellClicked);
 				targets.clear();
-				repaint();
+				ClueGame.getInstance().repaint();
 				nextPlayerIsValid = true;
 			} else {
 				// Otherwise, display an error message, either if
