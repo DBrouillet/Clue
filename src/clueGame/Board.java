@@ -545,8 +545,9 @@ public class Board extends JPanel implements MouseListener {
 			JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has made the correct accusation and won the game!\nThe accusation was " + accusation.toString(), "Victory!", JOptionPane.PLAIN_MESSAGE);
 			System.exit(0);
 		} else {
-			JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has made the incorrect accusation and lost the game!\nThe accusation was " + accusation.toString(), "Loss!", JOptionPane.PLAIN_MESSAGE);
-			players.remove(currentPlayerIndex);
+			JOptionPane.showMessageDialog(this, getCurrentPlayer().getPlayerName() + " has made the incorrect accusation and should have lost the game!\nThe accusation was " + accusation.toString(), "Loss!", JOptionPane.PLAIN_MESSAGE);
+			// Note: We do not remove the player from play
+			//players.remove(currentPlayerIndex);
 		}
 	}
 
@@ -785,5 +786,11 @@ public class Board extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 
 	}
+
+	public boolean isNextPlayerIsValid() {
+		return nextPlayerIsValid;
+	}
+	
+	
 
 }
