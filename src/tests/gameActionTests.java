@@ -50,7 +50,7 @@ public class gameActionTests {
 		int numUp = 0;
 		// Run 100 trials by moving the player from (20,8) with a roll of 1
 		for (int i = 0; i < 100; i++) {
-			board.calcTargets(20, 8, 1);
+			board.calcTargetsTest(20, 8, 1);
 			BoardCell destination = testPlayer.pickLocation(board.getTargets());
 			// Count the number of times that the player goes up and down
 			if(destination.getRow() == 21 && destination.getColumn() == 8) {
@@ -77,7 +77,7 @@ public class gameActionTests {
 		testPlayer.setMostRecentRoom('L');
 		// Run 100 trials by moving the player at (17,8) (in the Living room) a distance of 1
 		for (int i = 0; i < 100; i++) {
-			board.calcTargets(17, 8, 1);
+			board.calcTargetsTest(17, 8, 1);
 			BoardCell destination = testPlayer.pickLocation(board.getTargets());
 			// Make sure it is picking the doorway every time, otherwise fail
 			if(destination.getRow() == 17 && destination.getColumn() == 9) {
@@ -101,7 +101,7 @@ public class gameActionTests {
 		int numRight = 0;
 		// Run 100 trials by moving the player from (17, 8) with a roll of 1
 		for (int i = 0; i < 100; i++) {
-			board.calcTargets(17, 8, 1);
+			board.calcTargetsTest(17, 8, 1);
 			BoardCell destination = testPlayer.pickLocation(board.getTargets());
 
 			// Count the number of times that the player goes up, down, and left
@@ -176,7 +176,7 @@ public class gameActionTests {
 		 * and one that doesn't for each type)
 		 */
 		Solution suggestion = new Solution("Joe", "Kitchen", "Knife");
-		Player testPlayer = new Player("testPlayer", "green", 17, 8);
+		Player testPlayer = new ComputerPlayer("testPlayer", "green", 17, 8);
 
 		Card personMatch = new Card("Joe", CardType.PERSON);
 		Card personNoMatch = new Card("Bob", CardType.PERSON);
@@ -341,7 +341,7 @@ public class gameActionTests {
 	}
 	
 	@Test
-	public void testHandleSuggestion() {
+	public void testhandleSuggestionTest() {
 		
 		/*
 		 * Creates the hands of each player.
@@ -405,14 +405,14 @@ public class gameActionTests {
 		
 		// Tests suggestion no one can disprove. 
 		Solution suggestion = new Solution("Greg", "Office", "Bottle");
-		Card result = board.handleSuggestion(suggestion, 0);
+		Card result = board.handleSuggestionTest(suggestion, 0);
 		assert(result == null);
 		
 		// Tests suggestion only accusing Player can disprove.
 		// Player 1 with the hand Kitchen/Gun/Jack is the only one that can disprove this
 		// Player 1 has index of 0 in players array
 		Solution suggestion2 = new Solution("Jack", "Office", "Bottle");
-		Card result2 = board.handleSuggestion(suggestion2, 0);
+		Card result2 = board.handleSuggestionTest(suggestion2, 0);
 		assert (result == null);
 		
 		// Tests suggestion only human can disprove.
@@ -420,7 +420,7 @@ public class gameActionTests {
 		// Player 1 has index of 0 in players array - testing that player not being accuser
 		// result should be the Jack card.
 		Solution suggestion3 = new Solution("Jack", "Office", "Bottle");
-		Card result3 = board.handleSuggestion(suggestion3, 1);
+		Card result3 = board.handleSuggestionTest(suggestion3, 1);
 		assert (result3.getCardName() == "Jack");
 		
 		// Tests suggestion only human can disprove, human is accuser.
@@ -428,7 +428,7 @@ public class gameActionTests {
 		// Player 1 has index of 0 in players array
 		// Should null
 		Solution suggestion4 = new Solution("Jack", "Office", "Bottle");
-		Card result4 = board.handleSuggestion(suggestion4, 0);
+		Card result4 = board.handleSuggestionTest(suggestion4, 0);
 		assert (result4 == null);
 		
 		// Tests suggestion two players can disprove.
@@ -437,7 +437,7 @@ public class gameActionTests {
 		// Player 4 should be the one to disprove it
 		// Result should be Game room
 		Solution suggestion5 = new Solution("Jack", "Game room", "Bottle");
-		Card result5 = board.handleSuggestion(suggestion5, 2);
+		Card result5 = board.handleSuggestionTest(suggestion5, 2);
 		assert (result5.getCardName() == "Game room");
 	}
 	

@@ -415,6 +415,61 @@ public class Board extends JPanel implements MouseListener {
 			}
 		}
 	}
+	
+	/**
+	 * @param startCell = initial cell
+	 * @param pathLength = length of path
+	 * Calculate all of the targets pathLength away from cell
+	 */
+	public void calcTargetsTest(int i, int j, int pathLength) {
+		visited = new HashSet<BoardCell>();
+		targets = new HashSet<BoardCell>();
+		BoardCell startCell = getCellAt(i, j);
+		visited.add(startCell);
+		findAllTargetsTest(startCell, pathLength);
+	}
+
+	/**
+	 * @param startCell = initial cell
+	 * @param pathLength = length of path
+	 * Calculate all of the targets pathLength away from cell
+	 */
+	public void calcTargetsTest(BoardCell startCell, int pathLength) {
+		visited = new HashSet<BoardCell>();
+		targets = new HashSet<BoardCell>();
+		visited.add(startCell);
+		findAllTargetsTest(startCell, pathLength);
+	}
+	
+	/**
+	 * @param startCell = starting cell
+	 * @param pathLength = length of desired path
+	 * Given a cell and a pathLength, adds the cells neighbors to targets if it is at the end of the path,
+	 * otherwise recursively calls the same function on its neighbors to find the targets on those paths
+	 */
+	private void findAllTargetsTest(BoardCell startCell, int pathLength) {
+		for (BoardCell cell : adjMatrix.get(startCell)) {
+			if (visited.contains(cell)) {
+				continue;
+			}
+			
+			visited.add(cell);
+
+			if (pathLength == 1) {
+				targets.add(cell);
+			} else {
+				findAllTargetsTest(cell, pathLength - 1);
+			}
+			if (cell.isDoorway()) {
+				if (validAdjacency(cell, startCell)) {
+					targets.add(cell);
+					continue;
+				}
+			}
+			visited.remove(cell);
+		}
+
+	}
 
 	/**
 	 * @param startCell = initial cell
@@ -533,6 +588,41 @@ public class Board extends JPanel implements MouseListener {
 		ClueGame.getInstance().getControlGUI().updateResult(NO_NEW_CLUE);
 		return null;
 	}
+	
+	/*
+	 * The next player that is not the active player returns a card that disproves suggestion
+	 * If no non-active player can disprove the suggestion, returns null.
+	 * @param activePlayerIndex = index in the players array of the player making the suggestion
+	 */
+	public Card handleSuggestionTest(Solution suggestion, int activePlayerIndex) {
+
+		/*
+		 * Starting at the next player after the active player, asks them to disprove suggestion.
+		 */
+		for (int i = activePlayerIndex + 1; i < players.size(); i++) {
+			Card ans = players.get(i).disproveSuggesstion(suggestion);
+			if (ans != null) {
+				for(Player player : players) {
+					player.addSeenCard(ans);
+				}
+				return ans;
+			}
+		}
+		/*
+		 * If active player is in the middle of the playerArray, needs to wrap around.
+		 */
+		for (int i = 0; i < activePlayerIndex; i++) {
+			Card ans = players.get(i).disproveSuggesstion(suggestion);
+			if (ans != null) {
+				for(Player player : players) {
+					player.addSeenCard(ans);
+				}
+				return ans;
+			}
+		}
+		return null;
+	}
+	
 	
 	/*
 	 * The next player that is not the active player returns a card that disproves suggestion

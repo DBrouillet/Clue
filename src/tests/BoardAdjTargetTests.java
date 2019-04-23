@@ -175,7 +175,7 @@ public class BoardAdjTargetTests {
 		// These are LIGHT BLUE on the planning spreadsheet
 		@Test
 		public void testTargetsOneStep() {
-			board.calcTargets(14, 16, 1);
+			board.calcTargetsTest(14, 16, 1);
 			Set<BoardCell> targets= board.getTargets();
 			assertEquals(4, targets.size());
 			assertTrue(targets.contains(board.getCellAt(14, 17)));
@@ -189,7 +189,7 @@ public class BoardAdjTargetTests {
 
 		@Test
 		public void testTargetsThreeSteps() {
-			board.calcTargets(13, 0, 3);
+			board.calcTargetsTest(13, 0, 3);
 			Set<BoardCell> targets= board.getTargets();
 			assertEquals(6, targets.size());
 			assertTrue(targets.contains(board.getCellAt(13, 3)));
@@ -208,7 +208,7 @@ public class BoardAdjTargetTests {
 		public void testTargetsIntoRoom()
 		{
 			// One room is exactly 2 away
-			board.calcTargets(17, 16, 2);
+			board.calcTargetsTest(17, 16, 2);
 			Set<BoardCell> targets= board.getTargets();
 			assertEquals(5, targets.size());
 			// directly left (can't go right 2 steps)
@@ -227,7 +227,7 @@ public class BoardAdjTargetTests {
 		@Test
 		public void testTargetsIntoRoomShortcut() 
 		{
-			board.calcTargets(5, 7, 4);
+			board.calcTargetsTest(5, 7, 4);
 			Set<BoardCell> targets= board.getTargets();
 			assertEquals(19, targets.size());
 			// Only 18 assertTrue inclusions, what is the 19th?
@@ -261,13 +261,13 @@ public class BoardAdjTargetTests {
 		public void testRoomExitUp()
 		{
 			// Take one step, essentially just the adj list
-			board.calcTargets(15, 4, 1);
+			board.calcTargetsTest(15, 4, 1);
 			Set<BoardCell> targets= board.getTargets();
 			// Ensure doesn't exit through the wall
 			assertEquals(1, targets.size());
 			assertTrue(targets.contains(board.getCellAt(14, 4)));
 			// Take two steps
-			board.calcTargets(15, 18, 2);
+			board.calcTargetsTest(15, 18, 2);
 			targets= board.getTargets();
 			assertEquals(3, targets.size());
 			assertTrue(targets.contains(board.getCellAt(14, 17)));
@@ -281,13 +281,13 @@ public class BoardAdjTargetTests {
 		public void testRoomExitLeft()
 		{
 			// Take one step, essentially just the adj list
-			board.calcTargets(10, 17, 1);
+			board.calcTargetsTest(10, 17, 1);
 			Set<BoardCell> targets= board.getTargets();
 			// Ensure doesn't exit through the wall
 			assertEquals(1, targets.size());
 			assertTrue(targets.contains(board.getCellAt(10, 16)));
 			// Take two steps
-			board.calcTargets(10, 17, 2);
+			board.calcTargetsTest(10, 17, 2);
 			targets= board.getTargets();
 			assertEquals(3, targets.size());
 			assertTrue(targets.contains(board.getCellAt(9, 16)));
