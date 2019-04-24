@@ -177,13 +177,13 @@ public class CTest_BoardAdjTargetTests {
 	// These are LIGHT BLUE on the planning spreadsheet
 	@Test
 	public void testTargetsOneStep() {
-		board.calcTargets(21, 7, 1);
+		board.calcTargetsTest(21, 7, 1);
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(2, targets.size());
 		assertTrue(targets.contains(board.getCellAt(20, 7)));
 		assertTrue(targets.contains(board.getCellAt(21, 6)));	
 		
-		board.calcTargets(14, 0, 1);
+		board.calcTargetsTest(14, 0, 1);
 		targets= board.getTargets();
 		assertEquals(3, targets.size());
 		assertTrue(targets.contains(board.getCellAt(14, 1)));
@@ -195,13 +195,13 @@ public class CTest_BoardAdjTargetTests {
 	// These are LIGHT BLUE on the planning spreadsheet
 	@Test
 	public void testTargetsTwoSteps() {
-		board.calcTargets(21, 7, 2);
+		board.calcTargetsTest(21, 7, 2);
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(2, targets.size());
 		assertTrue(targets.contains(board.getCellAt(19, 7)));
 		assertTrue(targets.contains(board.getCellAt(20, 6)));
 		
-		board.calcTargets(14, 0, 2);
+		board.calcTargetsTest(14, 0, 2);
 		targets= board.getTargets();
 		assertEquals(3, targets.size());
 		assertTrue(targets.contains(board.getCellAt(12, 0)));
@@ -213,7 +213,7 @@ public class CTest_BoardAdjTargetTests {
 	// These are LIGHT BLUE on the planning spreadsheet
 	@Test
 	public void testTargetsFourSteps() {
-		board.calcTargets(21, 7, 4);
+		board.calcTargetsTest(21, 7, 4);
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(4, targets.size());
 		assertTrue(targets.contains(board.getCellAt(17, 7)));
@@ -222,7 +222,7 @@ public class CTest_BoardAdjTargetTests {
 		assertTrue(targets.contains(board.getCellAt(20, 6)));
 		
 		// Includes a path that doesn't have enough length
-		board.calcTargets(14, 0, 4);
+		board.calcTargetsTest(14, 0, 4);
 		targets= board.getTargets();
 		assertEquals(4, targets.size());
 		assertTrue(targets.contains(board.getCellAt(14, 4)));
@@ -236,7 +236,7 @@ public class CTest_BoardAdjTargetTests {
 
 	@Test
 	public void testTargetsSixSteps() {
-		board.calcTargets(14, 0, 6);
+		board.calcTargetsTest(14, 0, 6);
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(7, targets.size());
 		assertTrue(targets.contains(board.getCellAt(14, 6)));
@@ -255,16 +255,18 @@ public class CTest_BoardAdjTargetTests {
 	public void testTargetsIntoRoom()
 	{
 		// One room is exactly 2 away
-		board.calcTargets(17, 16, 2);
+		board.calcTargetsTest(17, 16, 2);
 		Set<BoardCell> targets= board.getTargets();
-		assertEquals(5, targets.size());
+		assertEquals(7, targets.size());
 		// directly left (can't go right 2 steps)
 		assertTrue(targets.contains(board.getCellAt(17, 14)));
 		// directly up and down
 		assertTrue(targets.contains(board.getCellAt(15, 16)));
 		assertTrue(targets.contains(board.getCellAt(19, 16)));
 		// one up/down, one left/right
+		assertTrue(targets.contains(board.getCellAt(18, 17)));
 		assertTrue(targets.contains(board.getCellAt(18, 15)));
+		assertTrue(targets.contains(board.getCellAt(16, 17)));
 		assertTrue(targets.contains(board.getCellAt(16, 15)));
 	}
 	
@@ -273,7 +275,7 @@ public class CTest_BoardAdjTargetTests {
 	@Test
 	public void testTargetsIntoRoomShortcut() 
 	{
-		board.calcTargets(12, 7, 3);
+		board.calcTargetsTest(12, 7, 3);
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(12, targets.size());
 		// directly up and down
@@ -304,13 +306,13 @@ public class CTest_BoardAdjTargetTests {
 	public void testRoomExit()
 	{
 		// Take one step, essentially just the adj list
-		board.calcTargets(4, 20, 1);
+		board.calcTargetsTest(4, 20, 1);
 		Set<BoardCell> targets= board.getTargets();
 		// Ensure doesn't exit through the wall
 		assertEquals(1, targets.size());
 		assertTrue(targets.contains(board.getCellAt(4, 19)));
 		// Take two steps
-		board.calcTargets(4, 20, 2);
+		board.calcTargetsTest(4, 20, 2);
 		targets= board.getTargets();
 		assertEquals(3, targets.size());
 		assertTrue(targets.contains(board.getCellAt(3, 19)));
